@@ -84,9 +84,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 		}
 
 		IndividualCustomer individualCustomer = this.individualCustomerDao.getById(individualCustomerId);
-		if (individualCustomer == null) {
-			return new ErrorDataResult<IndividualCustomerSearchListDto>(Messages.CUSTOMERNOTFOUND,null);
-		}
 		IndividualCustomerSearchListDto customerSearchListDto = modelMapperService.forDto().map(individualCustomer,IndividualCustomerSearchListDto.class);
 			return new SuccessDataResult<IndividualCustomerSearchListDto>(customerSearchListDto,Messages.CUSTOMERGET);
 	}
@@ -96,11 +93,8 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 		if(result){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
-		return new SuccessResult();
-		
-		
+		return new SuccessResult();		
 	}
-	
 	
 	private Result checkIsIndividualCustomerExists(int id){
 		var result = this.individualCustomerDao.existsById(id);
