@@ -23,8 +23,6 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.IndividualCustomerDao;
 import com.etiya.ReCapProject.entities.concretes.IndividualCustomer;
 
-import lombok.experimental.var;
-
 @Service
 public class IndividualCustomerManager implements IndividualCustomerService {
 	private IndividualCustomerDao individualCustomerDao;
