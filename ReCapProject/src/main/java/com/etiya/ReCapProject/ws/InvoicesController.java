@@ -18,7 +18,6 @@ import com.etiya.ReCapProject.business.requests.invoiceRequests.UpdateInvoiceReq
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 
-import io.swagger.annotations.Authorization;
 
 @RestController
 @RequestMapping("api/invoices")
@@ -36,7 +35,7 @@ public class InvoicesController {
 		return this.invoiceService.getAll();
 	}
 
-	@PostMapping("update")
+	@PostMapping("add")
 	public Result add(CreateInvoiceRequest createInvoiceRequest) {
 		return this.invoiceService.add(createInvoiceRequest);
 	}
@@ -51,7 +50,7 @@ public class InvoicesController {
 		return this.invoiceService.delete(deleteInvoiceRequest);
 	}
 
-	@GetMapping("geyByCustomerId")
+	@GetMapping("getByCustomerId")
 	public DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId) {
 		return this.invoiceService.getByCustomerId(customerId);
 	}
