@@ -21,9 +21,9 @@ public interface CarDao extends JpaRepository<Car, Integer> {
 
 	List<CarDetail> getByBrand_BrandName(String brandName);
 
-//	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail"
-//	+ "(c.id,b.brandName,co.colorName,c.dailyPrice)" 
-//	+ "From Car c inner Join c.brand b Inner Join c.color co left join carMaintenances m m.carId=c.id where m.carId is null")
-//	List<CarDetail> getAvaliableCars();
+	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail"
+	+ "(c.id,b.brandName,co.colorName,c.dailyPrice)"
+	+ "From Car c inner Join c.brand b Inner Join c.color co left join c.carMaintenances m on m.car.id=c.id where m.id is null")
+	List<CarDetail> getAvaliableCars();
 
 }
