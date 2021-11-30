@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.CarMaintenanceService;
+import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CarMaintenanceSearchListDto;
@@ -33,12 +34,19 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	private CarMaintenanceDao carMaintenanceDao;
 	private ModelMapperService modelMapperService;
+	private CarService carService;
+	
+	@Lazy
+	private RentalService rentalService;
 
 	@Autowired
-	public CarMaintenanceManager(CarMaintenanceDao carMaintenanceDao, ModelMapperService modelMapperService) {
+	public CarMaintenanceManager(CarMaintenanceDao carMaintenanceDao, ModelMapperService modelMapperService,
+			CarService carService, RentalService rentalService) {
 		super();
 		this.carMaintenanceDao = carMaintenanceDao;
 		this.modelMapperService = modelMapperService;
+		this.carService = carService;
+		this.rentalService = rentalService;
 	}
 
 	@Override
@@ -64,6 +72,10 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest) {
+		var result = BusinessRules.run(isMaintenanceIdExists(updateCarMaintenanceRequest.getId()));
+		if (result != null) {
+			return result;
+		}
 		CarMaintenance carMaintenance = modelMapperService.forRequest().map(updateCarMaintenanceRequest,
 				CarMaintenance.class);
 		this.carMaintenanceDao.save(carMaintenance);
@@ -73,6 +85,10 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result delete(DeleteCarMaintenanceRequest deleteCarMaintenanceRequest) {
+		var result = BusinessRules.run(isMaintenanceIdExists(deleteCarMaintenanceRequest.getId()));
+		if (result != null) {
+			return result;
+		}
 		CarMaintenance carMaintenance = this.carMaintenanceDao.getById(deleteCarMaintenanceRequest.getId());
 		this.carMaintenanceDao.delete(carMaintenance);
 		return new SuccessResult(Messages.CARMAINTENANCEDELETE);
@@ -95,4 +111,23 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		}
 		return new SuccessDataResult<CarMaintenance>(carMaintenance);
 	}
+	
+	private Result isMaintenanceIdExists(int id) {
+		var result = this.carMaintenanceDao.existsById(id);
+		if (!result) {
+			return new ErrorResult(Messages.CARMAINTENANCENOTFOUND);
+		}
+		return new SuccessResult();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
