@@ -37,7 +37,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Autowired
 	public CarMaintenanceManager(CarMaintenanceDao carMaintenanceDao, ModelMapperService modelMapperService,
-			CarService carService, @Lazy RentalService rentalService) {
+			CarService carService,RentalService rentalService) {
 		super();
 		this.carMaintenanceDao = carMaintenanceDao;
 		this.modelMapperService = modelMapperService;
@@ -91,8 +91,8 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	}
 
 	private Result checkIfCarIsRented(int carId) {
-		var result = this.rentalService.getByCar_Id(carId);
-		if (result != null) {
+		var result = this.rentalService.checkIfReturnDateIsNull(carId);
+		if (!result.isSuccess()){
 			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
 		}
 		return new SuccessResult();

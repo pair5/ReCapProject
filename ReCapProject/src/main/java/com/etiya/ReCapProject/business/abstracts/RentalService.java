@@ -17,4 +17,5 @@ public interface RentalService {
 	Result update(UpdateRentalRequest updateRentalRequest);
 	DataResult<Rental> getByCar_Id(int carId);
 	DataResult<Rental> getById(int id);
+	Result checkIfReturnDateIsNull(int carId);
 }	

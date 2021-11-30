@@ -15,5 +15,5 @@ public class CarDetail {
 	private String brandName;
 	private String colorName;
 	private double dailyPrice;
-	
+	private String description;
 }

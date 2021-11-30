@@ -11,7 +11,7 @@ import com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail;
 public interface CarDao extends JpaRepository<Car, Integer> {
 
 	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail "
-			+ "(c.id,b.brandName,co.colorName,c.dailyPrice)" + "From Car c Inner Join c.brand b Inner Join c.color co ")
+			+ "(c.id,b.brandName,co.colorName,c.dailyPrice,c.description)" + "From Car c Inner Join c.brand b Inner Join c.color co ")
 	List<CarDetail> CarWithBrandAndColorDetails();
 
 	List<Car> getByBrand_Id(int brandId);
@@ -20,10 +20,10 @@ public interface CarDao extends JpaRepository<Car, Integer> {
 
 	List<CarDetail> getByBrand_BrandName(String brandName);
 
-//	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail "
-//			+ "(c.id,b.brandName,co.colorName,c.dailyPrice)" 
-//			+ "From Car c Inner Join c.brand b Inner Join c.color co left join c.carMaintenances m m.car.carId=c.id and m.returnDate is null")
-//	List<CarDetail> getAvaliableCars();
+	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail "
+			+ "(c.id,b.brandName,co.colorName,c.dailyPrice, c.description)" 
+			+ "From Car c Inner Join c.brand b Inner Join c.color co left join c.carMaintenances m on m.car.id<>c.id where m.returnDate is null")
+	List<CarDetail> getAvaliableCars();
 
 
 }

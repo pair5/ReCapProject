@@ -104,7 +104,7 @@ public class RentalManager implements RentalService {
 		return new SuccessResult(Messages.RENTALUPDATE);
 	}
 
-	private Result checkIfReturnDateIsNull(int carId) {
+	public Result checkIfReturnDateIsNull(int carId) {
 		RentalSearchListDto rental = this.rentalDao.getByCarIdWhereReturnDateIsNull(carId);
 		if (rental != null) {
 			return new ErrorResult(Messages.RENTALDATEERROR);
@@ -131,7 +131,7 @@ public class RentalManager implements RentalService {
 	@Override
 	public DataResult<Rental> getByCar_Id(int carId) {
 		var rental = this.rentalDao.getByCarId(carId);
-		if (rental != null) {
+		if (rental == null) {
 			return new ErrorDataResult(Messages.CARNOTFOUND);
 		}
 		return new SuccessDataResult<Rental>(rental);
