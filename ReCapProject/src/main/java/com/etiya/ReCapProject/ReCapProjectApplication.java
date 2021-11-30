@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.etiya.ReCapProject.core.utilities.results.ErrorDataResult;
 import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
+import com.etiya.ReCapProject.core.utilities.services.findex.externalFindexCalculator.FindexCalculator;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -45,6 +46,11 @@ public class ReCapProjectApplication {
 	@Bean
 	public ModelMapper getModeMapper() {
 		return new ModelMapper();
+	}
+	
+	@Bean
+	public FindexCalculator getFindexCalculator() {
+		return new FindexCalculator();
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
