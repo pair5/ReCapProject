@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etiya.ReCapProject.business.abstracts.InvoiceService;
@@ -36,17 +38,17 @@ public class InvoicesController {
 	}
 
 	@PostMapping("add")
-	public Result add(CreateInvoiceRequest createInvoiceRequest) {
+	public Result add(@RequestBody CreateInvoiceRequest createInvoiceRequest) {
 		return this.invoiceService.add(createInvoiceRequest);
 	}
 
 	@PutMapping("update")
-	public Result update(UpdateInvoiceRequest updateInvoiceRequest) {
+	public Result update(@RequestBody UpdateInvoiceRequest updateInvoiceRequest) {
 		return this.invoiceService.update(updateInvoiceRequest);
 	}
 
 	@DeleteMapping("delete")
-	public Result update(DeleteInvoiceRequest deleteInvoiceRequest) {
+	public Result update(@RequestBody DeleteInvoiceRequest deleteInvoiceRequest) {
 		return this.invoiceService.delete(deleteInvoiceRequest);
 	}
 
