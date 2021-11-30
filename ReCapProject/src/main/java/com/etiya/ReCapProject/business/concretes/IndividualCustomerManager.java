@@ -66,12 +66,12 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public Result update(UpdateIndividualCustomerRequest updateIndividualRequest) {
-		Result result = BusinessRules.run(checkIsIndividualCustomerExists(updateIndividualRequest.getId()));
+		Result result = BusinessRules.run(checkIsIndividualCustomerExists(updateIndividualRequest.getId()),checkIsIndividualCustomerEmailExists(updateIndividualRequest.getEmail()));
 		if(result != null){
 			return result;
 		}
 		IndividualCustomer individualCustomer=modelMapperService.forRequest().map(updateIndividualRequest, IndividualCustomer.class);
-		this.individualCustomerDao.delete(individualCustomer);
+		this.individualCustomerDao.save(individualCustomer);
 		return new SuccessResult(Messages.CUSTOMERUPDATE);
 	}
 
