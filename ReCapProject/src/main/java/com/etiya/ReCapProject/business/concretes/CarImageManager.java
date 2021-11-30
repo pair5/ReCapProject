@@ -44,11 +44,12 @@ public class CarImageManager implements CarImageService {
 //	private String path;
 
 	@Autowired
-	public CarImageManager(CarImageDao carImageDao, ModelMapperService modelMapperService) {
-		super();
-		this.carImageDao = carImageDao;
-		this.modelMapperService = modelMapperService;
-	}
+	public CarImageManager(CarImageDao carImageDao, ModelMapperService modelMapperService, CarService carService) {
+	super();
+	this.carImageDao = carImageDao;
+	this.modelMapperService = modelMapperService;
+	this.carService = carService;
+}
 
 	@Override
 	public DataResult<List<CarImageSearchListDto>> getAll() {
@@ -58,6 +59,8 @@ public class CarImageManager implements CarImageService {
 				.collect(Collectors.toList());
 		return new SuccessDataResult<List<CarImageSearchListDto>>(result, Messages.CARIMAGELIST);
 	}
+
+
 
 	@Override
 	public Result add(CreateCarImageRequest createCarImageRequest) throws IOException {
