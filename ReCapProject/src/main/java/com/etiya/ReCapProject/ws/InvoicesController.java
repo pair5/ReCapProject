@@ -59,7 +59,7 @@ public class InvoicesController {
 	}
 	
 	@GetMapping("getByCreateDateBetweenBeginDateAndEndDate")
-	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate,LocalDate endDate) {
+	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate, LocalDate endDate) {
 		return this.invoiceService.getByCreateDateBetweenBeginDateAndEndDate(beginDate, endDate);
 	}
 }

@@ -12,12 +12,12 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface InvoiceDao extends JpaRepository<Invoice, Integer>{
 	
-	List<InvoiceSearchListDto> getByCustomer_Id(int id);
+	List<Invoice> getByCustomer_Id(int id);
 	
 	
 
 	@Query("select i from Invoice i where i.createDate between ?1 and ?2")
-	List<InvoiceSearchListDto> getByCreateDateBetween(LocalDate beginDate, LocalDate endDate);
+	List<Invoice> getByCreateDateBetween(LocalDate beginDate, LocalDate endDate);
 	
 	
 	
