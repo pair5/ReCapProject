@@ -87,7 +87,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	
 	private Result checkIsIndividualCustomerEmailExists(String email){
 		var result = this.individualCustomerDao.existsByEmail(email);
-		if(!result){
+		if(result){
 			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
 		}
 		return new SuccessResult();

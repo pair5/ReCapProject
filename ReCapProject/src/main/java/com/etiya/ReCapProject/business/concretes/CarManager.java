@@ -115,10 +115,11 @@ public class CarManager implements CarService {
 
 	@Override
 	public DataResult<List<CarBrandDetail>> getByBrandId(int brandId) {
-		List<Car> cars = this.carDao.getByBrand_Id(brandId);
-		if (cars == null) {
-			return new ErrorDataResult<List<CarBrandDetail>>(Messages.BRANDNOTFOUND, null);
+		Result existResult = brandService.existsBrandId(brandId);
+		if (!existResult.isSuccess()) {
+			return new ErrorDataResult(Messages.BRANDNOTFOUND);
 		}
+		List<Car> cars = this.carDao.getByBrand_Id(brandId);
 		List<CarBrandDetail> result = cars.stream()
 				.map(car -> modelMapperService.forDto().map(car, CarBrandDetail.class)).collect(Collectors.toList());
 		return new SuccessDataResult<List<CarBrandDetail>>(result);
@@ -126,6 +127,10 @@ public class CarManager implements CarService {
 
 	@Override
 	public DataResult<List<CarColorDetail>> getByColorId(int colorId) {
+		Result existColor = colorService.isCheckColorExists(colorId);
+		if (!existColor.isSuccess()) {
+			return new ErrorDataResult(Messages.COLORNOTFOUND);
+		}
 		List<Car> cars = this.carDao.getByColor_Id(colorId);
 		if (cars == null) {
 			return new ErrorDataResult<List<CarColorDetail>>(Messages.COLORNOTFOUND, null);
