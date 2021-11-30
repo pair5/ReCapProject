@@ -2,7 +2,7 @@ package com.etiya.ReCapProject.business.requests.individualRequests;
 
 import java.time.LocalDate;
 
-import io.swagger.annotations.ApiKeyAuthDefinition;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
