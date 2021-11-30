@@ -19,6 +19,7 @@ import com.etiya.ReCapProject.business.requests.corporateCustomerRequests.Update
 import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
+import com.etiya.ReCapProject.core.utilities.results.ErrorDataResult;
 import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
@@ -55,6 +56,10 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result add(CreateCorporateCustomerRequest createCorporateCustomerRequest) {
+		var result = BusinessRules.run(checkIsCorporateCustomerEmailExists(createCorporateCustomerRequest.getEmail()));
+		if (result!= null) {
+			return result;
+		}
 		CorporateCustomer corporateCustomer = modelMapperService.forRequest().map(createCorporateCustomerRequest,
 				CorporateCustomer.class);
 		this.corporateCustomerDao.save(corporateCustomer);
@@ -87,12 +92,28 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public DataResult<CorporateCustomerSearchListDto> getById(int corporateCustomerId) {
+
+		var existsIndividualCustomer = this.corporateCustomerDao.existsById(corporateCustomerId);
+		if (!existsIndividualCustomer) {
+			return new ErrorDataResult(Messages.CUSTOMERNOTFOUND);
+		}
 		CorporateCustomer corporateCustomer = this.corporateCustomerDao.getById(corporateCustomerId);
 		CorporateCustomerSearchListDto corporateCustomerSearchListDto = modelMapperService.forDto()
 				.map(corporateCustomer, CorporateCustomerSearchListDto.class);
 		return new SuccessDataResult<CorporateCustomerSearchListDto>(corporateCustomerSearchListDto,
 				Messages.CUSTOMERGET);
 	}
+	
+	private Result checkIsCorporateCustomerEmailExists(String email){
+		var result = this.corporateCustomerDao.existsByEmail(email);
+		if(result){
+			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
+		}
+		return new SuccessResult();		
+	}
+	
+	
+	
 
 	private Result corporateCustomerExists(int customerId) {
 		var result = this.corporateCustomerDao.existsById(customerId);
