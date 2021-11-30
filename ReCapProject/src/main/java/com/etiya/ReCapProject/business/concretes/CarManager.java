@@ -70,7 +70,9 @@ public class CarManager implements CarService {
 
 	@Override
 	public Result update(UpdateCarRequest updateCarRequest) {
-		Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId()));
+		Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId())
+				,isBrandIdExists(updateCarRequest.getBrandId())
+				,isColorIdExists(updateCarRequest.getColorId()));
 		if (result != null) {
 			return result;
 		}
