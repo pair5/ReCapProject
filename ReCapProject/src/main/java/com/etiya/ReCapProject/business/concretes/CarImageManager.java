@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.etiya.ReCapProject.business.abstracts.CarImageService;
+import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CarImageSearchListDto;
 import com.etiya.ReCapProject.business.requests.carImageRequests.CreateCarImageRequest;
@@ -34,8 +35,10 @@ import com.etiya.ReCapProject.entities.concretes.CarImage;
 @Service
 @ConfigurationProperties
 public class CarImageManager implements CarImageService {
+	
 	private CarImageDao carImageDao;
 	private ModelMapperService modelMapperService;
+	private CarService carService;
 
 //	@Value("${imagePath}")
 //	private String path;
@@ -58,7 +61,7 @@ public class CarImageManager implements CarImageService {
 
 	@Override
 	public Result add(CreateCarImageRequest createCarImageRequest) throws IOException {
-		Result result = BusinessRules.run(checkNumberOfCarImages(createCarImageRequest.getCarId()),
+		Result result = BusinessRules.run(checkIsCarIdExist(createCarImageRequest.getCarId()),checkNumberOfCarImages( createCarImageRequest.getCarId()),
 				checkImageTypeIsOk(createCarImageRequest.getFile()));
 		if (result != null) {
 			return result;
@@ -84,7 +87,7 @@ public class CarImageManager implements CarImageService {
 
 	@Override
 	public Result update(UpdateCarImageRequest updateCarImageRequest) throws IOException {
-		Result result = BusinessRules.run(isCarImageExists(updateCarImageRequest.getId()),checkImageTypeIsOk(updateCarImageRequest.getFile()));
+		Result result = BusinessRules.run(checkIsCarIdExist(updateCarImageRequest.getCarId()),isCarImageExists(updateCarImageRequest.getId()),checkImageTypeIsOk(updateCarImageRequest.getFile()));
 		if (result != null) {
 			return result;
 		}
@@ -159,6 +162,15 @@ public class CarImageManager implements CarImageService {
 			return new ErrorResult(Messages.CARIMAGETYPEERROR);
 		}
 		return new SuccessResult();
+	}
+	
+	private Result checkIsCarIdExist(int id) {
+		var result = this.carService.isCarExists(id);
+		if (!result.isSuccess()) {
+			return new ErrorResult(Messages.CARNOTFOUND);
+		}
+		return new SuccessResult();
+		
 	}
 
 }
