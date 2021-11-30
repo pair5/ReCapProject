@@ -18,7 +18,9 @@ public interface CarService {
 	Result add(CreateCarRequest createCarRequest);
 	Result update(UpdateCarRequest updateCarRequest);
 	Result delete(DeleteCarRequest deleteCarRequest);
-	DataResult<CarSearchListDto> getById(int carId);
+	
+	 DataResult<CarSearchListDto>  getById(int carId);
+	
 	DataResult<List<CarDetail>> getCarWithBrandAndColorDetails();
 	Result isCarExists(int id);
 	
