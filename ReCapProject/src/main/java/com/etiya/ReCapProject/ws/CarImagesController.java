@@ -3,6 +3,8 @@ package com.etiya.ReCapProject.ws;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +44,7 @@ public class CarImagesController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestParam("carId") int carId, MultipartFile file) throws IOException {
+	public Result add(@RequestParam("carId") @Valid int carId, MultipartFile file) throws IOException {
 		CreateCarImageRequest createCarImage = new CreateCarImageRequest();
 		createCarImage.setCarId(carId);
 		createCarImage.setFile(file);
