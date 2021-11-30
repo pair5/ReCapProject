@@ -102,9 +102,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
 		}
 		return new SuccessResult();
-
-		
-		
 	}
 	
 
