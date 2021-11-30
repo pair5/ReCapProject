@@ -14,7 +14,7 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class UpdateRentalRequest {
 
-	@NonNull
+	@NotNull
 	private int id;
 
 	@NotNull
@@ -26,6 +26,6 @@ public class UpdateRentalRequest {
 	private int carId;
 	
 	@NotNull
-	private int individualCustomerId;
+	private int customerId;
 
 }

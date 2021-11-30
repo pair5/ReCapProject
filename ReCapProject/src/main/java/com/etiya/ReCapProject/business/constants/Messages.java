@@ -46,6 +46,7 @@ public class Messages {
 	public static final String RENTALFINDEXSCOREERROR = "Your findex score is not enough to rent this car..";
 	public static final String RENTALMAINTENANCEERROR = "The car is currently under maintenance.";
 	public static final String RENTALGET = "Rental found";
+	public static final String RENTALNOTFOUND = "Rental not found";
 
 	public static final String CARIMAGEADD = "Car image added.";
 	public static final String CARIMAGEUPDATE = "Car image updated.";
