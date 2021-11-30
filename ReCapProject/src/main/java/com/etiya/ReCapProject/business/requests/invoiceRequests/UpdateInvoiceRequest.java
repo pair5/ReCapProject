@@ -1,4 +1,4 @@
-package com.etiya.ReCapProject.business.requests.invoideRequests;
+package com.etiya.ReCapProject.business.requests.invoiceRequests;
 
 import java.time.LocalDate;
 
@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateInvoiceRequest {
+public class UpdateInvoiceRequest {
 	
-	@JsonIgnore
 	private int id;
 	
 	private String invoiceNumber;
@@ -28,5 +27,6 @@ public class CreateInvoiceRequest {
 	private double totalAmount;
 	
 	private int customerId;
+
 
 }

@@ -1,4 +1,4 @@
-package com.etiya.ReCapProject.business.requests.invoideRequests;
+package com.etiya.ReCapProject.business.requests.invoiceRequests;
 
 import lombok.AllArgsConstructor;
 
