@@ -1,5 +1,6 @@
 package com.etiya.ReCapProject.ws;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,10 @@ public class InvoicesController {
 	@GetMapping("getByCustomerId")
 	public DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId) {
 		return this.invoiceService.getByCustomerId(customerId);
+	}
+	
+	@GetMapping("getByCreateDateBetweenBeginDateAndEndDate")
+	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate,LocalDate endDate) {
+		return this.invoiceService.getByCreateDateBetweenBeginDateAndEndDate(beginDate, endDate);
 	}
 }
