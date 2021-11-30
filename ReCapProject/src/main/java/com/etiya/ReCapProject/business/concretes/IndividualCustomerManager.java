@@ -99,20 +99,13 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();
-		
-		
 	}
-	
-	
 	private Result checkIsIndividualCustomerExists(int id){
 		var result = this.individualCustomerDao.existsById(id);
 		if(!result){
 			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
 		}
 		return new SuccessResult();
-
-		
-		
 	}
 	
 
