@@ -116,7 +116,7 @@ public class RentalManager implements RentalService {
 			return new ErrorResult("araç bulunamadı");
 		}
 		int findexScore = car.getData().getFindexScore();
-		int customerFindexScore = findexService.individualCustomerFindexScore();
+		int customerFindexScore = findexService.calculateCustomerFindexScore();
 		if (customerFindexScore < findexScore) {
 			return new ErrorResult(Messages.RENTALFINDEXSCOREERROR + customerFindexScore);
 		}

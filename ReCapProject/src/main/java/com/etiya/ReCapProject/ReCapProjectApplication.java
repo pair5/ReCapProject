@@ -71,7 +71,5 @@ public class ReCapProjectApplication {
 		return error;
 	}
     
-    
-    //MainByErenUygun
 	
 }
