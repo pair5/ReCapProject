@@ -15,4 +15,5 @@ public interface BrandService {
 	Result delete(DeleteBrandRequest deleteBrandRequest);
 	Result update(UpdateBrandRequest updateBrandRequest);
 	DataResult<BrandSearchListDto> getByBrandId(int brandId);
+	Result existsBrandId(int brandId) ;
 }

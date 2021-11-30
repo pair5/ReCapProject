@@ -8,6 +8,9 @@ import com.etiya.ReCapProject.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.ReCapProject.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
+import com.etiya.ReCapProject.entities.concretes.Car;
+import com.etiya.ReCapProject.entities.concretes.complexTypes.CarBrandDetail;
+import com.etiya.ReCapProject.entities.concretes.complexTypes.CarColorDetail;
 import com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail;
 
 public interface CarService {
@@ -17,4 +20,12 @@ public interface CarService {
 	Result delete(DeleteCarRequest deleteCarRequest);
 	DataResult<CarSearchListDto> getById(int carId);
 	DataResult<List<CarDetail>> getCarWithBrandAndColorDetails();
+	Result isCarExists(int id);
+	
+	DataResult<List<CarBrandDetail>> getByBrandId(int brandId);
+	
+	DataResult<List<CarColorDetail>> getByColorId(int colorId);
+	
+	DataResult<List<CarDetail>> getAvailableCars();
+	
 }

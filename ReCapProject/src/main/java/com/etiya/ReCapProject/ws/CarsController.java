@@ -2,10 +2,14 @@ package com.etiya.ReCapProject.ws;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,32 +20,37 @@ import com.etiya.ReCapProject.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.ReCapProject.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
+import com.etiya.ReCapProject.entities.concretes.Car;
+import com.etiya.ReCapProject.entities.concretes.complexTypes.CarBrandDetail;
+import com.etiya.ReCapProject.entities.concretes.complexTypes.CarColorDetail;
 import com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail;
+
+import lombok.val;
 
 @RestController
 @RequestMapping("/api/cars")
 public class CarsController {
 
 	private CarService carService;
-
+	@Autowired
 	public CarsController(CarService carService) {
 		super();
 		this.carService = carService;
 	}
 
-	@PostMapping("/add")
-	public Result add(CreateCarRequest createCarRequest) {
+	@PostMapping("add")
+	public Result add(@RequestBody @Valid CreateCarRequest createCarRequest) {
 
 		return this.carService.add(createCarRequest);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("update")
 	public Result update(UpdateCarRequest updateCarRequest) {
 		return this.carService.update(updateCarRequest);
 
 	}
 
-	@DeleteMapping("/delete")
+	@DeleteMapping("delete")
 	public Result delete(DeleteCarRequest deleteCarRequest) {
 		return this.carService.delete(deleteCarRequest);
 
@@ -60,5 +69,18 @@ public class CarsController {
 	public DataResult<CarSearchListDto> getCar(int id) {
 		return this.carService.getById(id);
 	}
+	@GetMapping("/getCarByBrandId")
+	public DataResult<List<CarBrandDetail>> getCarByBrandId(int brandId) {
+		return this.carService.getByBrandId(brandId);
+	}
+	@GetMapping("/getCarByColorId")
+	public DataResult<List<CarColorDetail>> getCarByColorId(int colorId) {
+		return this.carService.getByColorId(colorId);
+	}
+	@GetMapping("/getAvailableCars")
+	public DataResult<List<CarDetail>> getAvailableCars() {
+		return this.carService.getAvailableCars();
+	}
+	
 
 }

@@ -47,7 +47,7 @@ public class BrandsController {
 		return this.brandService.delete(deleteBrandRequest);
 	}
 	@GetMapping("getById")
-	public DataResult<BrandSearchListDto> getByBrandId(@RequestBody int brandId){
+	public DataResult<BrandSearchListDto> getByBrandId(int brandId){
 		return this.brandService.getByBrandId(brandId);
 	}
 }

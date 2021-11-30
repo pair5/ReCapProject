@@ -1,5 +1,7 @@
 package com.etiya.ReCapProject.entities.concretes.complexTypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

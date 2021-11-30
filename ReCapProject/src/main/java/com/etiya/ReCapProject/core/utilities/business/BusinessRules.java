@@ -9,9 +9,7 @@ public class BusinessRules {
                 return logic;
 				
 			}
-
 		}
 		return null;
-
     }
 }
