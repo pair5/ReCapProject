@@ -63,6 +63,10 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest) {
+		Result result = BusinessRules.run(corporateCustomerExists(updateCorporateCustomerRequest.getId()));
+		if (result != null) {
+			return result;
+		}
 		CorporateCustomer corporateCustomer = modelMapperService.forRequest().map(updateCorporateCustomerRequest,
 				CorporateCustomer.class);
 		this.corporateCustomerDao.save(corporateCustomer);

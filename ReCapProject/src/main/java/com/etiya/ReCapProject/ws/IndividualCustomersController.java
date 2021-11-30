@@ -2,6 +2,8 @@ package com.etiya.ReCapProject.ws;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,17 +39,17 @@ public class IndividualCustomersController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+	public Result add(@RequestBody @Valid CreateIndividualCustomerRequest createIndividualCustomerRequest) {
 		return this.individualCustomerService.add(createIndividualCustomerRequest);
 	}
 
 	@DeleteMapping("/delete")
-	public Result delete(DeleteIndividualCustomerRequest deleteIndividualCustomerRequest) {
+	public Result delete(@RequestBody @Valid DeleteIndividualCustomerRequest deleteIndividualCustomerRequest) {
 		return this.individualCustomerService.delete(deleteIndividualCustomerRequest);
 	}
 
 	@PutMapping("/update")
-	public Result update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
+	public Result update(@RequestBody @Valid  UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
 		return this.individualCustomerService.update(updateIndividualCustomerRequest);
 	}
 

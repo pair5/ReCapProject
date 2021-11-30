@@ -15,6 +15,7 @@ import com.etiya.ReCapProject.business.requests.individualRequests.UpdateIndivid
 import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
+import com.etiya.ReCapProject.core.utilities.results.ErrorDataResult;
 import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
@@ -44,7 +45,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	@Override
 	public Result add(CreateIndividualCustomerRequest createIndividualRequest) {
 		var result = BusinessRules.run(checkIsIndividualCustomerEmailExists(createIndividualRequest.getEmail()));
-		if(!result.isSuccess()){
+		if(result != null){
 			return result;
 		}
 		IndividualCustomer individualCustomer = modelMapperService.forRequest().map(createIndividualRequest,IndividualCustomer.class);
@@ -55,8 +56,8 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	@Override
 	public Result delete(DeleteIndividualCustomerRequest deleteIndividualRequest) {
 		Result result = BusinessRules.run(checkIsIndividualCustomerExists(deleteIndividualRequest.getId()));
-		if (!result.isSuccess()) {
-		return result;		
+		if(result != null){
+			return result;
 		}
 		IndividualCustomer individualCustomer=modelMapperService.forRequest().map(deleteIndividualRequest, IndividualCustomer.class);
 		this.individualCustomerDao.delete(individualCustomer);
@@ -66,8 +67,8 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	@Override
 	public Result update(UpdateIndividualCustomerRequest updateIndividualRequest) {
 		Result result = BusinessRules.run(checkIsIndividualCustomerExists(updateIndividualRequest.getId()));
-		if (!result.isSuccess()) {
-		return result;		
+		if(result != null){
+			return result;
 		}
 		IndividualCustomer individualCustomer=modelMapperService.forRequest().map(updateIndividualRequest, IndividualCustomer.class);
 		this.individualCustomerDao.delete(individualCustomer);
@@ -77,6 +78,9 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	@Override
 	public DataResult<IndividualCustomerSearchListDto> getByIndividualCustomerId(int individualCustomerId) {
 		IndividualCustomer individualCustomer = this.individualCustomerDao.getById(individualCustomerId);
+		if (individualCustomer == null) {
+			return new ErrorDataResult<IndividualCustomerSearchListDto>(Messages.CUSTOMERNOTFOUND,null);
+		}
 		IndividualCustomerSearchListDto customerSearchListDto = modelMapperService.forDto().map(individualCustomer,IndividualCustomerSearchListDto.class);
 			return new SuccessDataResult<IndividualCustomerSearchListDto>(customerSearchListDto,Messages.CUSTOMERGET);
 	}
