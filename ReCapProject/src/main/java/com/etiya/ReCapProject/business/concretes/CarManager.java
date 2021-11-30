@@ -181,7 +181,7 @@ public class CarManager implements CarService {
 	public Result isCarExists(int carId) {
 		var car = this.carDao.existsById(carId);
 		if (!car) {
-			return new ErrorResult();
+			return new ErrorResult(Messages.CARNOTFOUND);
 		}
 		return new SuccessResult();
 	}

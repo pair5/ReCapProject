@@ -170,7 +170,7 @@ public class RentalManager implements RentalService {
 	private Result checkIfUserIdExists(int carId) {
 		var result = this.userService.isUserExists(carId);
 		if (!result.isSuccess()) {
-			return new ErrorResult(Messages.USERNOTFOUND);
+			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
 		}
 		return new SuccessResult();
 	}
