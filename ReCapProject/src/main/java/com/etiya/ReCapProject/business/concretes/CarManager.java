@@ -174,11 +174,12 @@ public class CarManager implements CarService {
 	@Override
 	public DataResult<List<CarDetail>> getAvailableCars() {
 		// refactor edilecek
-		List<CarDetail> carDetail = this.carDao.getAllCarMaintenances();
-		if (carDetail == null) {
-			return new ErrorDataResult<List<CarDetail>>(null);
-		}
-		return new SuccessDataResult<List<CarDetail>>(carDetail);
+//		List<CarDetail> carDetail = this.carDao.getAvaliableCars();
+//		if (carDetail == null) {
+//			return new ErrorDataResult<List<CarDetail>>(null);
+//		}
+//		return new SuccessDataResult<List<CarDetail>>(carDetail);
+		return null;
 	}
 
 	@Override
