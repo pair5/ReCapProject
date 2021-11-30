@@ -3,6 +3,7 @@ package com.etiya.ReCapProject.entities.concretes;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
@@ -27,6 +28,6 @@ public class Customer extends  User {
 	private List<Rental> rentals;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer", fetch=FetchType.LAZY)
 	List<CreditCard> creditCards;
 }

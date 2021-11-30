@@ -3,8 +3,8 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.CarMaintenanceService;
@@ -12,7 +12,6 @@ import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CarMaintenanceSearchListDto;
-import com.etiya.ReCapProject.business.dtos.RentalSearchListDto;
 import com.etiya.ReCapProject.business.requests.carMaintenanceRequess.CreateCarMaintenanceRequest;
 import com.etiya.ReCapProject.business.requests.carMaintenanceRequess.DeleteCarMaintenanceRequest;
 import com.etiya.ReCapProject.business.requests.carMaintenanceRequess.UpdateCarMaintenanceRequest;
@@ -25,9 +24,8 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.CarMaintenanceDao;
-import com.etiya.ReCapProject.dataAccess.abstracts.RentalDao;
+
 import com.etiya.ReCapProject.entities.concretes.CarMaintenance;
-import com.etiya.ReCapProject.entities.concretes.Rental;
 
 @Service
 public class CarMaintenanceManager implements CarMaintenanceService {
@@ -35,13 +33,11 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	private CarMaintenanceDao carMaintenanceDao;
 	private ModelMapperService modelMapperService;
 	private CarService carService;
-	
-	@Lazy
 	private RentalService rentalService;
 
 	@Autowired
 	public CarMaintenanceManager(CarMaintenanceDao carMaintenanceDao, ModelMapperService modelMapperService,
-			CarService carService, RentalService rentalService) {
+			CarService carService, @Lazy RentalService rentalService) {
 		super();
 		this.carMaintenanceDao = carMaintenanceDao;
 		this.modelMapperService = modelMapperService;
@@ -60,7 +56,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result add(CreateCarMaintenanceRequest createCarMaintenanceRequest) {
-		Result result = BusinessRules.run();
+		Result result = BusinessRules.run(checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()));
 		if (result != null) {
 			return result;
 		}
@@ -94,14 +90,13 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		return new SuccessResult(Messages.CARMAINTENANCEDELETE);
 	}
 
-	
-//	private Result checkIfCarIsRented() {
-//		var result=this.carMaintenanceDao.findByRentalCarId();
-//		if (result!=null) {
-//			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
-//		}
-//		return new SuccessResult();
-//	}
+	private Result checkIfCarIsRented(int carId) {
+		var result = this.rentalService.getByCar_Id(carId);
+		if (result != null) {
+			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
+		}
+		return new SuccessResult();
+	}
 
 	@Override
 	public DataResult<CarMaintenance> getByCar(int carId) {
@@ -111,7 +106,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		}
 		return new SuccessDataResult<CarMaintenance>(carMaintenance);
 	}
-	
+
 	private Result isMaintenanceIdExists(int id) {
 		var result = this.carMaintenanceDao.existsById(id);
 		if (!result) {
@@ -119,15 +114,5 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		}
 		return new SuccessResult();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

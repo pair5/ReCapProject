@@ -2,10 +2,11 @@ package com.etiya.ReCapProject.business.concretes;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.CarMaintenanceService;
@@ -43,13 +44,13 @@ public class RentalManager implements RentalService {
 	private FindexService findexService;
 	private CarService carService;
 	private IndividualCustomerService individualCustomerService;
+	@org.springframework.context.annotation.Lazy
 	private CarMaintenanceService carMaintenanceService;
 	private UserService userService;
 
 	@Autowired
 	public RentalManager(RentalDao rentalDao, ModelMapperService modelMapperService, FindexService findexService,
-			CarService carService, IndividualCustomerService individualCustomerService,
-			CarMaintenanceService carMaintenanceService, UserService userService) {
+			CarService carService, IndividualCustomerService individualCustomerService, @Lazy CarMaintenanceService carMaintenanceService, UserService userService) {
 		super();
 		this.rentalDao = rentalDao;
 		this.modelMapperService = modelMapperService;
@@ -158,6 +159,15 @@ public class RentalManager implements RentalService {
 			return new ErrorResult(Messages.USERNOTFOUND);
 		}
 		return new SuccessResult();
+	}
+
+	@Override
+	public DataResult<Rental> getById(int id) {
+		var result=this.rentalDao.getById(id);
+		if (result==null) {
+			return new ErrorDataResult<Rental>(Messages.RENTALNOTFOUND,null);
+		}
+		return new SuccessDataResult<Rental>(result);
 	}
 
 }

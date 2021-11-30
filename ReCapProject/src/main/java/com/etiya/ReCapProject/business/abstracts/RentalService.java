@@ -16,4 +16,5 @@ public interface RentalService {
 	Result delete(DeleteRentalRequest deleteRentalRequest);
 	Result update(UpdateRentalRequest updateRentalRequest);
 	DataResult<Rental> getByCar_Id(int carId);
+	DataResult<Rental> getById(int id);
 }	
