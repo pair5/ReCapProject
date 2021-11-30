@@ -94,8 +94,12 @@ public class CarManager implements CarService {
 
 	@Override
 	public DataResult<CarSearchListDto> getById(int carId) {
+		
+		var carResult = this.carDao.existsById(carId);
+		if (!carResult) {
+			return new ErrorDataResult(Messages.CARNOTFOUND);
+		}
 		var car = this.carDao.getById(carId);
-
 		try {
 			if (car == null) {
 				return new ErrorDataResult<CarSearchListDto>(Messages.CARNOTFOUND,null);

@@ -123,7 +123,7 @@ public class RentalManager implements RentalService {
 	private Result compareFindexScores(int id) {
 		var car = carService.getById(id);
 		if (car==null) {
-			return new ErrorResult("araç bulunamadı");
+			return new ErrorResult(Messages.CARNOTFOUND);
 		}
 		int findexScore = car.getData().getFindexScore();
 		int customerFindexScore = findexService.calculateCustomerFindexScore();
