@@ -40,7 +40,7 @@ public class InvoiceManager implements InvoiceService {
 	public DataResult<List<InvoiceSearchListDto>> getAll() {
 		List<Invoice> invoices=this.invoiceDao.findAll();
 		List<InvoiceSearchListDto> invoiceSearchListDtos=invoices.stream()
-				.map(invoice->modelMapperService.forDto().map(invoices, InvoiceSearchListDto.class)).collect(Collectors.toList());
+				.map(invoice->modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
 		return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
 	}
 
