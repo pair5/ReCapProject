@@ -1,5 +1,6 @@
 package com.etiya.ReCapProject.business.abstracts;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.etiya.ReCapProject.business.dtos.InvoiceSearchListDto;
@@ -15,4 +16,5 @@ public interface InvoiceService {
 	Result delete(DeleteInvoiceRequest deleteInvoiceRequest);
 	Result update(UpdateInvoiceRequest updateInvoiceRequest);
 	DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId);
+	DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate,LocalDate endDate);
 }

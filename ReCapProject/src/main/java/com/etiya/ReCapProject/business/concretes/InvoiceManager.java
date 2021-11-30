@@ -73,4 +73,10 @@ public class InvoiceManager implements InvoiceService {
 		
 		return new SuccessDataResult<List<InvoiceSearchListDto>>(this.invoiceDao.getByCustomer_Id(customerId));
 	}
+
+	@Override
+	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate,
+			LocalDate endDate) {
+		return new SuccessDataResult<List<InvoiceSearchListDto>>(this.invoiceDao.getByCreateDateBetween(beginDate, endDate));
+	}
 }
