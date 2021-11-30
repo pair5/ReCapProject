@@ -23,6 +23,8 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.IndividualCustomerDao;
 import com.etiya.ReCapProject.entities.concretes.IndividualCustomer;
 
+import lombok.experimental.var;
+
 @Service
 public class IndividualCustomerManager implements IndividualCustomerService {
 	private IndividualCustomerDao individualCustomerDao;
@@ -77,6 +79,12 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public DataResult<IndividualCustomerSearchListDto> getByIndividualCustomerId(int individualCustomerId) {
+		
+		var existsIndividualCustomer = this.individualCustomerDao.existsById(individualCustomerId);
+		if (!existsIndividualCustomer) {
+			return new ErrorDataResult(Messages.CUSTOMERNOTFOUND);
+		}
+
 		IndividualCustomer individualCustomer = this.individualCustomerDao.getById(individualCustomerId);
 		if (individualCustomer == null) {
 			return new ErrorDataResult<IndividualCustomerSearchListDto>(Messages.CUSTOMERNOTFOUND,null);
@@ -88,7 +96,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	private Result checkIsIndividualCustomerEmailExists(String email){
 		var result = this.individualCustomerDao.existsByEmail(email);
 		if(result){
-			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
+			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();
 		
@@ -97,7 +105,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	
 	
 	private Result checkIsIndividualCustomerExists(int id){
-		
 		var result = this.individualCustomerDao.existsById(id);
 		if(!result){
 			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
