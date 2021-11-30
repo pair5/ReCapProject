@@ -92,6 +92,10 @@ public class RentalManager implements RentalService {
 
 	@Override
 	public Result delete(DeleteRentalRequest deleteRentalRequest) {
+		var result = BusinessRules.run(checkRentalExists(deleteRentalRequest.getId()));
+			if (result!= null) {
+				return result;
+			}
 		Rental rental = modelMapperService.forRequest().map(deleteRentalRequest, Rental.class);
 		this.rentalDao.delete(rental);
 		return new SuccessResult(Messages.RENTALDELETE);
@@ -99,6 +103,14 @@ public class RentalManager implements RentalService {
 
 	@Override
 	public Result update(UpdateRentalRequest updateRentalRequest) {
+		var result = BusinessRules.run(checkRentalExists(updateRentalRequest.getId()),
+				checkIfUserIdExists(updateRentalRequest.getCustomerId()),
+				checkIfCarIdExists(updateRentalRequest.getCarId()),
+				checkIfReturnDateIsNull(updateRentalRequest.getCarId()),
+				checkIfCarInMaintenance(updateRentalRequest.getCarId()));
+		if (result != null) {
+			return result;
+		}
 		Rental rental = modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
 		rentalDao.save(rental);
 		return new SuccessResult(Messages.RENTALUPDATE);
@@ -157,6 +169,14 @@ public class RentalManager implements RentalService {
 		var result = this.userService.isUserExists(carId);
 		if (!result.isSuccess()) {
 			return new ErrorResult(Messages.USERNOTFOUND);
+		}
+		return new SuccessResult();
+	}
+	
+	private Result checkRentalExists(int id) {
+		var result = this.rentalDao.existsById(id);
+		if (!result) {
+			return new ErrorResult(Messages.RENTALNOTFOUND);
 		}
 		return new SuccessResult();
 	}
