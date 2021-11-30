@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,12 +55,12 @@ public class InvoicesController {
 	}
 
 	@GetMapping("getByCustomerId")
-	public DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId) {
+	public DataResult<List<InvoiceSearchListDto>> getByCustomerId(@RequestParam int customerId) {
 		return this.invoiceService.getByCustomerId(customerId);
 	}
 	
 	@GetMapping("getByCreateDateBetweenBeginDateAndEndDate")
-	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate, LocalDate endDate) {
+	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(@RequestParam LocalDate beginDate, @RequestParam LocalDate endDate) {
 		return this.invoiceService.getByCreateDateBetweenBeginDateAndEndDate(beginDate, endDate);
 	}
 }
