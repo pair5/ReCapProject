@@ -1,5 +1,12 @@
 package com.etiya.ReCapProject.business.requests.corporateCustomerRequests;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +16,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateCorporateCustomerRequest {
 	
+	
+	@NotNull
 	private int id;
+	
+	@NotNull@NotBlank
+	@Size(min=2,max = 25)
 	private String companyName;
+	
+	@NotNull@NotBlank
+	@Size(min=2,max = 25)
 	private String taxNumber;
+	
+	@Email
 	private String email;
+	@Size(min = 6,max = 20)
 	private String password;
 	
 

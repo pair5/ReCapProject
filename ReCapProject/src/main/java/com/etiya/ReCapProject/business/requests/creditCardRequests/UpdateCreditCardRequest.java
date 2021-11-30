@@ -30,5 +30,6 @@ public class UpdateCreditCardRequest {
 	@Size(min = 3,max=3)
 	private String cvv;
 	
+	@NotNull
 	private int customerId;
 }

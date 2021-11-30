@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeleteCarImageRequest {
+	
 	@NotNull
 	private int id;
 
