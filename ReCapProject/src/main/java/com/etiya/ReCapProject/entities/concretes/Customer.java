@@ -30,4 +30,8 @@ public class Customer extends  User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "customer", fetch=FetchType.LAZY)
 	List<CreditCard> creditCards;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "customer")
+	List<Invoice> invoices;
 }
