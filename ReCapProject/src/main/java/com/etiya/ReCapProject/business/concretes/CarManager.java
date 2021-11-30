@@ -70,6 +70,10 @@ public class CarManager implements CarService {
 
 	@Override
 	public Result update(UpdateCarRequest updateCarRequest) {
+		Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId()));
+		if (result != null) {
+			return result;
+		}
 		Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
 		this.carDao.save(car);
 		return new SuccessResult(Messages.CARUPDATE);
@@ -77,6 +81,10 @@ public class CarManager implements CarService {
 
 	@Override
 	public Result delete(DeleteCarRequest deleteCarRequest) {
+		Result result = BusinessRules.run(isCarIdExists(deleteCarRequest.getId()));
+		if (result != null) {
+			return result;
+		}
 		Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
 		this.carDao.delete(car);
 		return new SuccessResult(Messages.CARDELETE);
@@ -88,7 +96,7 @@ public class CarManager implements CarService {
 
 		try {
 			if (car == null) {
-				return new ErrorDataResult<CarSearchListDto>(null);
+				return new ErrorDataResult<CarSearchListDto>(Messages.CARNOTFOUND,null);
 			}
 		} catch (Exception e) {
 			return new ErrorDataResult<CarSearchListDto>(null);
@@ -119,6 +127,16 @@ public class CarManager implements CarService {
 		return new SuccessDataResult<List<CarColorDetail>>(result);
 
 	}
+	
+	private Result isCarIdExists(int carId) {
+		var result = this.carDao.existsById(carId);
+		if (!result) {
+			return new ErrorResult(Messages.CARNOTFOUND);
+		}
+		return new SuccessResult();
+		
+	}
+	
 
 	private Result isBrandIdExists(int brandId) {
 		var result = this.brandService.existsBrandId(brandId);
