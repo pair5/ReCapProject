@@ -14,4 +14,5 @@ public interface InvoiceService {
 	Result add(CreateInvoiceRequest createInvoiceRequest);
 	Result delete(DeleteInvoiceRequest deleteInvoiceRequest);
 	Result update(UpdateInvoiceRequest updateInvoiceRequest);
+	DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId);
 }

@@ -23,6 +23,8 @@ public class CreateInvoiceRequest {
 	
 	private LocalDate rentDate;
 	
+	private int totalRentDay;
+	
 	private LocalDate returnDate;
 	
 	private double totalAmount;
