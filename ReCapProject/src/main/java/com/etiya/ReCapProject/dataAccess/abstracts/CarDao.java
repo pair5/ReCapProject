@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.etiya.ReCapProject.entities.concretes.Car;
-import com.etiya.ReCapProject.entities.concretes.complexTypes.CarBrandDetail;
 import com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail;
 
 public interface CarDao extends JpaRepository<Car, Integer> {
@@ -21,9 +20,10 @@ public interface CarDao extends JpaRepository<Car, Integer> {
 
 	List<CarDetail> getByBrand_BrandName(String brandName);
 
-	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail"
-	+ "(c.id,b.brandName,co.colorName,c.dailyPrice)"
-	+ "From Car c inner Join c.brand b Inner Join c.color co left join c.carMaintenances m on m.car.id=c.id where m.id is null")
-	List<CarDetail> getAvaliableCars();
+//	@Query("Select new com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail "
+//			+ "(c.id,b.brandName,co.colorName,c.dailyPrice)" 
+//			+ "From Car c Inner Join c.brand b Inner Join c.color co left join c.carMaintenances m m.car.carId=c.id and m.returnDate is null")
+//	List<CarDetail> getAvaliableCars();
+
 
 }

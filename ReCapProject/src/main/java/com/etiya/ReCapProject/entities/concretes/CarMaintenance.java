@@ -1,6 +1,8 @@
 package com.etiya.ReCapProject.entities.concretes;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,5 +34,8 @@ public class CarMaintenance {
 	@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;
+	
+	@Column(name = "return_date")
+	private LocalDate returnDate;
 
 }
