@@ -77,7 +77,8 @@ public class RentalManager implements RentalService {
 				checkIfUserIdExists(createRentalRequest.getCustomerId()),
 				checkIfCarIdExists(createRentalRequest.getCarId()),
 				checkIfReturnDateIsNull(createRentalRequest.getCarId()),
-				compareFindexScores(createRentalRequest.getCarId())
+				compareFindexScores(createRentalRequest.getCarId()),
+				checkIfCarInMaintenance(createRentalRequest.getCarId())
 				);
 		if (result != null) {
 			return result;
@@ -126,7 +127,6 @@ public class RentalManager implements RentalService {
 		}
 		return new SuccessResult(" " + customerFindexScore);
 	}
-
 	@Override
 	public DataResult<Rental> getByCar_Id(int carId) {
 		var rental = this.rentalDao.getByCarId(carId);

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.NoArgsConstructor;
@@ -29,5 +31,6 @@ public class CreateRentalRequest {
 	@JsonIgnore
 	private LocalDate rentDate;
 	
+
 	private LocalDate returnDate;
 }
