@@ -28,6 +28,6 @@ public class CreateRentalRequest {
 	
 	@JsonIgnore
 	private LocalDate rentDate;
-	@JsonIgnore
+	
 	private LocalDate returnDate;
 }
