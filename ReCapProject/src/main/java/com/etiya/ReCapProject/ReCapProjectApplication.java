@@ -70,6 +70,5 @@ public class ReCapProjectApplication {
 		ErrorResult error = new ErrorResult("Data not found!");
 		return error;
 	}
-    
 	
 }
