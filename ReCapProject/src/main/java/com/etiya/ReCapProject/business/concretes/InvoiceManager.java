@@ -23,6 +23,7 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.InvoiceDao;
 import com.etiya.ReCapProject.entities.concretes.Car;
 import com.etiya.ReCapProject.entities.concretes.Invoice;
+import com.etiya.ReCapProject.entities.concretes.complexTypes.CarBrandDetail;
 
 @Service
 public class InvoiceManager implements InvoiceService {
@@ -71,12 +72,18 @@ public class InvoiceManager implements InvoiceService {
 	@Override
 	public DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId) {
 		
-		return new SuccessDataResult<List<InvoiceSearchListDto>>(this.invoiceDao.getByCustomer_Id(customerId));
+		List<InvoiceSearchListDto> invoices=this.invoiceDao.getByCustomer_Id(customerId);
+		List<InvoiceSearchListDto> invoiceSearchListDtos=invoices.stream()
+				.map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
+		return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
 	}
 
 	@Override
 	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate,
 			LocalDate endDate) {
-		return new SuccessDataResult<List<InvoiceSearchListDto>>(this.invoiceDao.getByCreateDateBetween(beginDate, endDate));
+		List<InvoiceSearchListDto> invoices=this.invoiceDao.getByCreateDateBetween(beginDate, endDate);
+		List<InvoiceSearchListDto> invoiceSearchListDtos=invoices.stream()
+				.map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
+		return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
 	}
 }
