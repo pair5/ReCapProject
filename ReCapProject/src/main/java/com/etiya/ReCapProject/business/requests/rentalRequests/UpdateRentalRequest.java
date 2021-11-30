@@ -2,6 +2,7 @@ package com.etiya.ReCapProject.business.requests.rentalRequests;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,6 +23,7 @@ public class UpdateRentalRequest {
 	@JsonIgnore
 	private LocalDate rentDate;
 
+	@FutureOrPresent
 	private LocalDate returnDate;
 
 	@NotNull

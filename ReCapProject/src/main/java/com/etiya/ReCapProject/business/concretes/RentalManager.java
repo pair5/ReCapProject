@@ -121,6 +121,10 @@ public class RentalManager implements RentalService {
 	}
 
 	private Result compareFindexScores(int id) {
+		var resultCar = carService.isCarExists(id);
+		if (!resultCar.isSuccess()) {
+			return new ErrorResult(Messages.CARNOTFOUND);
+		}
 		var car = carService.getById(id);
 		if (car==null) {
 			return new ErrorResult(Messages.CARNOTFOUND);
