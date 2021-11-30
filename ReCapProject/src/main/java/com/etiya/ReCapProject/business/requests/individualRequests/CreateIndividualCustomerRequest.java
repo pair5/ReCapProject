@@ -17,7 +17,7 @@ public class CreateIndividualCustomerRequest {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private LocalDate birthDate;
+	private LocalDate birthdate;
 	private String email;
 	private String password;
 }
