@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ public class UpdateRentalRequest {
 	@NotNull
 	private int id;
 
-	@NotNull
+	@JsonIgnore
 	private LocalDate rentDate;
 
 	private LocalDate returnDate;
