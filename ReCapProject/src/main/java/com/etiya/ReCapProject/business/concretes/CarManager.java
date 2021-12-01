@@ -171,9 +171,9 @@ public class CarManager implements CarService {
 		return new SuccessResult();
 	}
 	@Override
-	public DataResult<List<Car>> getAvailableCars() {
-		List<Car> car = this.carDao.getAvaliableCars();
-		return new SuccessDataResult<List<Car>>(car);
+	public DataResult<List<CarSearchListDto>> getAvailableCars() {
+		List<CarSearchListDto> carSearchListDtos = this.carDao.getAllWithoutMaintenanceOfCar();
+		return new SuccessDataResult<List<CarSearchListDto>>(carSearchListDtos);
 		
 	}
 	@Override
