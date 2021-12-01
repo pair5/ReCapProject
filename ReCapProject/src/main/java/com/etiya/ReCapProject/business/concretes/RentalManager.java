@@ -15,9 +15,6 @@ import com.etiya.ReCapProject.business.abstracts.IndividualCustomerService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.business.abstracts.UserService;
 import com.etiya.ReCapProject.business.constants.Messages;
-import com.etiya.ReCapProject.business.dtos.CarMaintenanceSearchListDto;
-import com.etiya.ReCapProject.business.dtos.CarSearchListDto;
-import com.etiya.ReCapProject.business.dtos.IndividualCustomerSearchListDto;
 import com.etiya.ReCapProject.business.dtos.RentalSearchListDto;
 import com.etiya.ReCapProject.business.requests.rentalRequests.CreateRentalRequest;
 import com.etiya.ReCapProject.business.requests.rentalRequests.DeleteRentalRequest;
@@ -32,8 +29,6 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.core.utilities.services.findex.FindexService;
 import com.etiya.ReCapProject.dataAccess.abstracts.RentalDao;
-import com.etiya.ReCapProject.entities.concretes.Car;
-import com.etiya.ReCapProject.entities.concretes.CarMaintenance;
 import com.etiya.ReCapProject.entities.concretes.Rental;
 
 @Service
@@ -105,9 +100,7 @@ public class RentalManager implements RentalService {
 	public Result update(UpdateRentalRequest updateRentalRequest) {
 		var result = BusinessRules.run(checkRentalExists(updateRentalRequest.getId()),
 				checkIfUserIdExists(updateRentalRequest.getCustomerId()),
-				checkIfCarIdExists(updateRentalRequest.getCarId()),
-				checkIfReturnDateIsNull(updateRentalRequest.getCarId()),
-				checkIfCarInMaintenance(updateRentalRequest.getCarId()));
+				checkIfCarIdExists(updateRentalRequest.getCarId()));
 		if (result != null) {
 			return result;
 		}
