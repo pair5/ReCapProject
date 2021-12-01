@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +16,8 @@ public class CreateInvoiceRequest {
 	
 	@JsonIgnore
 	private int id;
-	
+
+
 	private String invoiceNumber;
 	
 	@JsonIgnore

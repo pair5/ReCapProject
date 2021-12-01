@@ -170,18 +170,12 @@ public class CarManager implements CarService {
 		}
 		return new SuccessResult();
 	}
-
 	@Override
-	public DataResult<List<CarDetail>> getAvailableCars() {
-		
-		List<CarDetail> carDetail = this.carDao.getAvaliableCars();
-		if (carDetail == null) {
-			return new ErrorDataResult<List<CarDetail>>(null);
-		}
-		return new SuccessDataResult<List<CarDetail>>(carDetail);
+	public DataResult<List<Car>> getAvailableCars() {
+		List<Car> car = this.carDao.getAvaliableCars();
+		return new SuccessDataResult<List<Car>>(car);
 		
 	}
-
 	@Override
 	public Result isCarExists(int carId) {
 		var car = this.carDao.existsById(carId);
