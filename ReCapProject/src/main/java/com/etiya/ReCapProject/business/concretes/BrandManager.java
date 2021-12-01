@@ -27,7 +27,7 @@ import com.etiya.ReCapProject.entities.concretes.Brand;
 import com.etiya.ReCapProject.entities.concretes.Car;
 
 @Service
-@ConfigurationProperties
+//@ConfigurationProperties
 public class BrandManager implements BrandService{
 	private BrandDao brandDao;
 	private ModelMapperService modelMapperService;

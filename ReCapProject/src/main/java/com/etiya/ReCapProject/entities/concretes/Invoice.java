@@ -44,6 +44,8 @@ public class Invoice {
 
 	@Column(name = "total_amount")
 	private double totalAmount;
+	
+	//Customer'la beraber birde rental
 
 	@ManyToOne
 	@JoinColumn(name = "customer_id")

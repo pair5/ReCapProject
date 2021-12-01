@@ -24,7 +24,7 @@ public interface CarDao extends JpaRepository<Car, Integer> {
 	List<CarDetail> getByBrand_BrandName(String brandName);
 
 	@Query("Select new com.etiya.ReCapProject.business.dtos.CarSearchListDto" + "(c.id ,c.brand.id,c.color.id,c.modelYear,c.dailyPrice,c.description,c.findexScore) "
-			+ "From Car c Left Join  c.carMaintenances cm WHERE (cm.returnDate is not null AND cm.returnDate is null) or (cm.returnDate is null AND cm.returnDate is null)")
+			+ "From Car c Left Join  c.carMaintenances cm WHERE (cm.returnDate is null AND cm.car.id is null)")
 	List<CarSearchListDto> getAllWithoutMaintenanceOfCar();
 
 
