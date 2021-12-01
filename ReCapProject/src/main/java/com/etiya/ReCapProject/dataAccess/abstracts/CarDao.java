@@ -23,8 +23,8 @@ public interface CarDao extends JpaRepository<Car, Integer> {
 //updated
 	List<CarDetail> getByBrand_BrandName(String brandName);
 
-	@Query("Select new com.etiya.ReCapProject.business.dtos.CarSearchListDto" + "(c.id ,c.brand.id,c.color.id,c.modelYear,c.dailyPrice,c.description,c.findexScore) "
-			+ "From Car c Left Join  c.carMaintenances cm WHERE (cm.returnDate is not null AND cm.returnDate is null) or (cm.returnDate is null AND cm.returnDate is null)")
+	@Query("Select new com.etiya.ReCapProject.business.dtos.CarSearchListDto" + "(c.id ,c.modelYear,c.dailyPrice,c.description,c.findexScore) "
+			+ "From Car c Left Join  c.carMaintenances cm WHERE (cm.returnDate is not null)")
 	List<CarSearchListDto> getAllWithoutMaintenanceOfCar();
 
 
