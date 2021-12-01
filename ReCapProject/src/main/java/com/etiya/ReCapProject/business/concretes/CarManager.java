@@ -1,5 +1,6 @@
 package com.etiya.ReCapProject.business.concretes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collector;
@@ -172,9 +173,8 @@ public class CarManager implements CarService {
 	}
 	@Override
 	public DataResult<List<CarSearchListDto>> getAvailableCars() {
-		List<CarSearchListDto> carSearchListDtos = this.carDao.getAllWithoutMaintenanceOfCar();
-		return new SuccessDataResult<List<CarSearchListDto>>(carSearchListDtos);
-		
+		var result=this.carDao.getAllWithoutMaintenanceOfCar();
+		return new SuccessDataResult<List<CarSearchListDto>>(result);
 	}
 	@Override
 	public Result isCarExists(int carId) {
