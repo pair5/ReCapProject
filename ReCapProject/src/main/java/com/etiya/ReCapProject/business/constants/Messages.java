@@ -17,6 +17,15 @@ public class Messages {
 	public static final String CARGET = "Car found";
 	public static final String CARNOTFOUND="CAR NOT FOUND.";
 
+	public static final String CITYADD = "City Added";
+	public static final String CITYUPDATE = "City Updated";
+	public static final String CITYDELETE = "City Deleted";
+	public static final String CITYLIST = "Cities Listed";
+	public static final String CITYNOTFOUND = "CITY NOT FOUND.";
+	public static final String CITYFOUND = "City Found";
+
+
+
 	public static final String COLORADD = "Color added.";
 	public static final String COLORUPDATE = "Color updated.";
 	public static final String COLORDELETE = "Color deleted.";

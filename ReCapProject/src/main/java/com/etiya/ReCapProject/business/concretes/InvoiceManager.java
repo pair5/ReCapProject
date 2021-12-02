@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +23,6 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.InvoiceDao;
 import com.etiya.ReCapProject.entities.concretes.Invoice;
-
-import javax.xml.crypto.Data;
 
 @Service
 public class InvoiceManager implements InvoiceService {
