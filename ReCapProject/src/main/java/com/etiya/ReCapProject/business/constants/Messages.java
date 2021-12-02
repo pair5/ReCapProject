@@ -115,6 +115,11 @@ public class Messages {
 	public static final String DAMAGEDELETE = "Damage cost deleted.";
 	public static final String DAMAGEUPDATE = "Damage cost is updated";
 	public static final String DAMAGELIST = "Damages are listed";
+
+	public static final String ADDITIONALSERVICEADD = "Additional service added.";
+	public static final String ADDITIONALSERVICEUPDATE = "Additional service updated.";
+	public static final String ADDITIONALSERVICEDELETE = "Additional service deleted.";
+	public static final String ADDITIONALSERVICELIST = "Additional services listed.";
 	
 	 
 	

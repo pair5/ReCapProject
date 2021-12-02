@@ -117,9 +117,12 @@ RentalManager implements RentalService {
         var car=this.carService.getById(updateRentalRequest.getCarId()).getData();
         updateRentalRequest.setRentedCityId(car.getCityId());
         updateRentalRequest.setRentedKilometer(car.getKilometer());
+
         Rental rental = modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
+
         this.carService.updateCity(rental.getReturnCityId(),rental.getCar().getId());
         this.carService.updateKilometer(updateRentalRequest.getReturnedKilometer(),rental.getCar().getId());
+
 
 
         rentalDao.save(rental);
@@ -201,5 +204,7 @@ RentalManager implements RentalService {
         }
         return new SuccessDataResult<Rental>(result);
     }
+
+
 
 }
