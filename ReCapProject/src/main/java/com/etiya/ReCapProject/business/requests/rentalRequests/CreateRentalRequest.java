@@ -20,18 +20,24 @@ import lombok.Data;
 @NoArgsConstructor
 public class CreateRentalRequest {
 
-	@JsonIgnore
-	private int id;
-	 
-	@NotNull
-	private int carId;
-	
-	@NotNull
-	private int customerId;
-	
-	@JsonIgnore
-	private LocalDate rentDate;
-	
+    @JsonIgnore
+    private int id;
 
-	private LocalDate returnDate;
+    @NotNull
+    private int carId;
+
+    @NotNull
+    private int customerId;
+
+    @JsonIgnore
+    private LocalDate rentDate;
+
+    private LocalDate returnDate;
+
+    private int rentedCityId;
+
+    private int returnCityId;
+
+    @JsonIgnore
+    private int rentedKilometer;
 }

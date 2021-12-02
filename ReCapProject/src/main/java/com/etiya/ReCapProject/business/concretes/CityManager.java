@@ -8,14 +8,13 @@ import com.etiya.ReCapProject.business.dtos.CitySearchListDto;
 import com.etiya.ReCapProject.business.requests.cityRequests.CreateCityRequest;
 import com.etiya.ReCapProject.business.requests.cityRequests.DeleteCityRequest;
 import com.etiya.ReCapProject.business.requests.cityRequests.UpdateCityRequest;
+import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
-import com.etiya.ReCapProject.core.utilities.results.DataResult;
-import com.etiya.ReCapProject.core.utilities.results.Result;
-import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
-import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
+import com.etiya.ReCapProject.core.utilities.results.*;
 import com.etiya.ReCapProject.dataAccess.abstracts.CityDao;
 import com.etiya.ReCapProject.entities.concretes.Car;
 import com.etiya.ReCapProject.entities.concretes.City;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +26,13 @@ public class CityManager implements CityService {
 
     private CityDao cityDao;
     private ModelMapperService modelMapperService;
+
     @Autowired
     public CityManager(CityDao cityDao, ModelMapperService modelMapperService) {
         this.cityDao = cityDao;
         this.modelMapperService = modelMapperService;
     }
+
     @Override
     public DataResult<List<CitySearchListDto>> getAll() {
         List<City> result = this.cityDao.findAll();
@@ -42,6 +43,10 @@ public class CityManager implements CityService {
 
     @Override
     public Result add(CreateCityRequest createCityRequest) {
+        var result = BusinessRules.run(isCityNameExists(createCityRequest.getCityName()));
+        if (result != null) {
+            return result;
+        }
         City city = modelMapperService.forRequest().map(createCityRequest, City.class);
         this.cityDao.save(city);
         return new SuccessResult(Messages.CITYADD);
@@ -49,13 +54,21 @@ public class CityManager implements CityService {
 
     @Override
     public Result delete(DeleteCityRequest deleteCityRequest) {
-        City city = modelMapperService.forRequest().map(deleteCityRequest,City.class);
+        var result = BusinessRules.run(isCityIdExist(deleteCityRequest.getId()));
+        if (result != null) {
+            return result;
+        }
+        City city = modelMapperService.forRequest().map(deleteCityRequest, City.class);
         this.cityDao.delete(city);
         return new SuccessResult(Messages.CITYDELETE);
     }
 
     @Override
     public Result update(UpdateCityRequest updateCityRequests) {
+        var result = BusinessRules.run(isCityIdExist(updateCityRequests.getId()), isCityNameExists(updateCityRequests.getCityName()));
+        if (result != null) {
+            return result;
+        }
         City city = modelMapperService.forRequest().map(updateCityRequests, City.class);
         this.cityDao.save(city);
         return new SuccessResult(Messages.CITYUPDATE);
@@ -67,5 +80,24 @@ public class CityManager implements CityService {
         CitySearchListDto response = modelMapperService.forDto().map(result, CitySearchListDto.class);
         return new SuccessDataResult(response, Messages.CITYFOUND);
     }
+
+    @Override
+    public Result isCityIdExist(int cityId) {
+        var result = this.cityDao.existsById(cityId);
+        if (!result) {
+            return new ErrorResult(Messages.CITYNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+
+    private Result isCityNameExists(String cityName) {
+        var result = this.cityDao.existsByCityName(cityName);
+        if (result) {
+            return new ErrorResult(Messages.CITYALREADYEXISTS);
+        }
+        return new SuccessResult();
+    }
+
 }
 

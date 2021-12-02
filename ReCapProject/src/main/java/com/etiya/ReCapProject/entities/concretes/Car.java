@@ -61,4 +61,11 @@ public class Car {
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
+
+	@Column(name = "kilometer")
+	private int kilometer;
+
+	@OneToMany(mappedBy = "car")
+	private List<CarDamage> carDamages;
+
 }

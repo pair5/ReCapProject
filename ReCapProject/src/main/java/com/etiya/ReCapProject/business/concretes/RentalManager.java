@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+import com.etiya.ReCapProject.business.requests.carRequests.UpdateCarRequest;
+import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -32,155 +34,172 @@ import com.etiya.ReCapProject.dataAccess.abstracts.RentalDao;
 import com.etiya.ReCapProject.entities.concretes.Rental;
 
 @Service
-public class RentalManager implements RentalService {
+public class
+RentalManager implements RentalService {
 
-	private RentalDao rentalDao;
-	private ModelMapperService modelMapperService;
-	private FindexService findexService;
-	private CarService carService;
-	private IndividualCustomerService individualCustomerService;
-	@org.springframework.context.annotation.Lazy
-	private CarMaintenanceService carMaintenanceService;
-	private UserService userService;
+    private RentalDao rentalDao;
+    private ModelMapperService modelMapperService;
+    private FindexService findexService;
+    private CarService carService;
+    private IndividualCustomerService individualCustomerService;
+    @org.springframework.context.annotation.Lazy
+    private CarMaintenanceService carMaintenanceService;
+    private UserService userService;
+    private FakePosService fakePosService;
 
-	@Autowired
-	public RentalManager(RentalDao rentalDao, ModelMapperService modelMapperService, FindexService findexService,
-			CarService carService, IndividualCustomerService individualCustomerService, @Lazy CarMaintenanceService carMaintenanceService, UserService userService) {
-		super();
-		this.rentalDao = rentalDao;
-		this.modelMapperService = modelMapperService;
-		this.findexService = findexService;
-		this.carService = carService;
-		this.individualCustomerService = individualCustomerService;
-		this.carMaintenanceService = carMaintenanceService;
-		this.userService = userService;
-	}
+    @Autowired
+    public RentalManager(RentalDao rentalDao, ModelMapperService modelMapperService, FindexService findexService,
+                         CarService carService, IndividualCustomerService individualCustomerService,
+                        @Lazy CarMaintenanceService carMaintenanceService, UserService userService, FakePosService fakePosService) {
+        this.rentalDao = rentalDao;
+        this.modelMapperService = modelMapperService;
+        this.findexService = findexService;
+        this.carService = carService;
+        this.individualCustomerService = individualCustomerService;
+        this.carMaintenanceService = carMaintenanceService;
+        this.userService = userService;
+        this.fakePosService = fakePosService;
+    }
 
-	@Override
-	public DataResult<List<RentalSearchListDto>> getAll() {
-		List<Rental> result = this.rentalDao.findAll();
-		List<RentalSearchListDto> response = result.stream()
-				.map(rental -> modelMapperService.forDto().map(rental, RentalSearchListDto.class))
-				.collect(Collectors.toList());
-		return new SuccessDataResult<List<RentalSearchListDto>>(response, Messages.RENTALLIST);
-	}
+
+    @Override
+    public DataResult<List<RentalSearchListDto>> getAll() {
+        List<Rental> result = this.rentalDao.findAll();
+        List<RentalSearchListDto> response = result.stream()
+                .map(rental -> modelMapperService.forDto().map(rental, RentalSearchListDto.class))
+                .collect(Collectors.toList());
+        return new SuccessDataResult<List<RentalSearchListDto>>(response, Messages.RENTALLIST);
+    }
 
 //	,checkIfReturnDateIsNull(createRentalRequest.getCarId())
 
-	@Override
-	public Result add(CreateRentalRequest createRentalRequest) {
-		Result result = BusinessRules.run(
-				checkIfUserIdExists(createRentalRequest.getCustomerId()),
-				checkIfCarIdExists(createRentalRequest.getCarId()),
-				checkIfReturnDateIsNull(createRentalRequest.getCarId()),
-				compareFindexScores(createRentalRequest.getCarId()),
-				checkIfCarInMaintenance(createRentalRequest.getCarId())
-				);
-		if (result != null) {
-			return result;
-		}
-		Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
-		rental.setRentDate(LocalDate.now());
-		this.rentalDao.save(rental);
-		return new SuccessResult(Messages.RENTALADD);
-	}
+    @Override
+    public Result add(CreateRentalRequest createRentalRequest) {
+        Result result = BusinessRules.run(
+                checkIfUserIdExists(createRentalRequest.getCustomerId()),
+                checkIfCarIdExists(createRentalRequest.getCarId()),
+                checkIfReturnDateIsNull(createRentalRequest.getCarId()),
+                compareFindexScores(createRentalRequest.getCarId())
+        );
+        if (result != null) {
+            return result;
+        }
 
-	@Override
-	public Result delete(DeleteRentalRequest deleteRentalRequest) {
-		var result = BusinessRules.run(checkRentalExists(deleteRentalRequest.getId()));
-			if (result!= null) {
-				return result;
-			}
-		Rental rental = modelMapperService.forRequest().map(deleteRentalRequest, Rental.class);
-		this.rentalDao.delete(rental);
-		return new SuccessResult(Messages.RENTALDELETE);
-	}
+        var car=this.carService.getById(createRentalRequest.getCarId()).getData();
+        createRentalRequest.setRentedKilometer(car.getKilometer());
+        createRentalRequest.setRentedCityId(car.getCityId());
+        Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
+        rental.setRentDate(LocalDate.now());
+        this.fakePosService.isPaymentDone();
+        this.rentalDao.save(rental);
+        return new SuccessResult(Messages.RENTALADD);
+    }
 
-	@Override
-	public Result update(UpdateRentalRequest updateRentalRequest) {
-		var result = BusinessRules.run(checkRentalExists(updateRentalRequest.getId()),
-				checkIfUserIdExists(updateRentalRequest.getCustomerId()),
-				checkIfCarIdExists(updateRentalRequest.getCarId()));
-		if (result != null) {
-			return result;
-		}
-		Rental rental = modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
-		rentalDao.save(rental);
-		return new SuccessResult(Messages.RENTALUPDATE);
-	}
+    @Override
+    public Result delete(DeleteRentalRequest deleteRentalRequest) {
+        var result = BusinessRules.run(checkRentalExists(deleteRentalRequest.getId()));
+        if (result != null) {
+            return result;
+        }
+        Rental rental = modelMapperService.forRequest().map(deleteRentalRequest, Rental.class);
+        this.rentalDao.delete(rental);
+        return new SuccessResult(Messages.RENTALDELETE);
+    }
 
-	public Result checkIfReturnDateIsNull(int carId) {
-		RentalSearchListDto rental = this.rentalDao.getByCarIdWhereReturnDateIsNull(carId);
-		if (rental != null) {
-			return new ErrorResult(Messages.RENTALDATEERROR);
-		}
-		return new SuccessResult();
-	}
+    @Override
+    public Result update(UpdateRentalRequest updateRentalRequest) {
+        var result = BusinessRules.run(checkRentalExists(updateRentalRequest.getId()),
+                checkIfUserIdExists(updateRentalRequest.getCustomerId()),
+                checkIfCarIdExists(updateRentalRequest.getCarId()));
+        if (result != null) {
+            return result;
+        }
+        var car=this.carService.getById(updateRentalRequest.getCarId()).getData();
+        updateRentalRequest.setRentedCityId(car.getCityId());
+        updateRentalRequest.setRentedKilometer(car.getKilometer());
+        Rental rental = modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
+        this.carService.updateCity(rental.getReturnCityId(),rental.getCar().getId());
+        this.carService.updateKilometer(updateRentalRequest.getReturnedKilometer(),rental.getCar().getId());
 
-	private Result compareFindexScores(int id) {
-		var resultCar = carService.isCarExists(id);
-		if (!resultCar.isSuccess()) {
-			return new ErrorResult(Messages.CARNOTFOUND);
-		}
-		var car = carService.getById(id);
-		if (car==null) {
-			return new ErrorResult(Messages.CARNOTFOUND);
-		}
-		int findexScore = car.getData().getFindexScore();
-		int customerFindexScore = findexService.calculateCustomerFindexScore();
-		if (customerFindexScore < findexScore) {
-			return new ErrorResult(Messages.RENTALFINDEXSCOREERROR + customerFindexScore);
-		}
-		return new SuccessResult(" " + customerFindexScore);
-	}
-	@Override
-	public DataResult<Rental> getByCar_Id(int carId) {
-		var rental = this.rentalDao.getByCarId(carId);
-		if (rental == null) {
-			return new ErrorDataResult(Messages.CARNOTFOUND);
-		}
-		return new SuccessDataResult<Rental>(rental);
-	}
 
-	private Result checkIfCarInMaintenance(int carId) {
-		var result = this.carMaintenanceService.getByCar(carId);
-		if (result != null) {
-			return new ErrorResult(Messages.RENTALMAINTENANCEERROR);
-		}
-		return new SuccessResult();
-	}
+        rentalDao.save(rental);
+        return new SuccessResult(Messages.RENTALUPDATE);
+    }
 
-	private Result checkIfCarIdExists(int carId) {
-		var result = this.carService.isCarExists(carId);
-		if (!result.isSuccess()) {
-			return new ErrorResult(Messages.CARNOTFOUND);
-		}
-		return new SuccessResult();
-	}
 
-	private Result checkIfUserIdExists(int carId) {
-		var result = this.userService.isUserExists(carId);
-		if (!result.isSuccess()) {
-			return new ErrorResult(Messages.USERNOTFOUND);
-		}
-		return new SuccessResult();
-	}
-	
-	private Result checkRentalExists(int id) {
-		var result = this.rentalDao.existsById(id);
-		if (!result) {
-			return new ErrorResult(Messages.RENTALNOTFOUND);
-		}
-		return new SuccessResult();
-	}
+    public Result checkIfReturnDateIsNull(int carId) {
+        RentalSearchListDto rental = this.rentalDao.getByCarIdWhereReturnDateIsNull(carId);
+        if (rental != null) {
+            return new ErrorResult(Messages.RENTALDATEERROR);
+        }
+        return new SuccessResult();
+    }
 
-	@Override
-	public DataResult<Rental> getById(int id) {
-		var result=this.rentalDao.getById(id);
-		if (result==null) {
-			return new ErrorDataResult<Rental>(Messages.RENTALNOTFOUND,null);
-		}
-		return new SuccessDataResult<Rental>(result);
-	}
+    private Result compareFindexScores(int id) {
+        var resultCar = carService.isCarExists(id);
+        if (!resultCar.isSuccess()) {
+            return new ErrorResult(Messages.CARNOTFOUND);
+        }
+        var car = carService.getById(id);
+        if (car == null) {
+            return new ErrorResult(Messages.CARNOTFOUND);
+        }
+        int findexScore = car.getData().getFindexScore();
+        int customerFindexScore = findexService.calculateCustomerFindexScore();
+        if (customerFindexScore < findexScore) {
+            return new ErrorResult(Messages.RENTALFINDEXSCOREERROR + customerFindexScore);
+        }
+        return new SuccessResult(" " + customerFindexScore);
+    }
+
+    @Override
+    public DataResult<Rental> getByCar_Id(int carId) {
+        var rental = this.rentalDao.getByCarId(carId);
+        if (rental == null) {
+            return new ErrorDataResult(Messages.CARNOTFOUND);
+        }
+        return new SuccessDataResult<Rental>(rental);
+    }
+
+    private Result checkIfCarInMaintenance(int carId) {
+        var result = this.carMaintenanceService.getByCar(carId);
+        if (result != null) {
+            return new ErrorResult(Messages.RENTALMAINTENANCEERROR);
+        }
+        return new SuccessResult();
+    }
+
+    private Result checkIfCarIdExists(int carId) {
+        var result = this.carService.isCarExists(carId);
+        if (!result.isSuccess()) {
+            return new ErrorResult(Messages.CARNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+    private Result checkIfUserIdExists(int carId) {
+        var result = this.userService.isUserExists(carId);
+        if (!result.isSuccess()) {
+            return new ErrorResult(Messages.USERNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+    private Result checkRentalExists(int id) {
+        var result = this.rentalDao.existsById(id);
+        if (!result) {
+            return new ErrorResult(Messages.RENTALNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+    @Override
+    public DataResult<Rental> getById(int id) {
+        var result = this.rentalDao.getById(id);
+        if (result == null) {
+            return new ErrorDataResult<Rental>(Messages.RENTALNOTFOUND, null);
+        }
+        return new SuccessDataResult<Rental>(result);
+    }
 
 }

@@ -23,6 +23,8 @@ public class Messages {
 	public static final String CITYLIST = "Cities Listed";
 	public static final String CITYNOTFOUND = "CITY NOT FOUND.";
 	public static final String CITYFOUND = "City Found";
+	public static final String CITYBYID = "City is brought by CityId";
+	public static final String CITYALREADYEXISTS = "City already exists.";
 
 
 
@@ -107,7 +109,12 @@ public class Messages {
 	
 	
 	public static String USERNOTFOUND = "USER NOT FOUND.";
-	public static final String USERLIST = "Users listed.";	
+	public static final String USERLIST = "Users listed.";
+
+	public static final String DAMAGEADD = "Damage cost added.";
+	public static final String DAMAGEDELETE = "Damage cost deleted.";
+	public static final String DAMAGEUPDATE = "Damage cost is updated";
+	public static final String DAMAGELIST = "Damages are listed";
 	
 	 
 	
