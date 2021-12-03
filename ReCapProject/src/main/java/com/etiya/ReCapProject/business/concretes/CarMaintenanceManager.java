@@ -109,8 +109,8 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	private Result isCarIdExists(int carId){
 
-		var existsResult = this.carMaintenanceDao.existsByCarId(carId);
-		if (!existsResult){
+		var existsResult = this.carService.isCarExists(carId);
+		if (!existsResult.isSuccess()){
 			return new ErrorResult(Messages.CARNOTFOUND);
 		}
 		return new SuccessResult();
