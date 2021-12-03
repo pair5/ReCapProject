@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +28,7 @@ public class AdditionalService {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "additionalService")
+    private List<AdditionalRentalItem> additionalRentalItems;
 }

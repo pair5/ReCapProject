@@ -1,6 +1,7 @@
 package com.etiya.ReCapProject.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -50,4 +51,7 @@ public class Rental {
 
     @Column(name = "returned_kilometer")
     private int returnedKilometer;
+
+    @OneToMany(mappedBy = "rental")
+    private List<AdditionalRentalItem>additionalRentalItems;
 }

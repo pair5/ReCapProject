@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.business.abstracts.AdditionalRentalItemService;
 import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.core.utilities.results.*;
@@ -110,5 +111,10 @@ public class InvoiceManager implements InvoiceService {
             return new ErrorResult();
         }
         return new SuccessResult();
+    }
+
+    public Result asdasdas(){
+        AdditionalRentalItemService additionalRentalItemService =
+
     }
 }

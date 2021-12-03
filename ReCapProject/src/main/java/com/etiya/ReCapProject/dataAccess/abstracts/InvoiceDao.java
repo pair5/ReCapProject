@@ -14,11 +14,11 @@ import org.springframework.data.repository.query.Param;
 public interface InvoiceDao extends JpaRepository<Invoice, Integer>{
 	
 	List<Invoice> getByCustomer_Id(int id);
-	
-	
-
 
 	List<Invoice> getByCreateDateBetween(LocalDate beginDate, LocalDate endDate);
+
+
+	//int SumTotalAdditionalService();
 	
 	
 	
