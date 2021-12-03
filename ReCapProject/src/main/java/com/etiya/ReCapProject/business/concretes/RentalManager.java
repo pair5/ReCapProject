@@ -77,6 +77,7 @@ public class RentalManager implements RentalService {
                 checkIfUserIdExists(createRentalRequest.getCustomerId()),
                 checkIfCarIdExists(createRentalRequest.getCarId()),
                 checkIfReturnDateIsNull(createRentalRequest.getCarId()),
+                checkIsRentDateIsAfterThanReturnDate(createRentalRequest.getCarId()),
                 compareFindexScores(createRentalRequest.getCarId())
         );
         if (result != null) {
@@ -209,16 +210,16 @@ public class RentalManager implements RentalService {
         return new SuccessDataResult<Rental>(result);
     }
 
-    /*
-    private Result isReturnDateNull(int carId){
+
+    private Result checkIsRentDateIsAfterThanReturnDate(int carId){
         var tempRental = this.rentalDao.getByCarId(carId);
 
-        if (tempRental.getRentDate() == null){
+        if (!(tempRental.getRentDate().isAfter(tempRental.getReturnDate()))){
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();
     }
-*/
+
 
 
 }

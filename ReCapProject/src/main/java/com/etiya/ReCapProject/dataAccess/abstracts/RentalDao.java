@@ -15,8 +15,9 @@ public interface RentalDao extends JpaRepository<Rental, Integer> {
 			+ "From Car c Inner Join c.rentals r where c.id=:carId and r.returnDate is null")
 	RentalSearchListDto getByCarIdWhereReturnDateIsNull(int carId);
 	
-	Rental  getByCarId(int carId);
+	Rental getByCarId(int carId);
 
+	boolean existsByCarId(int id);
 
 
 //	@Query(value = "select SUM(ass.daily_price)  from Rental r inner join AdditionalRentalItem ari ON r.id=ari.rental_id inner Join AdditioanlService ass on ari.additional_service_id=ass.id",nativeQuery = true)
