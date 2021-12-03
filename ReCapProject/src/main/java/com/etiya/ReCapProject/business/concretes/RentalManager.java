@@ -136,7 +136,7 @@ public class RentalManager implements RentalService {
 
 
     public Result checkIfReturnDateIsNull(int carId) {
-        RentalSearchListDto rental = this.rentalDao.getByCarIdWhereReturnDateIsNull(carId);
+        RentalSearchListDto rental = this.rentalDao.getByCarIdWhereRentDateIsBeforeReturnDate(carId);
         if (rental != null) {
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
