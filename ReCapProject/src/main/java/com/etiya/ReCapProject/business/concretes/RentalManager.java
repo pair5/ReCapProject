@@ -210,8 +210,8 @@ public class RentalManager implements RentalService {
         return new SuccessDataResult<Rental>(result);
     }
 
-    private Result isReturnDateNull(int rentalId){
-        var tempRental = this.rentalDao.getByCarId(rentalId);
+    private Result isReturnDateNull(int carId){
+        var tempRental = this.rentalDao.getByCarId(carId);
         if (tempRental.getRentDate() == null){
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
