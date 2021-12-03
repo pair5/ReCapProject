@@ -44,6 +44,7 @@ public class Messages {
 	public static final String CUSTOMERGET = "Customer found";
 	public static final String CUSTOMERNOTFOUND = "Customer not found.";
 	public static final String CUSTOMERISALREADYEXISTS = "Customer already exist !";
+	public static final String CUSTOMERTAXNUMBEREXISTS = "Customer tax number already exist !";
 
 
 	public static final String EMAILERROR = "This email is already in use.";

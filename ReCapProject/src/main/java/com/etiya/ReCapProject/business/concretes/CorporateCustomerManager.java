@@ -47,7 +47,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result add(CreateCorporateCustomerRequest createCorporateCustomerRequest) {
-		var result = BusinessRules.run(checkIsCorporateCustomerEmailExists(createCorporateCustomerRequest.getEmail()));
+		var result = BusinessRules.run(checkIsCorporateCustomerEmailExists(createCorporateCustomerRequest.getEmail()),checkCorporateTaxNumberExists(createCorporateCustomerRequest.getTaxNumber()));
 		if (result!= null) {
 			return result;
 		}
@@ -59,7 +59,8 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest) {
-		Result result = BusinessRules.run(corporateCustomerExists(updateCorporateCustomerRequest.getId()));
+		Result result = BusinessRules.run(checkCorporateCustomerExistsBuId(updateCorporateCustomerRequest.getId()),checkCorporateTaxNumberExists(updateCorporateCustomerRequest.getTaxNumber()),
+				checkIsCorporateCustomerEmailExists(updateCorporateCustomerRequest.getEmail()));
 		if (result != null) {
 			return result;
 		}
@@ -71,7 +72,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result delete(DeleteCorporateCustomerRequest deleteCorporateCustomerRequest) {
-		Result result = BusinessRules.run(corporateCustomerExists(deleteCorporateCustomerRequest.getCustomerId()));
+		Result result = BusinessRules.run(checkCorporateCustomerExistsBuId(deleteCorporateCustomerRequest.getCustomerId()));
 		if (result != null) {
 			return result;
 		}
@@ -102,15 +103,21 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 		}
 		return new SuccessResult();		
 	}
-	
-	
-	
-
-	private Result corporateCustomerExists(int customerId) {
+	private Result checkCorporateCustomerExistsBuId(int customerId) {
 		var result = this.corporateCustomerDao.existsById(customerId);
 		if (!result) {
 			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
 		}
 		return new SuccessResult();
 	}
+
+
+	private Result checkCorporateTaxNumberExists(String taxNumber){
+		var result = this.corporateCustomerDao.existsByTaxNumber(taxNumber);
+		if (result){
+			return new ErrorResult(Messages.CUSTOMERTAXNUMBEREXISTS);
+		}
+		return new SuccessResult();
+	}
+
 }
