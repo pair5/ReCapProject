@@ -25,8 +25,7 @@ public class CreateCarRequest {
     int colorId;
 	private int brandId;
 	@NotNull
-	@Min(10)
-	@Max(1000)
+	@Min(0)
 	private double dailyPrice;
 	
 	@NotNull

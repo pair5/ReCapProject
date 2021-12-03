@@ -61,7 +61,8 @@ public class CarManager implements CarService {
     @Override
     public Result add(CreateCarRequest createCarRequest) {
         Result result = BusinessRules.run(isColorIdExists(createCarRequest.getColorId())
-                ,isBrandIdExists(createCarRequest.getBrandId())
+                ,isBrandIdExists(createCarRequest.getBrandId()),
+                isCityIdExist(createCarRequest.getCityId())
                 ,isCarModelYearDateOk(createCarRequest.getModelYear()));
         if (result != null) {
             return result;
@@ -76,6 +77,7 @@ public class CarManager implements CarService {
     public Result update(UpdateCarRequest updateCarRequest) {
         Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId())
                 , isBrandIdExists(updateCarRequest.getBrandId())
+                ,isCityIdExist(updateCarRequest.getCityId())
                 , isColorIdExists(updateCarRequest.getColorId())
                 ,isCarModelYearDateOk(updateCarRequest.getModelYear()));
         if (result != null) {

@@ -72,6 +72,10 @@ public class CityManager implements CityService {
 
     @Override
     public DataResult<CitySearchListDto> getById(int id) {
+        var existResult = this.cityDao.existsById(id);
+        if (!existResult){
+            return new ErrorDataResult(Messages.CITYNOTFOUND);
+        }
         var result = this.cityDao.getById(id);
         CitySearchListDto response = modelMapperService.forDto().map(result, CitySearchListDto.class);
         return new SuccessDataResult(response, Messages.CITYFOUND);
