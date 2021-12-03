@@ -31,7 +31,7 @@ import com.etiya.ReCapProject.dataAccess.abstracts.CarImageDao;
 import com.etiya.ReCapProject.entities.concretes.CarImage;
 
 @Service
-@ConfigurationProperties
+//@ConfigurationProperties
 public class CarImageManager implements CarImageService {
 	
 	private CarImageDao carImageDao;
