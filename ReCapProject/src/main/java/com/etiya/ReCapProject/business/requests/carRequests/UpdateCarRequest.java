@@ -47,5 +47,8 @@ public class UpdateCarRequest {
 
 	private int cityId;
 
+	@NotNull
+	@Min(0)
+	@Max(250000)
 	private int kilometer;
 }
