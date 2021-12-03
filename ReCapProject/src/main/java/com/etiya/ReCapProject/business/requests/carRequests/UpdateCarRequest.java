@@ -30,8 +30,8 @@ public class UpdateCarRequest {
 	private double dailyPrice;
 
 	@NotNull
-	@Min(500)
-	@Max(1000)
+	@Min(0)
+	@Max(1900)
 	private int findexScore;
 
 	@NotNull
