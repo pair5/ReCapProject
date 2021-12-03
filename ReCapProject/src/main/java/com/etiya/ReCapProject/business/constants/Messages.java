@@ -130,6 +130,7 @@ public class Messages {
 	public static final String ADDITIONALRENTALITEMDELETE = "Additional rental item deleted.";
 	public static final String ADDITIONALRENTALITEMUPDATE = "Additional rental item updated.";
 	public static final String ADDITIONALRENTALITEMLIST = "Additional rental items are listed.";
+	public static final String ADDITIONALRENTALITEMNOTFOUND = "Additional rental item not found";
 
 
 }	

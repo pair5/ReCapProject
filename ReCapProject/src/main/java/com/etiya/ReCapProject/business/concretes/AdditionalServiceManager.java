@@ -4,6 +4,7 @@ import com.etiya.ReCapProject.business.abstracts.AdditionalServiceService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.AdditionalServiceSearchListDto;
+import com.etiya.ReCapProject.business.dtos.CarDamageSearchListDto;
 import com.etiya.ReCapProject.business.requests.additionalServiceRequests.CreateAdditionalServiceRequest;
 import com.etiya.ReCapProject.business.requests.additionalServiceRequests.DeleteAdditionalServiceRequest;
 import com.etiya.ReCapProject.business.requests.additionalServiceRequests.UpdateAdditionalServiceRequest;
@@ -12,6 +13,7 @@ import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.*;
 import com.etiya.ReCapProject.dataAccess.abstracts.AdditionalServiceDao;
 import com.etiya.ReCapProject.entities.concretes.AdditionalService;
+import com.etiya.ReCapProject.entities.concretes.CarDamage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,6 +73,26 @@ public class AdditionalServiceManager implements AdditionalServiceService {
                 .map(updateAdditionalServiceRequest, AdditionalService.class);
         this.additionalServiceDao.save(additionalService);
         return new SuccessResult(Messages.ADDITIONALSERVICEUPDATE);
+    }
+
+    @Override
+    public DataResult<AdditionalServiceSearchListDto> getById(int id) {
+        var businessResult = BusinessRules.run(isAdditionalServiceExists(id));
+        if (businessResult!= null){
+            return new ErrorDataResult(businessResult);
+        }
+        AdditionalService additionalService = this.additionalServiceDao.getById(id);
+        AdditionalServiceSearchListDto response = modelMapperService.forDto().map(additionalService,AdditionalServiceSearchListDto.class);
+        return new SuccessDataResult<AdditionalServiceSearchListDto>(response);
+    }
+
+    @Override
+    public Result checkIsAdditionalServiceExists(int id) {
+        var exists = isAdditionalServiceExists(id);
+        if (!exists.isSuccess()){
+            return new ErrorResult(Messages.ADDITIONALSERVICENOTFOUND);
+        }
+        return new SuccessResult();
     }
 
     private Result isAdditionalServiceExists(int id){
