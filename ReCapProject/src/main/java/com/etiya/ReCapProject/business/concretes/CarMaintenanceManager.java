@@ -56,7 +56,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result add(CreateCarMaintenanceRequest createCarMaintenanceRequest) {
-		Result result = BusinessRules.run(checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()));
+		Result result = BusinessRules.run(isCarIdExists(createCarMaintenanceRequest.getCar_Id()),checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()));
 		if (result != null) {
 			return result;
 		}
@@ -68,7 +68,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest) {
-		var result = BusinessRules.run(isMaintenanceIdExists(updateCarMaintenanceRequest.getId()));
+		var result = BusinessRules.run(isMaintenanceIdExists(updateCarMaintenanceRequest.getId()),isCarIdExists(updateCarMaintenanceRequest.getCarId()),checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()));
 		if (result != null) {
 			return result;
 		}
@@ -106,6 +106,16 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		}
 		return new SuccessDataResult<CarMaintenance>(carMaintenance);
 	}
+
+	private Result isCarIdExists(int carId){
+
+		var existsResult = this.carMaintenanceDao.existsByCarId(carId);
+		if (!existsResult){
+			return new ErrorResult(Messages.CARNOTFOUND);
+		}
+		return new SuccessResult();
+	}
+
 
 	private Result isMaintenanceIdExists(int id) {
 		var result = this.carMaintenanceDao.existsById(id);
