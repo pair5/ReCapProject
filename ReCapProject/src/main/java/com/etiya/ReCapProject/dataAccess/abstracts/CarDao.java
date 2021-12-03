@@ -28,7 +28,7 @@ public interface CarDao extends JpaRepository<Car, Integer> {
 
 
     @Query("Select new com.etiya.ReCapProject.business.dtos.CarSearchListDto" + "(c.id,c.modelYear,c.dailyPrice,c.description,c.findexScore,c.city.id,c.kilometer) "
-            + "From Car c Left Join  c.carMaintenances cm WHERE (cm.returnDate < CURRENT_DATE and cm.car.id is null) ")
+            + "From Car c left join c.rentals r Left Join  c.carMaintenances cm WHERE (cm.returnDate is null and cm.car.id is null) and (r.returnDate is null and r.car.id is null) ")
     List<CarSearchListDto> getAllWithoutMaintenanceOfCar();
 /*
     @Query("Select new com.etiya.ReCapProject.business.dtos.CarSearchListDto" + "(c.id,c.modelYear,c.dailyPrice,c.description,c.findexScore,c.city.id,c.kilometer) "
@@ -36,6 +36,6 @@ public interface CarDao extends JpaRepository<Car, Integer> {
     List<CarSearchListDto> getAllWithoutMaintenanceOfCar();
 */
 
-    //and (r.returnDate<CURRENT_DATE) left join c.rentals r
+    //
 
 }
