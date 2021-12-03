@@ -20,7 +20,7 @@ public class Invoice {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "invoice_number")
+	@Column(name = "invoice_number",unique = true)
 	private String invoiceNumber;
 
 	@Column(name = "create_date")
