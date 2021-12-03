@@ -212,9 +212,12 @@ public class RentalManager implements RentalService {
 
 
     private Result checkIsRentDateIsAfterThanReturnDate(int carId){
-        var tempRental = this.rentalDao.getByCarId(carId);
+        var tempResult = this.rentalDao.getByCarId(carId);
+        if (tempResult == null){
+            return new SuccessResult();
+        }
 
-        if (!(tempRental.getRentDate().isAfter(tempRental.getReturnDate()))){
+        if (!(tempResult.getRentDate().isAfter(tempResult.getReturnDate()))){
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();
