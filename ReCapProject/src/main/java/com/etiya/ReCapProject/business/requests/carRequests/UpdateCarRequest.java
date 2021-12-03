@@ -27,7 +27,6 @@ public class UpdateCarRequest {
 
 	@NotNull
 	@Min(10)
-	@Max(1000)
 	private double dailyPrice;
 
 	@NotNull
