@@ -79,7 +79,7 @@ public class CarDamageManager implements CarDamageService {
 
         var resultBusiness = BusinessRules.run(checkIsDamageIdExists(id));
         if (resultBusiness != null){
-            return new ErrorDataResult(Messages.DAMAGENOTFOUND,resultBusiness);
+            return new ErrorDataResult(resultBusiness);
         }
         CarDamage result = this.carDamageDao.getById(id);
         CarDamageSearchListDto response = modelMapperService.forDto().map(result,CarDamageSearchListDto.class);
@@ -90,7 +90,7 @@ public class CarDamageManager implements CarDamageService {
     public DataResult<List<CarDamageSearchListDto>> getByCarId(int carId) {
         var resultBusiness = BusinessRules.run(checkIsCarExists(carId));
         if (resultBusiness != null){
-            return new ErrorDataResult(Messages.CARNOTFOUND,resultBusiness);
+            return new ErrorDataResult(resultBusiness);
         }
         List<CarDamage> carDamageList = this.carDamageDao.getByCar_Id(carId);
         List<CarDamageSearchListDto> response = carDamageList.stream().map(carDamage -> modelMapperService.forDto().map(carDamage,CarDamageSearchListDto.class)).collect(Collectors.toList());
