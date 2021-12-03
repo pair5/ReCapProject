@@ -88,6 +88,7 @@ public class RentalManager implements RentalService {
         createRentalRequest.setRentedKilometer(car.getKilometer());
         createRentalRequest.setRentedCityId(car.getCityId());
         Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
+        rental.setReturnCityId(createRentalRequest.getReturnCityId());
         rental.setRentDate(LocalDate.now());
         this.fakePosService.isPaymentDone();
         this.rentalDao.save(rental);
