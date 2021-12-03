@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateCarRequest {
 
-	@JsonIgnore
 	private int id;
 
 	@NotNull
