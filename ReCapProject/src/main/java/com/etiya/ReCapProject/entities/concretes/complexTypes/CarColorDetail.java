@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor @NoArgsConstructor @Data
 public class CarColorDetail {
-	
+
+	private int id;
 	private int colorId;
 	private String description;
 

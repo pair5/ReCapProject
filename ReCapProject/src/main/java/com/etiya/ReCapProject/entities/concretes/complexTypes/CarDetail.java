@@ -17,4 +17,5 @@ public class CarDetail {
     private double dailyPrice;
     private String description;
     private String cityName;
+    private int kilometer;
 }

@@ -10,6 +10,7 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarBrandDetail {
+	private int id;
 	private int brandId;
 	private String description;
 }

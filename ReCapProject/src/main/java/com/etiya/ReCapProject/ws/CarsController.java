@@ -42,13 +42,13 @@ public class CarsController {
 	}
 
 	@PutMapping("update")
-	public Result update(UpdateCarRequest updateCarRequest) {
+	public Result update(@RequestBody @Valid UpdateCarRequest updateCarRequest) {
 		return this.carService.update(updateCarRequest);
 
 	}
 
 	@DeleteMapping("delete")
-	public Result delete(DeleteCarRequest deleteCarRequest) {
+	public Result delete(@RequestBody @Valid DeleteCarRequest deleteCarRequest) {
 		return this.carService.delete(deleteCarRequest);
 
 	}
@@ -57,6 +57,7 @@ public class CarsController {
 	public DataResult<List<CarSearchListDto>> getAll() {
 		return this.carService.getAll();
 	}
+
 	@GetMapping("/getCarWithBrandAndColorDetails")
 	public DataResult<List<CarDetail>> getCarWithBrandAndColorDetails() {
 		return this.carService.getCarWithBrandAndColorDetails();
