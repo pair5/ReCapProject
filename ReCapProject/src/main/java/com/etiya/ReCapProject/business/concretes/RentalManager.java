@@ -55,7 +55,7 @@ public class RentalManager implements RentalService {
         this.carMaintenanceService = carMaintenanceService;
         this.userService = userService;
         this.fakePosService = fakePosService;
-        this.carService = carService;
+        this.cityService = cityService;
     }
 
 
