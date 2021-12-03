@@ -87,8 +87,10 @@ public class RentalManager implements RentalService {
         var car=this.carService.getById(createRentalRequest.getCarId()).getData();
         createRentalRequest.setRentedKilometer(car.getKilometer());
         createRentalRequest.setRentedCityId(car.getCityId());
+        //createRentalRequest.setReturnCityId(car.getCityId());
         Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
         rental.setReturnCityId(createRentalRequest.getReturnCityId());
+        this.carService.updateCity(createRentalRequest.getReturnCityId(), createRentalRequest.getCarId());
         rental.setRentDate(LocalDate.now());
         this.fakePosService.isPaymentDone();
         this.rentalDao.save(rental);
