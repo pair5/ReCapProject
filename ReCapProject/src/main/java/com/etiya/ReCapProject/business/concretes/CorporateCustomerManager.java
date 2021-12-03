@@ -3,7 +3,10 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.business.abstracts.UserService;
+import com.etiya.ReCapProject.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.CorporateCustomerService;
@@ -28,12 +31,14 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	private CorporateCustomerDao corporateCustomerDao;
 	private ModelMapperService modelMapperService;
+	private UserService userService;
+
 
 	@Autowired
-	public CorporateCustomerManager(CorporateCustomerDao corporateCustomerDao, ModelMapperService modelMapperService) {
-		super();
+	public CorporateCustomerManager(CorporateCustomerDao corporateCustomerDao, ModelMapperService modelMapperService, @Lazy UserService userService) {
 		this.corporateCustomerDao = corporateCustomerDao;
 		this.modelMapperService = modelMapperService;
+		this.userService = userService;
 	}
 
 	@Override
@@ -97,8 +102,8 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 	}
 	
 	private Result checkIsCorporateCustomerEmailExists(String email){
-		var result = this.corporateCustomerDao.existsByEmail(email);
-		if(result){
+		var result = this.userService.isUserEmailExists(email);
+		if(result.isSuccess()){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();		

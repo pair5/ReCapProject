@@ -3,7 +3,9 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.business.abstracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.IndividualCustomerService;
@@ -27,12 +29,14 @@ import com.etiya.ReCapProject.entities.concretes.IndividualCustomer;
 public class IndividualCustomerManager implements IndividualCustomerService {
 	private IndividualCustomerDao individualCustomerDao;
 	private ModelMapperService modelMapperService;
-	
+	private UserService userService;
+
+
 	@Autowired
-	public IndividualCustomerManager(IndividualCustomerDao individualCustomerDao,ModelMapperService modelMapperService) {
-		super();
+	public IndividualCustomerManager(IndividualCustomerDao individualCustomerDao, ModelMapperService modelMapperService,@Lazy UserService userService) {
 		this.individualCustomerDao = individualCustomerDao;
 		this.modelMapperService = modelMapperService;
+		this.userService = userService;
 	}
 
 	@Override
@@ -89,8 +93,8 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	}
 	
 	private Result checkIsIndividualCustomerEmailExists(String email){
-		var result = this.individualCustomerDao.existsByEmail(email);
-		if(result){
+		var result = this.userService.isUserEmailExists(email);
+		if(result.isSuccess()){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();		
