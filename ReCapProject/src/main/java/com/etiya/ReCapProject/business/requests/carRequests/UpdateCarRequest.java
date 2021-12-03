@@ -44,7 +44,7 @@ public class UpdateCarRequest {
 	@Size(min = 3, max = 20)
 	private String description;
 
-//	@NotNull
+
 	private int cityId;
 
 	private int kilometer;

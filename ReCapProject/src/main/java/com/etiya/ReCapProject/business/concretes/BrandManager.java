@@ -3,6 +3,7 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,6 @@ import com.etiya.ReCapProject.business.requests.brandRequests.DeleteBrandRequest
 import com.etiya.ReCapProject.business.requests.brandRequests.UpdateBrandRequest;
 import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
-import com.etiya.ReCapProject.core.utilities.results.DataResult;
-import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
-import com.etiya.ReCapProject.core.utilities.results.Result;
-import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
-import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.BrandDao;
 import com.etiya.ReCapProject.entities.concretes.Brand;
 
@@ -79,6 +75,10 @@ public class BrandManager implements BrandService{
 	}
 	@Override
 	public DataResult<BrandSearchListDto> getByBrandId(int brandId) {
+		boolean existResult = this.brandDao.existsById(brandId);
+		if (!existResult){
+			return new ErrorDataResult(Messages.BRANDNOTFOUND);
+		}
 		Brand brand= this.brandDao.findById(brandId).get();
 		BrandSearchListDto brandSearchListDto=modelMapperService.forDto().map(brand, BrandSearchListDto.class);
 		return new SuccessDataResult<BrandSearchListDto>(brandSearchListDto);

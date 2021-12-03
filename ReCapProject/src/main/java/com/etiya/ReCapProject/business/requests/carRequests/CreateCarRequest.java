@@ -35,8 +35,10 @@ public class CreateCarRequest {
 	private int findexScore;
 	
 	@NotNull
-	@DateTimeFormat
+	@Min(1900)
 	private int modelYear;
+
+	private int cityId;
 	
 	@NotNull
 	@NotBlank
@@ -44,6 +46,8 @@ public class CreateCarRequest {
 	private String description;
 
 	@NotNull
+	@Min(0)
+	@Max(250000)
 	private int kilometer;
 
 }

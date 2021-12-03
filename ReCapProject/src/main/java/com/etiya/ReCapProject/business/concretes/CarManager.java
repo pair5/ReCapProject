@@ -1,5 +1,6 @@
 package com.etiya.ReCapProject.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,8 +60,9 @@ public class CarManager implements CarService {
 
     @Override
     public Result add(CreateCarRequest createCarRequest) {
-        Result result = BusinessRules.run(isColorIdExists(createCarRequest.getColorId()),
-                isBrandIdExists(createCarRequest.getBrandId()));
+        Result result = BusinessRules.run(isColorIdExists(createCarRequest.getColorId())
+                ,isBrandIdExists(createCarRequest.getBrandId())
+                ,isCarModelYearDateOk(createCarRequest.getModelYear()));
         if (result != null) {
             return result;
         }
@@ -74,7 +76,8 @@ public class CarManager implements CarService {
     public Result update(UpdateCarRequest updateCarRequest) {
         Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId())
                 , isBrandIdExists(updateCarRequest.getBrandId())
-                , isColorIdExists(updateCarRequest.getColorId()));
+                , isColorIdExists(updateCarRequest.getColorId())
+                ,isCarModelYearDateOk(updateCarRequest.getModelYear()));
         if (result != null) {
             return result;
         }
@@ -235,6 +238,13 @@ public class CarManager implements CarService {
         updateCarRequest.setKilometer(kilometer);
         Car car=modelMapperService.forRequest().map(updateCarRequest,Car.class);
         this.carDao.save(car);
+        return new SuccessResult();
+    }
+
+    private Result isCarModelYearDateOk(int modelYear){
+        if (modelYear > LocalDate.now().getYear()){
+            return new ErrorResult("Invalid Year");
+        }
         return new SuccessResult();
     }
 
