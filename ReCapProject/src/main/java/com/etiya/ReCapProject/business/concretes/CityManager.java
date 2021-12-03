@@ -2,8 +2,6 @@ package com.etiya.ReCapProject.business.concretes;
 
 import com.etiya.ReCapProject.business.abstracts.CityService;
 import com.etiya.ReCapProject.business.constants.Messages;
-import com.etiya.ReCapProject.business.dtos.BrandSearchListDto;
-import com.etiya.ReCapProject.business.dtos.CarSearchListDto;
 import com.etiya.ReCapProject.business.dtos.CitySearchListDto;
 import com.etiya.ReCapProject.business.requests.cityRequests.CreateCityRequest;
 import com.etiya.ReCapProject.business.requests.cityRequests.DeleteCityRequest;
@@ -12,9 +10,7 @@ import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.*;
 import com.etiya.ReCapProject.dataAccess.abstracts.CityDao;
-import com.etiya.ReCapProject.entities.concretes.Car;
 import com.etiya.ReCapProject.entities.concretes.City;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -12,6 +12,7 @@ public class CreateAdditionalServiceRequest {
 
     @JsonIgnore
     private int id;
+
     private String serviceName;
     private double dailyPrice;
     private String description;

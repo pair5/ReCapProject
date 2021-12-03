@@ -12,7 +12,6 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.CarDamageDao;
-import com.etiya.ReCapProject.dataAccess.abstracts.CarDao;
 import com.etiya.ReCapProject.entities.concretes.CarDamage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

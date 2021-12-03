@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-import com.etiya.ReCapProject.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -34,8 +33,7 @@ import com.etiya.ReCapProject.dataAccess.abstracts.RentalDao;
 import com.etiya.ReCapProject.entities.concretes.Rental;
 
 @Service
-public class
-RentalManager implements RentalService {
+public class RentalManager implements RentalService {
 
     private RentalDao rentalDao;
     private ModelMapperService modelMapperService;
@@ -136,6 +134,12 @@ RentalManager implements RentalService {
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();
+    }
+
+    @Override
+    public int getAdditionalItemsTotalPriceByRentalId(int rentalId) {
+        var result = this.rentalDao.getAdditionalItemsOfRelevantRental(rentalId);
+        return result;
     }
 
     private Result compareFindexScores(int id) {

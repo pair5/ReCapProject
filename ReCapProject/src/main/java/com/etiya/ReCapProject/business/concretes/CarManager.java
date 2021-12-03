@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.etiya.ReCapProject.business.abstracts.CityService;
-import com.etiya.ReCapProject.entities.concretes.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

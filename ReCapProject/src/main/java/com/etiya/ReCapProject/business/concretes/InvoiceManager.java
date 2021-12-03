@@ -5,7 +5,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.etiya.ReCapProject.business.abstracts.AdditionalRentalItemService;
 import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.core.utilities.results.*;
@@ -52,7 +51,9 @@ public class InvoiceManager implements InvoiceService {
         var rental = this.rentalService.getById(createInvoiceRequest.getRentalId()).getData();
         var car = this.carService.getById(rental.getCar().getId()).getData();
         int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate()));
-        var totalAmount = car.getDailyPrice() * totalDay;
+        int additionalTotalAmount = rentalService.getAdditionalItemsTotalPriceByRentalId(rental.getId());
+
+        var totalAmount = (car.getDailyPrice()+additionalTotalAmount)* totalDay;
         var comparisonResult = compareCityId(car.getCityId(), rental.getReturnCityId());
 
         if (!comparisonResult.isSuccess()) {
@@ -112,8 +113,4 @@ public class InvoiceManager implements InvoiceService {
         return new SuccessResult();
     }
 
-//    public Result asdasdas(){
-//        AdditionalRentalItemService additionalRentalItemService =
-//
-//    }
 }
