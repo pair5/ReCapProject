@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @AllArgsConstructor
@@ -34,6 +35,7 @@ public class CreateCarRequest {
 	private int findexScore;
 	
 	@NotNull
+	@DateTimeFormat
 	private int modelYear;
 	
 	@NotNull
