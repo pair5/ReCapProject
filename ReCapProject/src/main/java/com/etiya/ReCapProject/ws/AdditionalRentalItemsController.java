@@ -41,7 +41,7 @@ public class AdditionalRentalItemsController {
         return this.additionalRentalItemService.add(createAdditionalRentalItemRequest);
     }
 
-    @GetMapping("delete")
+    @DeleteMapping("delete")
     public Result delete(@RequestBody @Valid DeleteAdditionalRentalItemRequest deleteAdditionalRentalItemRequest){
         return  this.additionalRentalItemService.delete(deleteAdditionalRentalItemRequest);
     }
