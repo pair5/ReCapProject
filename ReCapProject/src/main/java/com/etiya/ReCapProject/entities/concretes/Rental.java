@@ -37,7 +37,6 @@ public class Rental {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
     @Column(name = "return_city_id")
