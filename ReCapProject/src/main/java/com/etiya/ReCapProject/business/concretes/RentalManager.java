@@ -117,7 +117,9 @@ public class RentalManager implements RentalService {
         if (result != null) {
             return result;
         }
+        var tempRental = this.rentalDao.getById(updateRentalRequest.getId());
         var car=this.carService.getById(updateRentalRequest.getCarId()).getData();
+        updateRentalRequest.setRentDate(tempRental.getRentDate());
         updateRentalRequest.setRentedCityId(car.getCityId());
         updateRentalRequest.setRentedKilometer(car.getKilometer());
 
