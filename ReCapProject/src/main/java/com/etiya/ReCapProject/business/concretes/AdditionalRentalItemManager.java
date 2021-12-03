@@ -13,7 +13,6 @@ import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.*;
 import com.etiya.ReCapProject.dataAccess.abstracts.AdditionalRentalItemDao;
 import com.etiya.ReCapProject.entities.concretes.AdditionalRentalItem;
-import com.etiya.ReCapProject.entities.concretes.AdditionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,12 +81,16 @@ public class AdditionalRentalItemManager implements AdditionalRentalItemService 
     }
 
     @Override
-    public DataResult<List<AdditionalRentalItem>> getByRentalId(int rentalId) {
+    public DataResult<List<AdditionalRentalItemSearchListDto>> getByRentalId(int rentalId) {
         var businessResult = BusinessRules.run(isRentalExists(rentalId));
         if (businessResult!=null){
             return new ErrorDataResult(businessResult);
         }
-        return new SuccessDataResult<>(this.additionalRentalItemDao.getByRentalId(rentalId));
+        List<AdditionalRentalItem> request = this.additionalRentalItemDao.getByRentalId(rentalId);
+        List<AdditionalRentalItemSearchListDto> response = request.stream()
+                .map(additionalRentalItem -> modelMapperService.forDto()
+                        .map(additionalRentalItem , AdditionalRentalItemSearchListDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<List<AdditionalRentalItemSearchListDto>>(response);
     }
 
 

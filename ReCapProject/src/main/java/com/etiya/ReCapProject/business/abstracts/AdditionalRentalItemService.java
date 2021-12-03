@@ -16,5 +16,5 @@ public interface AdditionalRentalItemService {
     Result add(CreateAdditionalRentalItemRequest createAdditionalRentalItemRequest);
     Result delete(DeleteAdditionalRentalItemRequest deleteAdditionalRentalItemRequest);
     Result update(UpdateAdditionalRentalItemRequest updateAdditionalRentalItemRequest);
-    DataResult<List<AdditionalRentalItem>> getByRentalId(int rentalId);
+    DataResult<List<AdditionalRentalItemSearchListDto>> getByRentalId(int rentalId);
 }
