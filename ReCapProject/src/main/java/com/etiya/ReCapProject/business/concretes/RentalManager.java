@@ -5,16 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+import com.etiya.ReCapProject.business.abstracts.*;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePosService;
+import com.etiya.ReCapProject.entities.concretes.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import com.etiya.ReCapProject.business.abstracts.CarMaintenanceService;
-import com.etiya.ReCapProject.business.abstracts.CarService;
-import com.etiya.ReCapProject.business.abstracts.IndividualCustomerService;
-import com.etiya.ReCapProject.business.abstracts.RentalService;
-import com.etiya.ReCapProject.business.abstracts.UserService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.RentalSearchListDto;
 import com.etiya.ReCapProject.business.requests.rentalRequests.CreateRentalRequest;
@@ -44,11 +41,12 @@ public class RentalManager implements RentalService {
     private CarMaintenanceService carMaintenanceService;
     private UserService userService;
     private FakePosService fakePosService;
+    private CityService cityService;
 
     @Autowired
     public RentalManager(RentalDao rentalDao, ModelMapperService modelMapperService, FindexService findexService,
                          CarService carService, IndividualCustomerService individualCustomerService,
-                        @Lazy CarMaintenanceService carMaintenanceService, UserService userService, FakePosService fakePosService) {
+                         @Lazy CarMaintenanceService carMaintenanceService, UserService userService, FakePosService fakePosService,CityService cityService) {
         this.rentalDao = rentalDao;
         this.modelMapperService = modelMapperService;
         this.findexService = findexService;
@@ -57,6 +55,7 @@ public class RentalManager implements RentalService {
         this.carMaintenanceService = carMaintenanceService;
         this.userService = userService;
         this.fakePosService = fakePosService;
+        this.carService = carService;
     }
 
 
@@ -78,6 +77,7 @@ public class RentalManager implements RentalService {
                 checkIfCarIdExists(createRentalRequest.getCarId()),
                 checkIfReturnDateIsNull(createRentalRequest.getCarId()),
                 checkIsRentDateIsAfterThanReturnDate(createRentalRequest.getCarId()),
+                checkIsCityExists(createRentalRequest.getReturnCityId()),
                 compareFindexScores(createRentalRequest.getCarId())
         );
         if (result != null) {
@@ -112,7 +112,8 @@ public class RentalManager implements RentalService {
     public Result update(UpdateRentalRequest updateRentalRequest) {
         var result = BusinessRules.run(checkRentalExists(updateRentalRequest.getId()),
                 checkIfUserIdExists(updateRentalRequest.getCustomerId()),
-                checkIfCarIdExists(updateRentalRequest.getCarId()));
+                checkIfCarIdExists(updateRentalRequest.getCarId()),
+                checkIsCityExists(updateRentalRequest.getReturnCityId()));
         if (result != null) {
             return result;
         }
@@ -224,6 +225,16 @@ public class RentalManager implements RentalService {
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();
+    }
+
+    private Result checkIsCityExists(int cityId){
+        var existsResult = this.cityService.isCityIdExist(cityId);
+        if (!existsResult.isSuccess()){
+            return new ErrorResult(Messages.CITYNOTFOUND);
+        }
+        return new SuccessResult();
+
+
     }
 
 
