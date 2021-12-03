@@ -32,9 +32,13 @@ public class UpdateIndividualCustomerRequest {
 	private String lastName;
 
 	@Email
+	@NotBlank
+	@NotNull
 	private String email;
 
+	@NotNull
 	@Size(min = 6, max = 20)
+	@NotBlank
 	private String password;
 
 	@NotNull

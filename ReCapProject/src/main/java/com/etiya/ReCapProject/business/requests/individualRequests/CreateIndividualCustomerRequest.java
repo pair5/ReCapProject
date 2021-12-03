@@ -2,10 +2,7 @@ package com.etiya.ReCapProject.business.requests.individualRequests;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,8 +31,11 @@ public class CreateIndividualCustomerRequest {
 	
 	@Email
 	@NotNull
+	@NotBlank
 	private String email;
 	
 	@NotNull
+	@NotBlank
+	@Size(min = 6, max = 20)
 	private String password;
 }
