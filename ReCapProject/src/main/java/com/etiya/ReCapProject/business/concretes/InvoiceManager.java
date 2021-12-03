@@ -53,7 +53,6 @@ public class InvoiceManager implements InvoiceService {
         var car = this.carService.getById(rental.getCar().getId()).getData();
         int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate()));
         var totalAmount = car.getDailyPrice() * totalDay;
-
         var comparisonResult = compareCityId(car.getCityId(), rental.getReturnCityId());
 
         if (!comparisonResult.isSuccess()) {
@@ -113,8 +112,8 @@ public class InvoiceManager implements InvoiceService {
         return new SuccessResult();
     }
 
-    public Result asdasdas(){
-        AdditionalRentalItemService additionalRentalItemService =
-
-    }
+//    public Result asdasdas(){
+//        AdditionalRentalItemService additionalRentalItemService =
+//
+//    }
 }
