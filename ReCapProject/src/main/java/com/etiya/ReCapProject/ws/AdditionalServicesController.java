@@ -11,6 +11,7 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.entities.concretes.AdditionalService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class AdditionalServicesController {
     private AdditionalServiceService additionalServiceService;
 
 
-    public AdditionalServicesController(AdditionalServiceService additionalServiceService) {
+    public AdditionalServicesController( AdditionalServiceService additionalServiceService) {
         this.additionalServiceService = additionalServiceService;
     }
 
@@ -28,19 +29,20 @@ public class AdditionalServicesController {
     public DataResult<List<AdditionalServiceSearchListDto>> getAll() {
         return this.additionalServiceService.getAll();
     }
-    @PostMapping
-    public Result add(CreateAdditionalServiceRequest createAdditionalServiceRequest) {
+
+    @PostMapping("add")
+    public Result add(@RequestBody @Valid CreateAdditionalServiceRequest createAdditionalServiceRequest) {
         return this.additionalServiceService.add(createAdditionalServiceRequest);
 
     }
 
     @PutMapping("update")
-    public Result update(UpdateAdditionalServiceRequest updateAdditionalServiceRequest) {
+    public Result update(@RequestBody @Valid UpdateAdditionalServiceRequest updateAdditionalServiceRequest) {
         return this.additionalServiceService.update(updateAdditionalServiceRequest);
     }
 
     @DeleteMapping("delete")
-    public Result delete(DeleteAdditionalServiceRequest deleteAdditionalServiceRequest) {
+    public Result delete(@RequestBody @Valid DeleteAdditionalServiceRequest deleteAdditionalServiceRequest) {
         return this.additionalServiceService.delete(deleteAdditionalServiceRequest);
     }
 

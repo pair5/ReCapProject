@@ -42,6 +42,9 @@ public class AdditionalServiceManager implements AdditionalServiceService {
     @Override
     public Result add(CreateAdditionalServiceRequest createAdditionalServiceRequest) {
         var businessResult = BusinessRules.run(checkIsServiceNameExists(createAdditionalServiceRequest.getServiceName()));
+        if (businessResult!= null){
+            return businessResult;
+        }
         AdditionalService additionalService = modelMapperService.forRequest().map(createAdditionalServiceRequest, AdditionalService.class);
         this.additionalServiceDao.save(additionalService);
         return new SuccessResult(Messages.ADDITIONALSERVICEADD);
@@ -49,7 +52,10 @@ public class AdditionalServiceManager implements AdditionalServiceService {
 
     @Override
     public Result delete(DeleteAdditionalServiceRequest deleteAdditionalServiceRequest) {
-        var result = BusinessRules.run(isAdditionalServiceExists(deleteAdditionalServiceRequest.getId()));
+        var businessResult = BusinessRules.run(isAdditionalServiceExists(deleteAdditionalServiceRequest.getId()));
+        if (businessResult!= null){
+            return businessResult;
+        }
         AdditionalService additionalService = modelMapperService.forRequest().map(deleteAdditionalServiceRequest, AdditionalService.class);
         this.additionalServiceDao.delete(additionalService);
         return new SuccessResult(Messages.ADDITIONALSERVICEDELETE);
@@ -58,6 +64,9 @@ public class AdditionalServiceManager implements AdditionalServiceService {
     @Override
     public Result update(UpdateAdditionalServiceRequest updateAdditionalServiceRequest) {
         var businessResult = BusinessRules.run(isAdditionalServiceExists(updateAdditionalServiceRequest.getId()));
+        if (businessResult!= null){
+            return businessResult;
+        }
         AdditionalService additionalService = modelMapperService.forRequest()
                 .map(updateAdditionalServiceRequest, AdditionalService.class);
         this.additionalServiceDao.save(additionalService);
