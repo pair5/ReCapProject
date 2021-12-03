@@ -24,7 +24,7 @@ public class CreateCorporateCustomerRequest {
 	private String companyName;
 	
 	@NotNull@NotBlank
-	@Size(min=2,max = 25)
+	@Size(min=10,max = 10)
 	private String taxNumber;
 	
 	@Email
