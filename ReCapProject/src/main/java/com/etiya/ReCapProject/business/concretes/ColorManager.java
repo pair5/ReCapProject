@@ -3,6 +3,7 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,6 @@ import com.etiya.ReCapProject.business.requests.colorRequests.DeleteColorRequest
 import com.etiya.ReCapProject.business.requests.colorRequests.UpdateColorRequest;
 import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
-import com.etiya.ReCapProject.core.utilities.results.DataResult;
-import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
-import com.etiya.ReCapProject.core.utilities.results.Result;
-import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
-import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.ColorDao;
 import com.etiya.ReCapProject.entities.concretes.Color;
 
@@ -79,6 +75,10 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public DataResult<ColorSearchListDto> getByColorId(int colorId) {
+		var existsResult = this.colorDao.existsById(colorId);
+		if (!existsResult){
+			return new ErrorDataResult(Messages.COLORNOTFOUND);
+		}
 		Color color = this.colorDao.findById(colorId).get();
 		ColorSearchListDto response = modelMapperService.forDto().map(color, ColorSearchListDto.class);
 		return new SuccessDataResult<ColorSearchListDto>(response, Messages.COLORGET);
