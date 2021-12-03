@@ -34,6 +34,7 @@ public class CreateRentalRequest {
 
     private LocalDate returnDate;
 
+    @JsonIgnore
     private int rentedCityId;
 
     private int returnCityId;
