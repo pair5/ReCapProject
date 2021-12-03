@@ -19,5 +19,6 @@ public interface RentalService {
 	DataResult<Rental> getById(int id);
 	Result checkIfReturnDateIsNull(int carId);
 	int getAdditionalItemsTotalPriceByRentalId(int rentalId);
+	Result isRentalExistsById(int id);
 
 }	

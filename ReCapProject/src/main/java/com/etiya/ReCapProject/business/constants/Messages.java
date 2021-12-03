@@ -123,6 +123,7 @@ public class Messages {
 	public static final String ADDITIONALSERVICEUPDATE = "Additional service updated.";
 	public static final String ADDITIONALSERVICEDELETE = "Additional service deleted.";
 	public static final String ADDITIONALSERVICELIST = "Additional services listed.";
+	public static final String ADDITIONALSERVICENOTFOUND = "Additional service not found";
 
 
 	public static final String ADDITIONALRENTALITEMADD = "Additional rental item added.";

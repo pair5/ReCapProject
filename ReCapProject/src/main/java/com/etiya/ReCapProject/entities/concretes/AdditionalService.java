@@ -24,7 +24,7 @@ public class AdditionalService {
     private String serviceName;
 
     @Column(name = "daily_price")
-    private double dailyPrice;
+    private int dailyPrice;
 
     @Column(name = "description")
     private String description;
