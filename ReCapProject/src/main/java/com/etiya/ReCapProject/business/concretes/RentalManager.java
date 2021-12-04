@@ -146,10 +146,11 @@ public class RentalManager implements RentalService {
     @Override
     public int getAdditionalItemsTotalPriceByRentalId(int rentalId) {
         var result = this.rentalDao.getAdditionalItemsOfRelevantRental(rentalId);
-        if (result==0){
-            return 0;
+        int totalAmount=0;
+        for(int item : result){
+            totalAmount+=item;
         }
-        return result;
+        return totalAmount;
     }
 
     @Override
