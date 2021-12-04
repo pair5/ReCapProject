@@ -20,5 +20,4 @@ public interface IndividualCustomerService {
 
 	DataResult<IndividualCustomerSearchListDto> getByIndividualCustomerId(int individualCustomerId);
 
-	Result isUserMailExistsInCorporateCustomer(String email);
 }
