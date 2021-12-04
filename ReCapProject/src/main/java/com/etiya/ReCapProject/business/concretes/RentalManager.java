@@ -69,7 +69,6 @@ public class RentalManager implements RentalService {
         return new SuccessDataResult<List<RentalSearchListDto>>(response, Messages.RENTALLIST);
     }
 
-//	,checkIfReturnDateIsNull(createRentalRequest.getCarId())
 
     @Override
     public Result add(CreateRentalRequest createRentalRequest) {
