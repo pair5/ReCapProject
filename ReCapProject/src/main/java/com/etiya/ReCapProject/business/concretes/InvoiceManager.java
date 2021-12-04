@@ -46,7 +46,11 @@ public class InvoiceManager implements InvoiceService {
         return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
     }
 
-
+    private String createInvoiceNumber(int rentalId){
+       var currentYear= LocalDate.now().getYear();
+       String invoiceNumber=currentYear+"FTR"+rentalId;
+       return invoiceNumber;
+    }
     @Override
     public Result add(CreateInvoiceRequest createInvoiceRequest) {
         var result= BusinessRules.run(checkIfRentalIdExists(createInvoiceRequest.getRentalId()));
@@ -59,12 +63,12 @@ public class InvoiceManager implements InvoiceService {
         int additionalTotalAmount = rentalService.getAdditionalItemsTotalPriceByRentalId(rental.getId());
         var totalAmount = (car.getDailyPrice()+additionalTotalAmount)* totalDay;
         var comparisonResult = compareCityId(car.getCityId(), rental.getReturnCityId());
-
+        var tempInvoiceNumber=createInvoiceNumber(rental.getId());
         if (!comparisonResult.isSuccess()) {
             totalAmount += 500;
         }
         var customer = rental.getCustomer().getId();
-
+        createInvoiceRequest.setInvoiceNumber(tempInvoiceNumber);
         createInvoiceRequest.setCustomerId(customer);
         createInvoiceRequest.setRentDate(rental.getRentDate());
         createInvoiceRequest.setReturnDate(rental.getReturnDate());
@@ -127,5 +131,6 @@ public class InvoiceManager implements InvoiceService {
         }
         return new SuccessResult();
     }
+
 
 }

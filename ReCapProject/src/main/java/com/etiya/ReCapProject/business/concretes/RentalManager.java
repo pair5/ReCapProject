@@ -1,11 +1,15 @@
 package com.etiya.ReCapProject.business.concretes;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 import com.etiya.ReCapProject.business.abstracts.*;
+import com.etiya.ReCapProject.business.requests.creditCardRequests.CreateCreditCardRequest;
+import com.etiya.ReCapProject.business.requests.paymentRequests.CreatePaymentRequest;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -76,26 +80,36 @@ public class RentalManager implements RentalService {
                 checkIfUserIdExists(createRentalRequest.getCustomerId()),
                 checkIfCarIdExists(createRentalRequest.getCarId()),
                 checkIfReturnDateIsNull(createRentalRequest.getCarId()),
-                checkIsRentDateIsAfterThanReturnDate(createRentalRequest.getCarId()),
+                checkIsRentDateIsAfterThanReturnDate(createRentalRequest.getRentDate(),createRentalRequest.getReturnDate()),
                 checkIsCityExists(createRentalRequest.getReturnCityId()),
                 compareFindexScores(createRentalRequest.getCarId())
         );
         if (result != null) {
             return result;
         }
-
         var car=this.carService.getById(createRentalRequest.getCarId()).getData();
         createRentalRequest.setRentedKilometer(car.getKilometer());
         createRentalRequest.setRentedCityId(car.getCityId());
-        //createRentalRequest.setReturnCityId(car.getCityId());
         Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
         rental.setReturnCityId(createRentalRequest.getReturnCityId());
         this.carService.updateCity(createRentalRequest.getReturnCityId(), createRentalRequest.getCarId());
         rental.setRentDate(LocalDate.now());
-        this.fakePosService.isPaymentDone();
+        CreatePaymentRequest createPaymentRequest=new CreatePaymentRequest();
         this.rentalDao.save(rental);
         return new SuccessResult(Messages.RENTALADD);
     }
+    private Result checkIfIsLimitEnough(int rentalId, CreatePaymentRequest createPaymentRequest) {
+        Rental rental = this.rentalDao.getById(rentalId);
+        var car = this.carService.getById(rental.getCar().getId());
+        int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate()));
+        double totalAmount = (car.getData().getDailyPrice() * totalDay);
+        createPaymentRequest.setPrice(totalAmount);
+        if (!this.fakePosService.payByCreditCard(createPaymentRequest)) {
+            return new ErrorResult(Messages.INSUFFICIENTBALANCE);
+        }
+        return new SuccessResult(Messages.SUFFICIENTBALANCE);
+    }
+
 
     @Override
     public Result delete(DeleteRentalRequest deleteRentalRequest) {
@@ -113,6 +127,7 @@ public class RentalManager implements RentalService {
         var result = BusinessRules.run(checkRentalExists(updateRentalRequest.getId()),
                 checkIfUserIdExists(updateRentalRequest.getCustomerId()),
                 checkIfCarIdExists(updateRentalRequest.getCarId()),
+                checkIfIsLimitEnough(updateRentalRequest.getId(),updateRentalRequest.getCreatePaymentRequest()),
                 checkIsCityExists(updateRentalRequest.getReturnCityId()));
         if (result != null) {
             return result;
@@ -230,13 +245,9 @@ public class RentalManager implements RentalService {
     }
 
 
-    private Result checkIsRentDateIsAfterThanReturnDate(int carId){
-        var tempResult = this.rentalDao.getByCarId(carId);
-        if (tempResult == null){
-            return new SuccessResult();
-        }
-
-        if (!(tempResult.getRentDate().isAfter(tempResult.getReturnDate()))){
+    private Result checkIsRentDateIsAfterThanReturnDate(LocalDate rentDate,LocalDate returnDate){
+        rentDate=LocalDate.now();
+        if ((rentDate.isAfter(returnDate))){
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();
