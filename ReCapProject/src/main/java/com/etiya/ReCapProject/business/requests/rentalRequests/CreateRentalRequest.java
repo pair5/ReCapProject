@@ -35,12 +35,9 @@ public class CreateRentalRequest {
     private LocalDate rentDate;
 
 
-    private LocalDate returnDate;
-
     @JsonIgnore
     private int rentedCityId;
 
-    private int returnCityId;
 
     @JsonIgnore
     private int rentedKilometer;

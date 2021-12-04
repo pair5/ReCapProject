@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.ColorService;
-import com.etiya.ReCapProject.core.utilities.constants.Messages;
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.ColorSearchListDto;
 import com.etiya.ReCapProject.business.requests.colorRequests.CreateColorRequest;
 import com.etiya.ReCapProject.business.requests.colorRequests.DeleteColorRequest;

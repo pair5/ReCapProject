@@ -3,7 +3,7 @@ package com.etiya.ReCapProject.business.concretes;
 import com.etiya.ReCapProject.business.abstracts.AdditionalRentalItemService;
 import com.etiya.ReCapProject.business.abstracts.AdditionalServiceService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
-import com.etiya.ReCapProject.core.utilities.constants.Messages;
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.AdditionalRentalItemSearchListDto;
 import com.etiya.ReCapProject.business.requests.additionalRentalItemRequests.CreateAdditionalRentalItemRequest;
 import com.etiya.ReCapProject.business.requests.additionalRentalItemRequests.DeleteAdditionalRentalItemRequest;

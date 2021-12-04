@@ -40,6 +40,7 @@ public class UpdateRentalRequest {
     @JsonIgnore
     private int rentedCityId;
 
+    @JsonIgnore
     private int rentedKilometer;
 
     private int returnedKilometer;

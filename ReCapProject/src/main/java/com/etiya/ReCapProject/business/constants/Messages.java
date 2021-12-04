@@ -1,4 +1,4 @@
-package com.etiya.ReCapProject.core.utilities.constants;
+package com.etiya.ReCapProject.business.constants;
 
 public class Messages {
 	
@@ -59,6 +59,7 @@ public class Messages {
 	public static final String RENTALNOTFOUND = "Rental not found";
 	public static final String INSUFFICIENTBALANCE = "The balance is insufficient.";
 	public static final String SUFFICIENTBALANCE = "The balance is sufficient.";
+	public static final String RENTALDATEISNULL = "Car not returned yet";
 
 
 

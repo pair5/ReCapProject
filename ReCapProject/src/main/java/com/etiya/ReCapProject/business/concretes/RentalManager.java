@@ -1,21 +1,19 @@
 package com.etiya.ReCapProject.business.concretes;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 import com.etiya.ReCapProject.business.abstracts.*;
-import com.etiya.ReCapProject.business.requests.creditCardRequests.CreateCreditCardRequest;
 import com.etiya.ReCapProject.business.requests.paymentRequests.CreatePaymentRequest;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import com.etiya.ReCapProject.core.utilities.constants.Messages;
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.RentalSearchListDto;
 import com.etiya.ReCapProject.business.requests.rentalRequests.CreateRentalRequest;
 import com.etiya.ReCapProject.business.requests.rentalRequests.DeleteRentalRequest;
@@ -62,8 +60,6 @@ public class RentalManager implements RentalService {
         this.cityService = cityService;
         this.corporateCustomerService = corporateCustomerService;
     }
-
-
     @Override
     public DataResult<List<RentalSearchListDto>> getAll() {
         List<Rental> result = this.rentalDao.findAll();
@@ -73,15 +69,11 @@ public class RentalManager implements RentalService {
         return new SuccessDataResult<List<RentalSearchListDto>>(response, Messages.RENTALLIST);
     }
 
-
     @Override
     public Result add(CreateRentalRequest createRentalRequest) {
         Result result = BusinessRules.run(
                 checkIfUserIdExists(createRentalRequest.getCustomerId()),
                 checkIfCarIdExists(createRentalRequest.getCarId()),
-                checkIfReturnDateIsNull(createRentalRequest.getCarId()),
-                checkIsRentDateIsAfterThanReturnDate(createRentalRequest.getRentDate(),createRentalRequest.getReturnDate()),
-                checkIsCityExists(createRentalRequest.getReturnCityId()),
                 compareFindexScores(createRentalRequest.getCarId())
         );
         if (result != null) {
@@ -91,26 +83,11 @@ public class RentalManager implements RentalService {
         createRentalRequest.setRentedKilometer(car.getKilometer());
         createRentalRequest.setRentedCityId(car.getCityId());
         Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
-        rental.setReturnCityId(createRentalRequest.getReturnCityId());
-        this.carService.updateCity(createRentalRequest.getReturnCityId(), createRentalRequest.getCarId());
         rental.setRentDate(LocalDate.now());
         CreatePaymentRequest createPaymentRequest=new CreatePaymentRequest();
         this.rentalDao.save(rental);
         return new SuccessResult(Messages.RENTALADD);
     }
-    private Result checkIfIsLimitEnough(int rentalId, CreatePaymentRequest createPaymentRequest) {
-        Rental rental = this.rentalDao.getById(rentalId);
-        var car = this.carService.getById(rental.getCar().getId());
-        int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate()));
-        double totalAmount = (car.getData().getDailyPrice() * totalDay);
-        createPaymentRequest.setPrice(totalAmount);
-        if (!this.fakePosService.payByCreditCard(createPaymentRequest)) {
-            return new ErrorResult(Messages.INSUFFICIENTBALANCE);
-        }
-        return new SuccessResult(Messages.SUFFICIENTBALANCE);
-    }
-
-
     @Override
     public Result delete(DeleteRentalRequest deleteRentalRequest) {
         var result = BusinessRules.run(checkRentalExists(deleteRentalRequest.getId()));
@@ -137,14 +114,9 @@ public class RentalManager implements RentalService {
         updateRentalRequest.setRentDate(tempRental.getRentDate());
         updateRentalRequest.setRentedCityId(car.getCityId());
         updateRentalRequest.setRentedKilometer(car.getKilometer());
-
         Rental rental = modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
-
         this.carService.updateCity(rental.getReturnCityId(),rental.getCar().getId());
         this.carService.updateKilometer(updateRentalRequest.getReturnedKilometer(),rental.getCar().getId());
-
-
-
         rentalDao.save(rental);
         return new SuccessResult(Messages.RENTALUPDATE);
     }
@@ -259,10 +231,27 @@ public class RentalManager implements RentalService {
             return new ErrorResult(Messages.CITYNOTFOUND);
         }
         return new SuccessResult();
-
-
     }
-
-
-
+    private Result checkIfIsLimitEnough(int rentalId, CreatePaymentRequest createPaymentRequest) {
+        Rental rental = this.rentalDao.getById(rentalId);
+        var car = this.carService.getById(rental.getCar().getId());
+        int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), LocalDate.now()));
+        int additionalTotalAmount = getAdditionalItemsTotalPriceByRentalId(rental.getId());
+        var totalAmount = (car.getData().getDailyPrice()+additionalTotalAmount)* totalDay;
+        var comparisonResult = compareCityId(car.getData().getCityId(), rental.getReturnCityId());
+        if (!comparisonResult.isSuccess()) {
+            totalAmount += 500;
+        }
+        createPaymentRequest.setPrice(totalAmount);
+        if (!this.fakePosService.payByCreditCard(createPaymentRequest)) {
+            return new ErrorResult(Messages.INSUFFICIENTBALANCE+" "+totalAmount+" " + additionalTotalAmount+" "+ totalDay);
+        }
+        return new SuccessResult(Messages.SUFFICIENTBALANCE);
+    }
+    public Result compareCityId(int rentalCityId, int availableCityId) {
+        if (rentalCityId != availableCityId) {
+            return new ErrorResult();
+        }
+        return new SuccessResult();
+    }
 }

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.InvoiceService;
-import com.etiya.ReCapProject.core.utilities.constants.Messages;
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.InvoiceSearchListDto;
 import com.etiya.ReCapProject.business.requests.invoiceRequests.CreateInvoiceRequest;
 import com.etiya.ReCapProject.business.requests.invoiceRequests.DeleteInvoiceRequest;
@@ -36,8 +36,6 @@ public class InvoiceManager implements InvoiceService {
         this.rentalService = rentalService;
         this.carService = carService;
     }
-
-
     @Override
     public DataResult<List<InvoiceSearchListDto>> getAll() {
         List<Invoice> invoices = this.invoiceDao.findAll();
@@ -53,7 +51,7 @@ public class InvoiceManager implements InvoiceService {
     }
     @Override
     public Result add(CreateInvoiceRequest createInvoiceRequest) {
-        var result= BusinessRules.run(checkIfRentalIdExists(createInvoiceRequest.getRentalId()));
+        var result= BusinessRules.run(checkIfRentalIdExists(createInvoiceRequest.getRentalId()),isReturnDateNull(createInvoiceRequest.getRentalId()));
         if (result!=null){
             return result;
         }
@@ -132,5 +130,13 @@ public class InvoiceManager implements InvoiceService {
         return new SuccessResult();
     }
 
+    private Result isReturnDateNull(int rentalId){
+        var result = this.rentalService.getById(rentalId);
+        if (result.getData().getReturnDate() == null){
+            return new ErrorResult(Messages.RENTALDATEISNULL);
+        }
+        return new SuccessResult();
+
+    }
 
 }

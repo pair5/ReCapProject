@@ -2,7 +2,7 @@ package com.etiya.ReCapProject.business.concretes;
 
 import com.etiya.ReCapProject.business.abstracts.CarDamageService;
 import com.etiya.ReCapProject.business.abstracts.CarService;
-import com.etiya.ReCapProject.core.utilities.constants.Messages;
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CarDamageSearchListDto;
 import com.etiya.ReCapProject.business.requests.carDamageRequests.CreateCarDamageRequest;
 import com.etiya.ReCapProject.business.requests.carDamageRequests.DeleteCarDamageRequest;

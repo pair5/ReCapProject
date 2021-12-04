@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.IndividualCustomerService;
-import com.etiya.ReCapProject.core.utilities.constants.Messages;
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.IndividualCustomerSearchListDto;
 import com.etiya.ReCapProject.business.requests.individualRequests.CreateIndividualCustomerRequest;
 import com.etiya.ReCapProject.business.requests.individualRequests.DeleteIndividualCustomerRequest;

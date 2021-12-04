@@ -6,7 +6,7 @@ import com.etiya.ReCapProject.business.requests.paymentRequests.CreatePaymentReq
 public class FakePos {
 
     public boolean payByCreditCard(String cardNumber, String CardName, String cvv, String expirationDate, double price) {
-        if (price<=50000){
+        if (price<=1000){
             return true;
         }
         return false;
