@@ -146,6 +146,9 @@ public class RentalManager implements RentalService {
     @Override
     public int getAdditionalItemsTotalPriceByRentalId(int rentalId) {
         var result = this.rentalDao.getAdditionalItemsOfRelevantRental(rentalId);
+        if (result==0){
+            return 0;
+        }
         return result;
     }
 

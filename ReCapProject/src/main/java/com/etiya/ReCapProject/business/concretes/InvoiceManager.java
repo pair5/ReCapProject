@@ -52,9 +52,6 @@ public class InvoiceManager implements InvoiceService {
         var car = this.carService.getById(rental.getCar().getId()).getData();
         int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate()));
         int additionalTotalAmount = rentalService.getAdditionalItemsTotalPriceByRentalId(rental.getId());
-        if (additionalTotalAmount==0){
-            additionalTotalAmount=0;
-        }
         var totalAmount = (car.getDailyPrice()+additionalTotalAmount)* totalDay;
         var comparisonResult = compareCityId(car.getCityId(), rental.getReturnCityId());
 
