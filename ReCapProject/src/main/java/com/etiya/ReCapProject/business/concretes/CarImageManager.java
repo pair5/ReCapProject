@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.etiya.ReCapProject.business.abstracts.CarImageService;
 import com.etiya.ReCapProject.business.abstracts.CarService;
-import com.etiya.ReCapProject.business.constants.Messages;
+import com.etiya.ReCapProject.core.utilities.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CarImageSearchListDto;
 import com.etiya.ReCapProject.business.requests.carImageRequests.CreateCarImageRequest;
 import com.etiya.ReCapProject.business.requests.carImageRequests.DeleteCarImageRequest;

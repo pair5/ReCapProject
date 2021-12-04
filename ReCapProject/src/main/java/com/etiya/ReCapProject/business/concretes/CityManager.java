@@ -1,7 +1,7 @@
 package com.etiya.ReCapProject.business.concretes;
 
 import com.etiya.ReCapProject.business.abstracts.CityService;
-import com.etiya.ReCapProject.business.constants.Messages;
+import com.etiya.ReCapProject.core.utilities.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CitySearchListDto;
 import com.etiya.ReCapProject.business.requests.cityRequests.CreateCityRequest;
 import com.etiya.ReCapProject.business.requests.cityRequests.DeleteCityRequest;

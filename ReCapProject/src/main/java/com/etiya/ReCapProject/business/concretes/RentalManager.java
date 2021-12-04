@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import com.etiya.ReCapProject.business.constants.Messages;
+import com.etiya.ReCapProject.core.utilities.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.RentalSearchListDto;
 import com.etiya.ReCapProject.business.requests.rentalRequests.CreateRentalRequest;
 import com.etiya.ReCapProject.business.requests.rentalRequests.DeleteRentalRequest;

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.CreditCardService;
-import com.etiya.ReCapProject.business.constants.Messages;
+import com.etiya.ReCapProject.core.utilities.constants.Messages;
 import com.etiya.ReCapProject.business.requests.creditCardRequests.CreateCreditCardRequest;
 import com.etiya.ReCapProject.business.requests.creditCardRequests.DeleteCreditCardRequest;
 import com.etiya.ReCapProject.business.requests.creditCardRequests.UpdateCreditCardRequest;

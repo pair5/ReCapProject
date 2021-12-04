@@ -1,4 +1,4 @@
-package com.etiya.ReCapProject.business.constants;
+package com.etiya.ReCapProject.core.utilities.constants;
 
 public class Messages {
 	
@@ -25,8 +25,6 @@ public class Messages {
 	public static final String CITYFOUND = "City Found";
 	public static final String CITYBYID = "City is brought by CityId";
 	public static final String CITYALREADYEXISTS = "City already exists.";
-
-
 
 	public static final String COLORADD = "Color added.";
 	public static final String COLORUPDATE = "Color updated.";

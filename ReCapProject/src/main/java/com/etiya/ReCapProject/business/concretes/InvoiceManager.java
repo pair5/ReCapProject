@@ -7,12 +7,13 @@ import java.util.stream.Collectors;
 
 import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.RentalService;
+import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.InvoiceService;
-import com.etiya.ReCapProject.business.constants.Messages;
+import com.etiya.ReCapProject.core.utilities.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.InvoiceSearchListDto;
 import com.etiya.ReCapProject.business.requests.invoiceRequests.CreateInvoiceRequest;
 import com.etiya.ReCapProject.business.requests.invoiceRequests.DeleteInvoiceRequest;
@@ -48,6 +49,10 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public Result add(CreateInvoiceRequest createInvoiceRequest) {
+        var result= BusinessRules.run(checkIfRentalIdExists(createInvoiceRequest.getRentalId()));
+        if (result!=null){
+            return result;
+        }
         var rental = this.rentalService.getById(createInvoiceRequest.getRentalId()).getData();
         var car = this.carService.getById(rental.getCar().getId()).getData();
         int totalDay = (int) (ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate()));
@@ -58,8 +63,8 @@ public class InvoiceManager implements InvoiceService {
         if (!comparisonResult.isSuccess()) {
             totalAmount += 500;
         }
-
         var customer = rental.getCustomer().getId();
+
         createInvoiceRequest.setCustomerId(customer);
         createInvoiceRequest.setRentDate(rental.getRentDate());
         createInvoiceRequest.setReturnDate(rental.getReturnDate());
@@ -83,6 +88,10 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public Result update(UpdateInvoiceRequest updateInvoiceRequest) {
+        var result= BusinessRules.run(checkIfRentalIdExists(updateInvoiceRequest.getRentalId()));
+        if (result!=null){
+            return result;
+        }
         Invoice invoice = modelMapperService.forRequest().map(updateInvoiceRequest, Invoice.class);
         this.invoiceDao.save(invoice);
         return new SuccessResult(Messages.INVOICEUPDATE);
@@ -108,6 +117,13 @@ public class InvoiceManager implements InvoiceService {
     public Result compareCityId(int rentalCityId, int availableCityId) {
         if (rentalCityId != availableCityId) {
             return new ErrorResult();
+        }
+        return new SuccessResult();
+    }
+    private Result checkIfRentalIdExists(int rentalId){
+        var result= this.rentalService.isRentalExistsById(rentalId);
+        if (!result.isSuccess()){
+            return new ErrorResult(Messages.RENTALNOTFOUND);
         }
         return new SuccessResult();
     }

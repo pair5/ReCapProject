@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.etiya.ReCapProject.business.abstracts.BrandService;
 import com.etiya.ReCapProject.business.abstracts.CarService;
 import com.etiya.ReCapProject.business.abstracts.ColorService;
-import com.etiya.ReCapProject.business.constants.Messages;
+import com.etiya.ReCapProject.core.utilities.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.CarSearchListDto;
 import com.etiya.ReCapProject.business.requests.carRequests.CreateCarRequest;
 import com.etiya.ReCapProject.business.requests.carRequests.DeleteCarRequest;
