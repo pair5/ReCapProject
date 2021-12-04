@@ -16,5 +16,6 @@ public interface CorporateCustomerService {
 	Result update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest);
 	Result delete(DeleteCorporateCustomerRequest deleteCorporateCustomerRequest);
 	DataResult<CorporateCustomerSearchListDto> getById(int corporateCustomerId);
+	Result isUserMailExistsInIndividualCustomer(String email);
 	
 }

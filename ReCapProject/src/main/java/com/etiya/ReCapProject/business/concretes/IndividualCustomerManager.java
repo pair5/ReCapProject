@@ -3,7 +3,9 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.business.abstracts.CorporateCustomerService;
 import com.etiya.ReCapProject.business.abstracts.UserService;
+import com.etiya.ReCapProject.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -29,13 +31,15 @@ import com.etiya.ReCapProject.entities.concretes.IndividualCustomer;
 public class IndividualCustomerManager implements IndividualCustomerService {
 	private IndividualCustomerDao individualCustomerDao;
 	private ModelMapperService modelMapperService;
+	private CorporateCustomerService corporateCustomerService;
 	private UserService userService;
 
 
 	@Autowired
-	public IndividualCustomerManager(IndividualCustomerDao individualCustomerDao, ModelMapperService modelMapperService,@Lazy UserService userService) {
+	public IndividualCustomerManager(IndividualCustomerDao individualCustomerDao, ModelMapperService modelMapperService, @Lazy CorporateCustomerService corporateCustomerService ,@Lazy UserService userService) {
 		this.individualCustomerDao = individualCustomerDao;
 		this.modelMapperService = modelMapperService;
+		this.corporateCustomerService = corporateCustomerService;
 		this.userService = userService;
 	}
 
@@ -48,7 +52,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public Result add(CreateIndividualCustomerRequest createIndividualRequest) {
-		var result = BusinessRules.run(checkIsIndividualCustomerEmailExists(createIndividualRequest.getEmail()));
+		var result = BusinessRules.run(checkIsIndividualCustomerEmailExists(createIndividualRequest.getEmail()),isUserMailExistsInCorporateCustomer(createIndividualRequest.getEmail()));
 		if(result != null){
 			return result;
 		}
@@ -70,7 +74,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public Result update(UpdateIndividualCustomerRequest updateIndividualRequest) {
-		Result result = BusinessRules.run(checkIsIndividualCustomerExists(updateIndividualRequest.getId()),checkIsIndividualCustomerEmailExists(updateIndividualRequest.getEmail()));
+		Result result = BusinessRules.run(checkIsIndividualCustomerExists(updateIndividualRequest.getId()),checkIsIndividualCustomerEmailExists(updateIndividualRequest.getEmail()),isUserMailExistsInCorporateCustomer(updateIndividualRequest.getEmail()));
 		if(result != null){
 			return result;
 		}
@@ -91,13 +95,24 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 		IndividualCustomerSearchListDto customerSearchListDto = modelMapperService.forDto().map(individualCustomer,IndividualCustomerSearchListDto.class);
 			return new SuccessDataResult<IndividualCustomerSearchListDto>(customerSearchListDto,Messages.CUSTOMERGET);
 	}
-	
+
+	@Override
+	public Result isUserMailExistsInCorporateCustomer(String email) {
+		var result = this.corporateCustomerService.isUserMailExistsInIndividualCustomer(email);
+		if (result.isSuccess())
+		{
+			return new ErrorResult(Messages.USEREMAILALREADYEXISTS);
+		}
+		return new SuccessResult();
+	}
+
+
 	private Result checkIsIndividualCustomerEmailExists(String email){
 		var result = this.userService.isUserEmailExists(email);
 		if(result.isSuccess()){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
-		return new SuccessResult();		
+		return new SuccessResult();
 	}
 	
 	private Result checkIsIndividualCustomerExists(int id){

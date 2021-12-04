@@ -3,6 +3,7 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.business.abstracts.IndividualCustomerService;
 import com.etiya.ReCapProject.business.abstracts.UserService;
 import com.etiya.ReCapProject.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,15 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 	private CorporateCustomerDao corporateCustomerDao;
 	private ModelMapperService modelMapperService;
 	private UserService userService;
+	private IndividualCustomerService individualCustomerService;
 
 
 	@Autowired
-	public CorporateCustomerManager(CorporateCustomerDao corporateCustomerDao, ModelMapperService modelMapperService, @Lazy UserService userService) {
+	public CorporateCustomerManager(CorporateCustomerDao corporateCustomerDao, ModelMapperService modelMapperService, @Lazy UserService userService,@Lazy IndividualCustomerService individualCustomerService) {
 		this.corporateCustomerDao = corporateCustomerDao;
 		this.modelMapperService = modelMapperService;
 		this.userService = userService;
+		this.individualCustomerService = individualCustomerService;
 	}
 
 	@Override
@@ -52,7 +55,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result add(CreateCorporateCustomerRequest createCorporateCustomerRequest) {
-		var result = BusinessRules.run(checkIsCorporateCustomerEmailExists(createCorporateCustomerRequest.getEmail()),checkCorporateTaxNumberExists(createCorporateCustomerRequest.getTaxNumber()));
+		var result = BusinessRules.run(checkIsCorporateCustomerEmailExists(createCorporateCustomerRequest.getEmail()),isUserMailExistsInIndividualCustomer(createCorporateCustomerRequest.getEmail()),checkCorporateTaxNumberExists(createCorporateCustomerRequest.getTaxNumber()));
 		if (result!= null) {
 			return result;
 		}
@@ -64,7 +67,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest) {
-		Result result = BusinessRules.run(checkCorporateCustomerExistsBuId(updateCorporateCustomerRequest.getId()),checkCorporateTaxNumberExists(updateCorporateCustomerRequest.getTaxNumber()),
+		Result result = BusinessRules.run(checkCorporateCustomerExistsBuId(updateCorporateCustomerRequest.getId()),isUserMailExistsInIndividualCustomer(updateCorporateCustomerRequest.getEmail()),checkCorporateTaxNumberExists(updateCorporateCustomerRequest.getTaxNumber()),
 				checkIsCorporateCustomerEmailExists(updateCorporateCustomerRequest.getEmail()));
 		if (result != null) {
 			return result;
@@ -100,7 +103,16 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 		return new SuccessDataResult<CorporateCustomerSearchListDto>(corporateCustomerSearchListDto,
 				Messages.CUSTOMERGET);
 	}
-	
+
+	@Override
+	public Result isUserMailExistsInIndividualCustomer(String email) {
+		var result = this.individualCustomerService.isUserMailExistsInCorporateCustomer(email);
+		if (!result.isSuccess()){
+			return new ErrorResult(Messages.USEREMAILALREADYEXISTS);
+		}
+		return new SuccessResult();
+	}
+
 	private Result checkIsCorporateCustomerEmailExists(String email){
 		var result = this.userService.isUserEmailExists(email);
 		if(result.isSuccess()){

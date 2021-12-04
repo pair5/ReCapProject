@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import com.etiya.ReCapProject.business.abstracts.*;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePosService;
-import com.etiya.ReCapProject.entities.concretes.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -37,6 +36,7 @@ public class RentalManager implements RentalService {
     private FindexService findexService;
     private CarService carService;
     private IndividualCustomerService individualCustomerService;
+    private CorporateCustomerService corporateCustomerService;
     @org.springframework.context.annotation.Lazy
     private CarMaintenanceService carMaintenanceService;
     private UserService userService;
@@ -46,7 +46,7 @@ public class RentalManager implements RentalService {
     @Autowired
     public RentalManager(RentalDao rentalDao, ModelMapperService modelMapperService, FindexService findexService,
                          CarService carService, IndividualCustomerService individualCustomerService,
-                         @Lazy CarMaintenanceService carMaintenanceService, UserService userService, FakePosService fakePosService,CityService cityService) {
+                         @Lazy CarMaintenanceService carMaintenanceService, UserService userService, FakePosService fakePosService,CityService cityService,CorporateCustomerService corporateCustomerService) {
         this.rentalDao = rentalDao;
         this.modelMapperService = modelMapperService;
         this.findexService = findexService;
@@ -56,6 +56,7 @@ public class RentalManager implements RentalService {
         this.userService = userService;
         this.fakePosService = fakePosService;
         this.cityService = cityService;
+        this.corporateCustomerService = corporateCustomerService;
     }
 
 

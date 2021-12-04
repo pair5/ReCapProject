@@ -107,8 +107,9 @@ public class Messages {
 	public static final String INVOICELIST = "Invoice listed.";
 	public static final String INVOICEBYCUSTOMERLIST = "Invoice listed.";
 	public static final String INVOICEGET = "Invoice found";
-	
-	
+
+	public static String USEREMAILALREADYEXISTS = "USER email already exists";
+	public static String USERFOUND = "USER NOT FOUND.";
 	public static String USERNOTFOUND = "USER NOT FOUND.";
 	public static final String USERLIST = "Users listed.";
 
