@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePos;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

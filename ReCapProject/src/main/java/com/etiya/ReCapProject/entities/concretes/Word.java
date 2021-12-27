@@ -24,4 +24,5 @@ public class Word {
 
     @OneToMany(mappedBy = "word")
     private List<Translation> translations;
+
 }
