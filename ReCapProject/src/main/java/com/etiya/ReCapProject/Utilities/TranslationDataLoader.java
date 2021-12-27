@@ -30,6 +30,108 @@ public class TranslationDataLoader implements CommandLineRunner {
 
         var english = languageDao.getLanguagesByName("English");
 
+
+        //-----Brand-------
+        Translation brandAddedEnglishTranslation = new Translation();
+        brandAddedEnglishTranslation.setLanguage(english);
+        var brandAddedEnglish = this.wordDao.getWordsByKey("brand.added");
+        brandAddedEnglishTranslation.setWord(brandAddedEnglish);
+        brandAddedEnglishTranslation.setTranslation("Brand Added");
+
+        Translation brandUpdatedEnglishTranslation = new Translation();
+        brandUpdatedEnglishTranslation.setLanguage(english);
+        var brandUpdatedEnglish = this.wordDao.getWordsByKey("brand.updated");
+        brandUpdatedEnglishTranslation.setWord(brandUpdatedEnglish);
+        brandUpdatedEnglishTranslation.setTranslation("Brand updated");
+
+        Translation brandDeletedEnglishTranslation = new Translation();
+        brandDeletedEnglishTranslation.setLanguage(english);
+        var brandDeletedEnglish = this.wordDao.getWordsByKey("brand.deleted");
+        brandDeletedEnglishTranslation.setWord(brandDeletedEnglish);
+        brandDeletedEnglishTranslation.setTranslation("Brand Deleted");
+
+        Translation brandsListedEnglishTranslation = new Translation();
+        brandsListedEnglishTranslation.setLanguage(english);
+        var brandsListedEnglish = this.wordDao.getWordsByKey("brands.listed");
+        brandsListedEnglishTranslation.setWord(brandsListedEnglish);
+        brandsListedEnglishTranslation.setTranslation("Brands Listed");
+
+        Translation brandFoundEnglishTranslation = new Translation();
+        brandFoundEnglishTranslation.setLanguage(english);
+        var brandfoundEnglish = this.wordDao.getWordsByKey("brand.found");
+        brandFoundEnglishTranslation.setWord(brandfoundEnglish);
+        brandFoundEnglishTranslation.setTranslation("Brands Listed");
+
+        Translation brandNotFoundEnglishTranslation = new Translation();
+        brandNotFoundEnglishTranslation.setLanguage(english);
+        var brandNotFoundEnglish = this.wordDao.getWordsByKey("brand.not.found");
+        brandNotFoundEnglishTranslation.setWord(brandNotFoundEnglish);
+        brandNotFoundEnglishTranslation.setTranslation("Brand Not Found");
+
+        Translation brandExistsEnglishTranslation = new Translation();
+        brandExistsEnglishTranslation.setLanguage(english);
+        var brandExistsEnglish = this.wordDao.getWordsByKey("brand.exists");
+        brandExistsEnglishTranslation.setWord(brandExistsEnglish);
+        brandExistsEnglishTranslation.setTranslation("Brand Exists");
+
+        //-------------Color-------------
+
+        Translation colorAddedEnglishTranslation = new Translation();
+        colorAddedEnglishTranslation.setLanguage(english);
+        var colorAddedEnglish = this.wordDao.getWordsByKey("color.added");
+        colorAddedEnglishTranslation.setWord(colorAddedEnglish);
+        colorAddedEnglishTranslation.setTranslation("Color Added");
+
+        Translation colorUpdatedEnglishTranslation = new Translation();
+        colorUpdatedEnglishTranslation.setLanguage(english);
+        var colorUpdatedEnglish = this.wordDao.getWordsByKey("color.updated");
+        colorUpdatedEnglishTranslation.setWord(colorUpdatedEnglish);
+        colorUpdatedEnglishTranslation.setTranslation("Color Updated");
+
+        Translation colorDeletedEnglishTranslation = new Translation();
+        colorDeletedEnglishTranslation.setLanguage(english);
+        var colorDeletedEnglish = this.wordDao.getWordsByKey("color.deleted");
+        colorDeletedEnglishTranslation.setWord(colorDeletedEnglish);
+        colorDeletedEnglishTranslation.setTranslation("Color Deleted");
+
+        Translation colorsListedEnglishTranslation = new Translation();
+        colorsListedEnglishTranslation.setLanguage(english);
+        var colorsListedEnglish = this.wordDao.getWordsByKey("colors.listed");
+        colorsListedEnglishTranslation.setWord(colorsListedEnglish);
+        colorsListedEnglishTranslation.setTranslation("Colors Listed");
+
+        Translation colorFoundEnglishTranslation = new Translation();
+        colorFoundEnglishTranslation.setLanguage(english);
+        var colorFoundEnglish = this.wordDao.getWordsByKey("color.found");
+        colorFoundEnglishTranslation.setWord(colorFoundEnglish);
+        colorFoundEnglishTranslation.setTranslation("Color Found");
+
+        Translation colorNotFoundEnglishTranslation = new Translation();
+        colorNotFoundEnglishTranslation.setLanguage(english);
+        var colorNotFoundEnglish = this.wordDao.getWordsByKey("color.not.found");
+        colorNotFoundEnglishTranslation.setWord(colorNotFoundEnglish);
+        colorNotFoundEnglishTranslation.setTranslation("Color Not Found");
+
+        Translation colorExistsEnglishTranslation = new Translation();
+        colorExistsEnglishTranslation.setLanguage(english);
+        var colorExistsEnglish = this.wordDao.getWordsByKey("color.exists");
+        colorExistsEnglishTranslation.setWord(colorExistsEnglish);
+        colorExistsEnglishTranslation.setTranslation("Color Exists");
+
+        //--------------------------Car--------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
         Translation customerAddedEnglishTranslation = new Translation();
         customerAddedEnglishTranslation.setLanguage(english);
         var customerAddedEnglish = this.wordDao.getWordsByKey("customer.added");
@@ -71,6 +173,23 @@ public class TranslationDataLoader implements CommandLineRunner {
         var customerAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.already.exists");
         customerAlreadyExistsEnglishTranslation.setWord(customerAlreadyExistsEnglish);
         customerAlreadyExistsEnglishTranslation.setTranslation("Customer already exists");
+
+        Translation customerNationalIdentityAlreadyExistsEnglishTranslation = new Translation();
+        customerNationalIdentityAlreadyExistsEnglishTranslation.setLanguage(english);
+        var  customerNationalIdentityAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.national.identity.already.exists");
+        customerNationalIdentityAlreadyExistsEnglishTranslation.setWord(customerNationalIdentityAlreadyExistsEnglish);
+        customerNationalIdentityAlreadyExistsEnglishTranslation.setTranslation("Customer already exists");
+
+        Translation customerTaxNumberAlreadyExistsEnglishTranslation = new Translation();
+        customerTaxNumberAlreadyExistsEnglishTranslation.setLanguage(english);
+        var  customerTaxNumberAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.tax.number.already.exists");
+        customerTaxNumberAlreadyExistsEnglishTranslation.setWord(customerTaxNumberAlreadyExistsEnglish);
+        customerTaxNumberAlreadyExistsEnglishTranslation.setTranslation("Customer already exists");
+
+
+
+
+
 
 
         var turkish = languageDao.getLanguagesByName("Turkish");
