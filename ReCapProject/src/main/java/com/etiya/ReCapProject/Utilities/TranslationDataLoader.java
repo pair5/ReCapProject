@@ -68,7 +68,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             brandFoundEnglishTranslation.setLanguage(english);
             var brandfoundEnglish = this.wordDao.getWordsByKey("brand.found");
             brandFoundEnglishTranslation.setWord(brandfoundEnglish);
-            brandFoundEnglishTranslation.setTranslation("Brands Listed");
+            brandFoundEnglishTranslation.setTranslation("Brand Found");
             this.translationDao.save(brandFoundEnglishTranslation);
 
             Translation brandNotFoundEnglishTranslation = new Translation();
@@ -131,9 +131,9 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation colorExistsEnglishTranslation = new Translation();
             colorExistsEnglishTranslation.setLanguage(english);
-            var colorExistsEnglish = this.wordDao.getWordsByKey("color.exists");
+            var colorExistsEnglish = this.wordDao.getWordsByKey("color.already.exist");
             colorExistsEnglishTranslation.setWord(colorExistsEnglish);
-            colorExistsEnglishTranslation.setTranslation("Color Exists");
+            colorExistsEnglishTranslation.setTranslation("Color Already Exists");
             this.translationDao.save(colorExistsEnglishTranslation);
 
             //--------------------------Car--------------------------
@@ -390,7 +390,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardListedEnglishTranslation.setLanguage(english);
             var creditCardListedEnglish = this.wordDao.getWordsByKey("credit.card.listed");
             creditCardListedEnglishTranslation.setWord(creditCardListedEnglish);
-            creditCardListedEnglishTranslation.setTranslation("Kredi kartsı listed.");
+            creditCardListedEnglishTranslation.setTranslation("Credit cards listed.");
             this.translationDao.save(creditCardListedEnglishTranslation);
 
 
@@ -398,14 +398,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardNameerrorEnglishTranslation.setLanguage(english);
             var creditCardNameerrorEnglish = this.wordDao.getWordsByKey("credit.card.name.error");
             creditCardNameerrorEnglishTranslation.setWord(creditCardListedEnglish);
-            creditCardNameerrorEnglishTranslation.setTranslation("credit ard name error.");
+            creditCardNameerrorEnglishTranslation.setTranslation("credit card name error.");
             this.translationDao.save(creditCardNameerrorEnglishTranslation);
 
             Translation creditCardNotFoundEnglishTranslation = new Translation();
             creditCardNotFoundEnglishTranslation.setLanguage(english);
             var creditCardNotFoundEnglish = this.wordDao.getWordsByKey("credit.card.not.found");
             creditCardNotFoundEnglishTranslation.setWord(creditCardListedEnglish);
-            creditCardNotFoundEnglishTranslation.setTranslation("credit ard not found.");
+            creditCardNotFoundEnglishTranslation.setTranslation("credit card not found.");
             this.translationDao.save(creditCardNotFoundEnglishTranslation);
 
             Translation invoiceAddedEnglishTranslation = new Translation();
