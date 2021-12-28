@@ -33,6 +33,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadWordData(){
         if (this.wordDao.count()==0){
+<<<<<<< Updated upstream
             Word customerAdded = new Word();
             customerAdded.setKey("customer.added");
             this.wordDao.save(customerAdded);
@@ -138,6 +139,79 @@ public class DataLoader implements CommandLineRunner {
             Word colorGet = new Word();
             colorGet.setKey("color.found");
             this.wordDao.save(colorGet);
+=======
+            Word word = new Word();
+            word.setKey("customer.added");
+            Word word1 = new Word();
+            word1.setKey("customer.deleted");
+            Word word2 = new Word();
+            word2.setKey("customer.updated");
+            Word word4 = new Word();
+            word4.setKey("customer.listed");
+            Word word5 = new Word();
+            word5.setKey("customer.get");
+            Word word6 = new Word();
+            word6.setKey("customer.not.found");
+            Word word7 = new Word();
+            word7.setKey("customer.already.exists.");
+            Word word8 = new Word();
+            word8.setKey("customers.taxnumber.already.exist");
+
+            Word word9 = new Word();
+            word9.setKey("brand.added");
+            Word word10 = new Word();
+            word10.setKey("brand.updated");
+            Word word11 = new Word();
+            word11.setKey("brand.deleted");
+            Word word12 = new Word();
+            word12.setKey("brand.listed");
+            Word word13 = new Word();
+            word13.setKey("brand.name.error");
+            Word word14 = new Word();
+            word14.setKey("brand.get");
+            Word word15 = new Word();
+            word15.setKey("brand.not.found");
+
+            Word word16 = new Word();
+            word16.setKey("car.added");
+            Word word17 = new Word();
+            word17.setKey("car.updated");
+
+            Word word19 = new Word();
+            word19.setKey("car.deleted");
+            Word word20 = new Word();
+            word20.setKey("car.listed");
+            Word word21 = new Word();
+            word21.setKey("car.get");
+            Word word22 = new Word();
+            word22.setKey("car.not.found");
+
+            Word word23 = new Word();
+            word23.setKey("city.added");
+            Word word24 = new Word();
+            word24.setKey("city.updated");
+            Word word25 = new Word();
+            word25.setKey("city.deleted");
+            Word word26 = new Word();
+            word26.setKey("city.listed");
+            Word word27 = new Word();
+            word27.setKey("city.not.found");
+            Word word28 = new Word();
+            word28.setKey("city.get");
+            Word word30 = new Word();
+            word30.setKey("city.already.exists");
+
+            Word word31 = new Word();
+            word31.setKey("color.added");
+            Word word32 = new Word();
+            word32.setKey("color.updated");
+            Word word33 = new Word();
+            word33.setKey("color.deleted");
+            Word word34 = new Word();
+            word34.setKey("color.listed");
+            Word word35 = new Word();
+            word35.setKey("color.get");
+>>>>>>> Stashed changes
             Word colorAlreayExist = new Word();
             colorAlreayExist.setKey("color.already.exist");
             this.wordDao.save(colorAlreayExist);
@@ -381,6 +455,37 @@ public class DataLoader implements CommandLineRunner {
             carMaintenanceNotFound.setKey("car.maintenance.not.found");
             this.wordDao.save(carMaintenanceNotFound);
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+//3,18 ve 29 eksik
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            this.wordDao.save(word);
+           this.wordDao.save(word1);
+>>>>>>> Stashed changes
         }
 
     }

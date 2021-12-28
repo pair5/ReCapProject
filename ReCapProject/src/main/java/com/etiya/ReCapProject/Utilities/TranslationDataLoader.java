@@ -24,6 +24,10 @@ public class TranslationDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         loadTranslationData();
     }
 
