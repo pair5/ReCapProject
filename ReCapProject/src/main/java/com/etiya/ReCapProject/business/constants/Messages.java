@@ -110,6 +110,7 @@ public class Messages {
 	public static final String INVOICELIST = "invoices.listed";
 	public static final String INVOICEBYCUSTOMERLIST = "customers.invoices.listed";
 	public static final String INVOICEFOUND = "invoice.found";
+	public static final String INVOICENOTFOUND = "invoice.not.found";
 
 	public static String USEREMAILALREADYEXISTS = "user.email.already.exist";
 	public static String USERFOUND = "user.found";

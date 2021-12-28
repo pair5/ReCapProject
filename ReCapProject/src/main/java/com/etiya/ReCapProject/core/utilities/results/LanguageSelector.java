@@ -27,7 +27,7 @@ public class LanguageSelector {
     }
 
    public static String languageSelector(String message){
-        var language= languageService.getByLanguageName("Türkçe");
+        var language= languageService.getByLanguageName("Turkish");
        var word= wordService.getByKey(message);
        var translation= translationService.getTranslationByLanguage_IdAndWord_Id(language.getData().getId(),word.getData().getId());
        return translation.getTranslation();

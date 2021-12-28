@@ -52,11 +52,14 @@ public class DataLoader implements CommandLineRunner {
             customerNotFound.setKey("customer.not.found");
             this.wordDao.save(customerNotFound);
             Word customerAlreadyExists = new Word();
-            customerAlreadyExists.setKey("customer.already.exists.");
+            customerAlreadyExists.setKey("customer.already.exists");
             this.wordDao.save(customerAlreadyExists);
             Word customersTaxNumberAlreadyExists = new Word();
-            customersTaxNumberAlreadyExists.setKey("customers.taxnumber.already.exists");
+            customersTaxNumberAlreadyExists.setKey("customers.tax.number.already.exists");
             this.wordDao.save(customersTaxNumberAlreadyExists);
+            Word customersIdendityAlreadyExists = new Word();
+            customersIdendityAlreadyExists.setKey("customer.national.identity.already.exists");
+            this.wordDao.save(customersIdendityAlreadyExists);
 
             Word brandAdded = new Word();
             brandAdded.setKey("brand.added");
@@ -124,7 +127,7 @@ public class DataLoader implements CommandLineRunner {
             cityGet.setKey("city.found");
             this.wordDao.save(cityGet);
             Word cityAlreadyExists = new Word();
-            cityAlreadyExists.setKey("city.already.exists");
+            cityAlreadyExists.setKey("city.exists");
             this.wordDao.save(cityAlreadyExists);
 
             Word colorAdded = new Word();
@@ -143,20 +146,22 @@ public class DataLoader implements CommandLineRunner {
             colorGet.setKey("color.found");
             this.wordDao.save(colorGet);
             Word colorExists = new Word();
-            colorExists.setKey("color.already.exist");
+            colorExists.setKey("color.already.exists");
             this.wordDao.save(colorExists);
-            Word colorAlreadyExist = new Word();
-            colorAlreadyExist.setKey("color.already.exist");
-            this.wordDao.save(colorAlreadyExist);
             Word colorNotFound=new Word();
             colorNotFound.setKey("color.not.found");
             this.wordDao.save(colorNotFound);
-
+            Word colorNameError=new Word();
+            colorNameError.setKey("color.name.error");
+            this.wordDao.save(colorNameError);
 
 
             Word rentalAdd=new Word();
             rentalAdd.setKey("rental.added");
             this.wordDao.save(rentalAdd);
+            Word rentalUpdated=new Word();
+            rentalUpdated.setKey("rental.updated");
+            this.wordDao.save(rentalUpdated);
             Word rentalListed=new Word();
             rentalListed.setKey("rentals.listed");
             this.wordDao.save(rentalListed);
@@ -176,7 +181,7 @@ public class DataLoader implements CommandLineRunner {
             rentalMaintenanceError.setKey("rental.maintenance.error");
             this.wordDao.save(rentalMaintenanceError);
             Word rentalGet=new Word();
-            rentalGet.setKey("rental.maintenance.error");
+            rentalGet.setKey("rental.found");
             this.wordDao.save(rentalGet);
             Word rentalNotFound=new Word();
             rentalNotFound.setKey("rental.not.found");
@@ -185,7 +190,7 @@ public class DataLoader implements CommandLineRunner {
             rentalBalance.setKey("rental.balance.insufficient");
             this.wordDao.save(rentalBalance);
             Word rentalDateIsNull=new Word();
-            rentalDateIsNull.setKey("car.not.returned");
+            rentalDateIsNull.setKey("rental.car.is.not.returned.yet");
             this.wordDao.save(rentalDateIsNull);
             Word rentedCarIsOnMaintenance = new Word();
             rentedCarIsOnMaintenance.setKey("rented.car.is.on.maintenance");
@@ -215,7 +220,7 @@ public class DataLoader implements CommandLineRunner {
             this.wordDao.save(carImageEmpty);
             Word carImageTypeError=new Word();
             carImageTypeError.setKey("car.image.type.error");
-            this.wordDao.save(carImageEmpty);
+            this.wordDao.save(carImageTypeError);
             Word carImageGet=new Word();
             carImageGet.setKey("car.image.found");
             this.wordDao.save(carImageGet);
@@ -234,7 +239,7 @@ public class DataLoader implements CommandLineRunner {
             this.wordDao.save(loginSuccess);
 
             Word creditCardAdd=new Word();
-            creditCardAdd.setKey("credit.card.add");
+            creditCardAdd.setKey("credit.card.added");
             this.wordDao.save(creditCardAdd);
             Word creditCardUpdated=new Word();
             creditCardUpdated.setKey("credit.card.updated");
@@ -311,10 +316,12 @@ public class DataLoader implements CommandLineRunner {
             Word invoiceGetCustomer=new Word();
             invoiceGetCustomer.setKey("invoice.by.customer");
             this.wordDao.save(invoiceGetCustomer);
-
+            Word invoiceNotFound=new Word();
+            invoiceNotFound.setKey("invoice.not.found");
+            this.wordDao.save(invoiceNotFound);
 
             Word userEmailAlreadyExists=new Word();
-            userEmailAlreadyExists.setKey("user.email.already.exist");
+            userEmailAlreadyExists.setKey("user.email.already.exists");
             this.wordDao.save(userEmailAlreadyExists);
             Word userFound=new Word();
             userFound.setKey("user.found");
