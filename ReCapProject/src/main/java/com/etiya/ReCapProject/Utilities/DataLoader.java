@@ -103,7 +103,7 @@ public class DataLoader implements CommandLineRunner {
 
             Word cityAdded = new Word();
             cityAdded.setKey("city.added");
-            this.wordDao.save(carAdded);
+            this.wordDao.save(cityAdded);
             Word cityUpdated = new Word();
             cityUpdated.setKey("city.updated");
             this.wordDao.save(cityUpdated);
@@ -138,9 +138,9 @@ public class DataLoader implements CommandLineRunner {
             Word colorGet = new Word();
             colorGet.setKey("color.found");
             this.wordDao.save(colorGet);
-            Word colorAlreayExist = new Word();
-            colorAlreayExist.setKey("color.already.exist");
-            this.wordDao.save(colorAlreayExist);
+            Word colorExists = new Word();
+            colorExists.setKey("color.already.exist");
+            this.wordDao.save(colorExists);
             Word colorNotFound=new Word();
             colorNotFound.setKey("color.not.found");
             this.wordDao.save(colorNotFound);
@@ -177,9 +177,12 @@ public class DataLoader implements CommandLineRunner {
             Word rentalBalance=new Word();
             rentalBalance.setKey("rental.balance.insufficient");
             this.wordDao.save(rentalBalance);
-            Word rentalDateisNull=new Word();
-            rentalDateisNull.setKey("car.not.returnet");
-            this.wordDao.save(rentalDateisNull);
+            Word rentalDateIsNull=new Word();
+            rentalDateIsNull.setKey("car.not.returned");
+            this.wordDao.save(rentalDateIsNull);
+            Word rentedCarIsOnMaintenance = new Word();
+            rentedCarIsOnMaintenance.setKey("rented.car.is.on.maintenance");
+            this.wordDao.save(rentedCarIsOnMaintenance);
 
 
             Word carImageAdd=new Word();
@@ -238,6 +241,9 @@ public class DataLoader implements CommandLineRunner {
             Word creditCardNumberError=new Word();
             creditCardNumberError.setKey("credit.card.number.error");
             this.wordDao.save(creditCardNumberError);
+            Word creditCardNameError=new Word();
+            creditCardNameError.setKey("credit.card.name.error");
+            this.wordDao.save(creditCardNameError);
             Word creditCardDateError=new Word();
             creditCardDateError.setKey("credit.card.date.error");
             this.wordDao.save(creditCardDateError);
@@ -253,6 +259,10 @@ public class DataLoader implements CommandLineRunner {
             Word creditCardNotSave=new Word();
             creditCardNotSave.setKey("credit.card.not.save");
             this.wordDao.save(creditCardNotSave);
+            Word creditCardNotFound=new Word();
+            creditCardNotFound.setKey("credit.card.not.found");
+            this.wordDao.save(creditCardNotFound);
+
 
             Word paymentAdded=new Word();
             paymentAdded.setKey("payment.add");
@@ -277,13 +287,13 @@ public class DataLoader implements CommandLineRunner {
             this.wordDao.save(creditCardFail);
 
             Word invoiceAdd=new Word();
-            invoiceAdd.setKey("invoice.add");
+            invoiceAdd.setKey("invoice.added");
             this.wordDao.save(invoiceAdd);
             Word invoiceUpdated=new Word();
             invoiceUpdated.setKey("invoice.updated");
             this.wordDao.save(invoiceUpdated);
             Word invoiceDeleted=new Word();
-            invoiceDeleted.setKey("invoice.updated");
+            invoiceDeleted.setKey("invoice.deleted");
             this.wordDao.save(invoiceDeleted);
             Word invoiceListed=new Word();
             invoiceListed.setKey("invoices.listed");

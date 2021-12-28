@@ -274,13 +274,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation rentalFoundEnglishTranslation = new Translation();
             rentalFoundEnglishTranslation.setLanguage(english);
             var rentalFoundEnglish = this.wordDao.getWordsByKey("rental.found");
-            rentalFoundEnglishTranslation.setWord(rentalsListedEnglish);
+            rentalFoundEnglishTranslation.setWord(rentalFoundEnglish);
             rentalFoundEnglishTranslation.setTranslation("Rental Found");
             this.translationDao.save(rentalFoundEnglishTranslation);
 
             Translation rentalExistsEnglishTranslation = new Translation();
             rentalExistsEnglishTranslation.setLanguage(english);
-            var rentalExistsEnglish = this.wordDao.getWordsByKey("car.is.still.rented");
+            var rentalExistsEnglish = this.wordDao.getWordsByKey("car.not.returned");
             rentalExistsEnglishTranslation.setWord(rentalExistsEnglish);
             rentalExistsEnglishTranslation.setTranslation("Car Is Still Rented And Not Returned");
             this.translationDao.save(rentalExistsEnglishTranslation);
@@ -293,31 +293,31 @@ public class TranslationDataLoader implements CommandLineRunner {
             rentalNotFoundEnglishTranslation.setTranslation("Rent Information Not Found");
             this.translationDao.save(rentalNotFoundEnglishTranslation);
 
-            Translation rentalCarIsOnManitenanceEnglishTranslation = new Translation();
-            rentalCarIsOnManitenanceEnglishTranslation.setLanguage(english);
-            var rentalCarIsOnMaintenanceEnglish = this.wordDao.getWordsByKey("rental.car.is.on.maintenance");
-            rentalCarIsOnManitenanceEnglishTranslation.setWord(rentalCarIsOnMaintenanceEnglish);
-            rentalCarIsOnManitenanceEnglishTranslation.setTranslation("Rental car is on maintenance");
-            this.translationDao.save(rentalCarIsOnManitenanceEnglishTranslation);
+            Translation rentedCarIsOnManitenanceEnglishTranslation = new Translation();
+            rentedCarIsOnManitenanceEnglishTranslation.setLanguage(english);
+            var rentedCarIsOnManitenanceEnglish = this.wordDao.getWordsByKey("rented.car.is.on.maintenance");
+            rentedCarIsOnManitenanceEnglishTranslation.setWord(rentedCarIsOnManitenanceEnglish);
+            rentedCarIsOnManitenanceEnglishTranslation.setTranslation("Rented car is on maintenance");
+            this.translationDao.save(rentedCarIsOnManitenanceEnglishTranslation);
 
             Translation rentalFindexScoreErrorEnglishTranslation = new Translation();
             rentalFindexScoreErrorEnglishTranslation.setLanguage(english);
             var rentalFindexScoreErrorEnglish = this.wordDao.getWordsByKey("rental.findex.score.error");
             rentalFindexScoreErrorEnglishTranslation.setWord(rentalFindexScoreErrorEnglish);
-            rentalFindexScoreErrorEnglishTranslation.setTranslation("Your Findex Score Is Not Enough For Rent This Car");
+            rentalFindexScoreErrorEnglishTranslation.setTranslation("Your Findex Score Is Not Enough To Rent This Car");
 
             Translation rentalCarIsNotReturnedYetEnglishTranslation = new Translation();
             rentalCarIsNotReturnedYetEnglishTranslation.setLanguage(english);
             var rentalCarIsNotReturnedYetEnglish = this.wordDao.getWordsByKey("rental.car.is.not.returned.yet");
             rentalCarIsNotReturnedYetEnglishTranslation.setWord(rentalCarIsNotReturnedYetEnglish);
-            rentalCarIsNotReturnedYetEnglishTranslation.setTranslation("Rental Car Not Returned Yet");
+            rentalCarIsNotReturnedYetEnglishTranslation.setTranslation("Rented Car Has Not Returned Yet");
             this.translationDao.save(rentalCarIsNotReturnedYetEnglishTranslation);
 
             Translation rentalDateErrorEnglishTranslation = new Translation();
             rentalDateErrorEnglishTranslation.setLanguage(english);
             var rentalDateErrorEnglish = this.wordDao.getWordsByKey("rental.date.error");
             rentalDateErrorEnglishTranslation.setWord(rentalDateErrorEnglish);
-            rentalDateErrorEnglishTranslation.setTranslation("rental.Rent.Date.Must.Be.Before.Rental.Retun.Date");
+            rentalDateErrorEnglishTranslation.setTranslation("Rental's Rent Date Must Be Before Rental's Return Date");
             this.translationDao.save(rentalDateErrorEnglishTranslation);
 
 
@@ -325,21 +325,21 @@ public class TranslationDataLoader implements CommandLineRunner {
             carImageAddedEnglishTranslation.setLanguage(english);
             var carImageAddedEnglish = this.wordDao.getWordsByKey("car.image.added");
             carImageAddedEnglishTranslation.setWord(carImageAddedEnglish);
-            carImageAddedEnglishTranslation.setTranslation("Car image added.");
+            carImageAddedEnglishTranslation.setTranslation("Car Image added.");
             this.translationDao.save(carImageAddedEnglishTranslation);
 
             Translation carImageDeletedEnglishTranslation = new Translation();
             carImageDeletedEnglishTranslation.setLanguage(english);
             var carImageDeletedEnglish = this.wordDao.getWordsByKey("car.image.deleted");
             carImageDeletedEnglishTranslation.setWord(carImageDeletedEnglish);
-            carImageDeletedEnglishTranslation.setTranslation("Car image deleted.");
+            carImageDeletedEnglishTranslation.setTranslation("Car Image deleted.");
             this.translationDao.save(carImageDeletedEnglishTranslation);
 
             Translation carImageUpdatedEnglishTranslation = new Translation();
             carImageUpdatedEnglishTranslation.setLanguage(english);
             var carImageUpdatedEnglish = this.wordDao.getWordsByKey("car.image.updated");
             carImageUpdatedEnglishTranslation.setWord(carImageUpdatedEnglish);
-            carImageUpdatedEnglishTranslation.setTranslation("Car image updated.");
+            carImageUpdatedEnglishTranslation.setTranslation("Car Image updated.");
             this.translationDao.save(carImageUpdatedEnglishTranslation);
 
             Translation carImageListedEnglishTranslation = new Translation();
@@ -352,16 +352,16 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation carImageNameerrorEnglishTranslation = new Translation();
             carImageNameerrorEnglishTranslation.setLanguage(english);
-            var carImageNameerrorEnglish = this.wordDao.getWordsByKey("car.image.name.error");
-            carImageNameerrorEnglishTranslation.setWord(carImageListedEnglish);
+            var carImageNameErrorEnglish = this.wordDao.getWordsByKey("car.image.name.error");
+            carImageNameerrorEnglishTranslation.setWord(carImageNameErrorEnglish);
             carImageNameerrorEnglishTranslation.setTranslation("Car Image name error.");
             this.translationDao.save(carImageNameerrorEnglishTranslation);
 
             Translation carImageNotFoundEnglishTranslation = new Translation();
             carImageNotFoundEnglishTranslation.setLanguage(english);
             var carImageNotFoundEnglish = this.wordDao.getWordsByKey("car.image.not.found");
-            carImageNotFoundEnglishTranslation.setWord(carImageListedEnglish);
-            carImageNotFoundEnglishTranslation.setTranslation("Car image not found.");
+            carImageNotFoundEnglishTranslation.setWord(carImageNotFoundEnglish);
+            carImageNotFoundEnglishTranslation.setTranslation("Car Image not found.");
             this.translationDao.save(carImageNotFoundEnglishTranslation);
 
 
@@ -369,57 +369,57 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardAddedEnglishTranslation.setLanguage(english);
             var creditCardAddedEnglish = this.wordDao.getWordsByKey("credit.card.added");
             creditCardAddedEnglishTranslation.setWord(creditCardAddedEnglish);
-            creditCardAddedEnglishTranslation.setTranslation("credit ard added.");
+            creditCardAddedEnglishTranslation.setTranslation("Credit Card added.");
             this.translationDao.save(creditCardAddedEnglishTranslation);
 
             Translation creditCardDeletedEnglishTranslation = new Translation();
             creditCardDeletedEnglishTranslation.setLanguage(english);
             var creditCardDeletedEnglish = this.wordDao.getWordsByKey("credit.card.deleted");
             creditCardDeletedEnglishTranslation.setWord(creditCardDeletedEnglish);
-            creditCardDeletedEnglishTranslation.setTranslation("credit ard deleted.");
+            creditCardDeletedEnglishTranslation.setTranslation("Credit Card deleted.");
             this.translationDao.save(creditCardDeletedEnglishTranslation);
 
             Translation creditCardUpdatedEnglishTranslation = new Translation();
             creditCardUpdatedEnglishTranslation.setLanguage(english);
             var creditCardUpdatedEnglish = this.wordDao.getWordsByKey("credit.card.updated");
             creditCardUpdatedEnglishTranslation.setWord(creditCardUpdatedEnglish);
-            creditCardUpdatedEnglishTranslation.setTranslation("credit ard updated.");
+            creditCardUpdatedEnglishTranslation.setTranslation("Credit Card updated.");
             this.translationDao.save(creditCardUpdatedEnglishTranslation);
 
             Translation creditCardListedEnglishTranslation = new Translation();
             creditCardListedEnglishTranslation.setLanguage(english);
-            var creditCardListedEnglish = this.wordDao.getWordsByKey("credit.card.listed");
+            var creditCardListedEnglish = this.wordDao.getWordsByKey("credit.cards.listed");
             creditCardListedEnglishTranslation.setWord(creditCardListedEnglish);
-            creditCardListedEnglishTranslation.setTranslation("Kredi kartsı listed.");
+            creditCardListedEnglishTranslation.setTranslation("Credit Cards listed.");
             this.translationDao.save(creditCardListedEnglishTranslation);
 
 
             Translation creditCardNameerrorEnglishTranslation = new Translation();
             creditCardNameerrorEnglishTranslation.setLanguage(english);
-            var creditCardNameerrorEnglish = this.wordDao.getWordsByKey("credit.card.name.error");
-            creditCardNameerrorEnglishTranslation.setWord(creditCardListedEnglish);
-            creditCardNameerrorEnglishTranslation.setTranslation("credit ard name error.");
+            var creditCardNameErrorEnglish = this.wordDao.getWordsByKey("credit.card.name.error");
+            creditCardNameerrorEnglishTranslation.setWord(creditCardNameErrorEnglish);
+            creditCardNameerrorEnglishTranslation.setTranslation("Credit Card Name Error.");
             this.translationDao.save(creditCardNameerrorEnglishTranslation);
 
             Translation creditCardNotFoundEnglishTranslation = new Translation();
             creditCardNotFoundEnglishTranslation.setLanguage(english);
             var creditCardNotFoundEnglish = this.wordDao.getWordsByKey("credit.card.not.found");
-            creditCardNotFoundEnglishTranslation.setWord(creditCardListedEnglish);
-            creditCardNotFoundEnglishTranslation.setTranslation("credit ard not found.");
+            creditCardNotFoundEnglishTranslation.setWord(creditCardNotFoundEnglish);
+            creditCardNotFoundEnglishTranslation.setTranslation("credit card not found.");
             this.translationDao.save(creditCardNotFoundEnglishTranslation);
 
             Translation invoiceAddedEnglishTranslation = new Translation();
             invoiceAddedEnglishTranslation.setLanguage(english);
             var invoiceAddedEnglish = this.wordDao.getWordsByKey("invoice.added");
             invoiceAddedEnglishTranslation.setWord(invoiceAddedEnglish);
-            invoiceAddedEnglishTranslation.setTranslation("invoice added.");
+            invoiceAddedEnglishTranslation.setTranslation("Invoice Added.");
             this.translationDao.save(invoiceAddedEnglishTranslation);
 
             Translation invoiceDeletedEnglishTranslation = new Translation();
             invoiceDeletedEnglishTranslation.setLanguage(english);
             var invoiceDeletedEnglish = this.wordDao.getWordsByKey("invoice.deleted");
             invoiceDeletedEnglishTranslation.setWord(invoiceDeletedEnglish);
-            invoiceDeletedEnglishTranslation.setTranslation("invoice deleted.");
+            invoiceDeletedEnglishTranslation.setTranslation("Invoice Deleted.");
             this.translationDao.save(invoiceDeletedEnglishTranslation);
 
             Translation invoiceUpdatedEnglishTranslation = new Translation();
@@ -439,15 +439,15 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation invoiceNameerrorEnglishTranslation = new Translation();
             invoiceNameerrorEnglishTranslation.setLanguage(english);
-            var invoiceNameerrorEnglish = this.wordDao.getWordsByKey("invoice.name.error");
-            invoiceNameerrorEnglishTranslation.setWord(invoiceListedEnglish);
+            var invoiceNameErrorEnglish = this.wordDao.getWordsByKey("invoice.name.error");
+            invoiceNameerrorEnglishTranslation.setWord(invoiceNameErrorEnglish);
             invoiceNameerrorEnglishTranslation.setTranslation("invoice name error.");
             this.translationDao.save(invoiceNameerrorEnglishTranslation);
 
             Translation invoiceNotFoundEnglishTranslation = new Translation();
             invoiceNotFoundEnglishTranslation.setLanguage(english);
             var invoiceNotFoundEnglish = this.wordDao.getWordsByKey("invoice.not.found");
-            invoiceNotFoundEnglishTranslation.setWord(invoiceListedEnglish);
+            invoiceNotFoundEnglishTranslation.setWord(invoiceNotFoundEnglish);
             invoiceNotFoundEnglishTranslation.setTranslation("invoice not found.");
             this.translationDao.save(invoiceNotFoundEnglishTranslation);
 
@@ -482,15 +482,15 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation additionalServiceNameerrorEnglishTranslation = new Translation();
             additionalServiceNameerrorEnglishTranslation.setLanguage(english);
-            var additionalServiceNameerrorEnglish = this.wordDao.getWordsByKey("additional.service.name.error");
-            additionalServiceNameerrorEnglishTranslation.setWord(additionalServiceListedEnglish);
+            var additionalServiceNameErrorEnglish = this.wordDao.getWordsByKey("additional.service.name.error");
+            additionalServiceNameerrorEnglishTranslation.setWord(additionalServiceNameErrorEnglish);
             additionalServiceNameerrorEnglishTranslation.setTranslation("Additional Service name error.");
             this.translationDao.save(additionalServiceNameerrorEnglishTranslation);
 
             Translation additionalServiceNotFoundEnglishTranslation = new Translation();
             additionalServiceNotFoundEnglishTranslation.setLanguage(english);
             var additionalServiceNotFoundEnglish = this.wordDao.getWordsByKey("additional.service.not.found");
-            additionalServiceNotFoundEnglishTranslation.setWord(additionalServiceListedEnglish);
+            additionalServiceNotFoundEnglishTranslation.setWord(additionalServiceNotFoundEnglish);
             additionalServiceNotFoundEnglishTranslation.setTranslation("Additional Service not found.");
             this.translationDao.save(additionalServiceNotFoundEnglishTranslation);
 
@@ -525,15 +525,15 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation userNameerrorEnglishTranslation = new Translation();
             userNameerrorEnglishTranslation.setLanguage(english);
-            var userNameerrorEnglish = this.wordDao.getWordsByKey("user.name.error");
-            userNameerrorEnglishTranslation.setWord(userListedEnglish);
+            var userNameErrorEnglish = this.wordDao.getWordsByKey("user.name.error");
+            userNameerrorEnglishTranslation.setWord(userNameErrorEnglish);
             userNameerrorEnglishTranslation.setTranslation("User name error.");
             this.translationDao.save(userNameerrorEnglishTranslation);
 
             Translation userNotFoundEnglishTranslation = new Translation();
             userNotFoundEnglishTranslation.setLanguage(english);
             var userNotFoundEnglish = this.wordDao.getWordsByKey("user.not.found");
-            userNotFoundEnglishTranslation.setWord(userListedEnglish);
+            userNotFoundEnglishTranslation.setWord(userNotFoundEnglish);
             userNotFoundEnglishTranslation.setTranslation("User not found.");
             this.translationDao.save(userNotFoundEnglishTranslation);
 
@@ -568,7 +568,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation customerFoundEnglishTranslation = new Translation();
             customersFoundEnglishTranslation.setLanguage(english);
             var customerFoundEnglish = this.wordDao.getWordsByKey("customer.found");
-            customerDeletedEnglishTranslation.setWord(customersFoundEnglish);
+            customerDeletedEnglishTranslation.setWord(customerFoundEnglish);
             customerDeletedEnglishTranslation.setTranslation("Customers Found");
             this.translationDao.save(customerFoundEnglishTranslation);
 
@@ -648,7 +648,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation customersTaxNumberAlreadyExistsTurkishTranslation = new Translation();
             customersTaxNumberAlreadyExistsTurkishTranslation.setLanguage(turkish);
             var customersTaxNumberAlreadyExistsTurkish = this.wordDao.getWordsByKey("customers.taxnumber.already.exists");
-            customersTaxNumberAlreadyExistsTurkishTranslation.setWord(customerAlreadyExistsTurkish);
+            customersTaxNumberAlreadyExistsTurkishTranslation.setWord(customersTaxNumberAlreadyExistsTurkish);
             customersTaxNumberAlreadyExistsTurkishTranslation.setTranslation("Müşterinin vergi numarası zaten kayıtlı.");
             this.translationDao.save(customersTaxNumberAlreadyExistsTurkishTranslation);
 
@@ -712,14 +712,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation colorNameErrorTurkishTranslation = new Translation();
             colorNameErrorTurkishTranslation.setLanguage(turkish);
             var colorNameErrorTurkish = this.wordDao.getWordsByKey("color.name.error");
-            colorNameErrorTurkishTranslation.setWord(colorListedTurkish);
+            colorNameErrorTurkishTranslation.setWord(colorNameErrorTurkish);
             colorNameErrorTurkishTranslation.setTranslation("Renk ismi hatalı.");
             this.translationDao.save(colorNameErrorTurkishTranslation);
 
             Translation colorNotFoundTurkishTranslation = new Translation();
             colorNotFoundTurkishTranslation.setLanguage(turkish);
             var colorNotFoundTurkish = this.wordDao.getWordsByKey("color.not.found");
-            colorNotFoundTurkishTranslation.setWord(colorListedTurkish);
+            colorNotFoundTurkishTranslation.setWord(colorNotFoundTurkish);
             colorNotFoundTurkishTranslation.setTranslation("Renk bulunamadı.");
             this.translationDao.save(colorNotFoundTurkishTranslation);
 
@@ -755,14 +755,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation carImageNameErrorTurkishTranslation = new Translation();
             carImageNameErrorTurkishTranslation.setLanguage(turkish);
             var carImageNameErrorTurkish = this.wordDao.getWordsByKey("car.image.name.error");
-            carImageNameErrorTurkishTranslation.setWord(carImageListedTurkish);
+            carImageNameErrorTurkishTranslation.setWord(carImageNameErrorTurkish);
             carImageNameErrorTurkishTranslation.setTranslation("Araç görsel ismi hatalı.");
             this.translationDao.save(carImageNameErrorTurkishTranslation);
 
             Translation carImageNotFoundTurkishTranslation = new Translation();
             carImageNotFoundTurkishTranslation.setLanguage(turkish);
             var carImageNotFoundTurkish = this.wordDao.getWordsByKey("car.image.not.found");
-            carImageNotFoundTurkishTranslation.setWord(carImageListedTurkish);
+            carImageNotFoundTurkishTranslation.setWord(carImageNotFoundTurkish);
             carImageNotFoundTurkishTranslation.setTranslation("Araç görseli bulunamadı.");
             this.translationDao.save(carImageNotFoundTurkishTranslation);
 
@@ -797,14 +797,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation carNameErrorTurkishTranslation = new Translation();
             carNameErrorTurkishTranslation.setLanguage(turkish);
             var carNameErrorTurkish = this.wordDao.getWordsByKey("car.name.error");
-            carNameErrorTurkishTranslation.setWord(carListedTurkish);
+            carNameErrorTurkishTranslation.setWord(carNameErrorTurkish);
             carNameErrorTurkishTranslation.setTranslation("Araç ismi hatalı.");
             this.translationDao.save(carNameErrorTurkishTranslation);
 
             Translation carNotFoundTurkishTranslation = new Translation();
             carNotFoundTurkishTranslation.setLanguage(turkish);
             var carNotFoundTurkish = this.wordDao.getWordsByKey("car.not.found");
-            carNotFoundTurkishTranslation.setWord(carListedTurkish);
+            carNotFoundTurkishTranslation.setWord(carNotFoundTurkish);
             carNotFoundTurkishTranslation.setTranslation("Araç bulunamadı.");
             this.translationDao.save(carNotFoundTurkishTranslation);
 
@@ -840,14 +840,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation rentalNameErrorTurkishTranslation = new Translation();
             rentalNameErrorTurkishTranslation.setLanguage(turkish);
             var rentalNameErrorTurkish = this.wordDao.getWordsByKey("rental.name.error");
-            rentalNameErrorTurkishTranslation.setWord(rentalListedTurkish);
+            rentalNameErrorTurkishTranslation.setWord(rentalNameErrorTurkish);
             rentalNameErrorTurkishTranslation.setTranslation("Kiralama ismi hatalı.");
             this.translationDao.save(rentalNameErrorTurkishTranslation);
 
             Translation rentalNotFoundTurkishTranslation = new Translation();
             rentalNotFoundTurkishTranslation.setLanguage(turkish);
             var rentalNotFoundTurkish = this.wordDao.getWordsByKey("rental.not.found");
-            rentalNotFoundTurkishTranslation.setWord(rentalListedTurkish);
+            rentalNotFoundTurkishTranslation.setWord(rentalNotFoundTurkish);
             rentalNotFoundTurkishTranslation.setTranslation("Kiralama bulunamadı.");
             this.translationDao.save(rentalNotFoundTurkishTranslation);
 
@@ -883,14 +883,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation creditCardNameErrorTurkishTranslation = new Translation();
             creditCardNameErrorTurkishTranslation.setLanguage(turkish);
             var creditCardNameErrorTurkish = this.wordDao.getWordsByKey("credit.card.name.error");
-            creditCardNameErrorTurkishTranslation.setWord(creditCardListedTurkish);
+            creditCardNameErrorTurkishTranslation.setWord(creditCardNameErrorTurkish);
             creditCardNameErrorTurkishTranslation.setTranslation("Kredi kartı ismi hatalı.");
             this.translationDao.save(creditCardNameErrorTurkishTranslation);
 
             Translation creditCardNotFoundTurkishTranslation = new Translation();
             creditCardNotFoundTurkishTranslation.setLanguage(turkish);
             var creditCardNotFoundTurkish = this.wordDao.getWordsByKey("credit.card.not.found");
-            creditCardNotFoundTurkishTranslation.setWord(creditCardListedTurkish);
+            creditCardNotFoundTurkishTranslation.setWord(creditCardNotFoundTurkish);
             creditCardNotFoundTurkishTranslation.setTranslation("Kredi kartı bulunamadı.");
             this.translationDao.save(creditCardNotFoundTurkishTranslation);
 
@@ -925,14 +925,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation invoiceNameErrorTurkishTranslation = new Translation();
             invoiceNameErrorTurkishTranslation.setLanguage(turkish);
             var invoiceNameErrorTurkish = this.wordDao.getWordsByKey("invoice.name.error");
-            invoiceNameErrorTurkishTranslation.setWord(invoiceListedTurkish);
+            invoiceNameErrorTurkishTranslation.setWord(invoiceNameErrorTurkish);
             invoiceNameErrorTurkishTranslation.setTranslation("Fatura ismi hatalı.");
             this.translationDao.save(invoiceNameErrorTurkishTranslation);
 
             Translation invoiceNotFoundTurkishTranslation = new Translation();
             invoiceNotFoundTurkishTranslation.setLanguage(turkish);
             var invoiceNotFoundTurkish = this.wordDao.getWordsByKey("invoice.not.found");
-            invoiceNotFoundTurkishTranslation.setWord(invoiceListedTurkish);
+            invoiceNotFoundTurkishTranslation.setWord(invoiceNotFoundTurkish);
             invoiceNotFoundTurkishTranslation.setTranslation("Fatura bulunamadı.");
             this.translationDao.save(invoiceNotFoundTurkishTranslation);
 
@@ -970,14 +970,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation additionalServiceNameErrorTurkishTranslation = new Translation();
             additionalServiceNameErrorTurkishTranslation.setLanguage(turkish);
             var additionalServiceNameErrorTurkish = this.wordDao.getWordsByKey("additional.service.name.error");
-            additionalServiceNameErrorTurkishTranslation.setWord(additionalServiceListedTurkish);
+            additionalServiceNameErrorTurkishTranslation.setWord(additionalServiceNameErrorTurkish);
             additionalServiceNameErrorTurkishTranslation.setTranslation("Ek Hizmet ismi hatalı.");
             this.translationDao.save(additionalServiceNameErrorTurkishTranslation);
 
             Translation additionalServiceNotFoundTurkishTranslation = new Translation();
             additionalServiceNotFoundTurkishTranslation.setLanguage(turkish);
             var additionalServiceNotFoundTurkish = this.wordDao.getWordsByKey("additional.service.not.found");
-            additionalServiceNotFoundTurkishTranslation.setWord(additionalServiceListedTurkish);
+            additionalServiceNotFoundTurkishTranslation.setWord(additionalServiceNotFoundTurkish);
             additionalServiceNotFoundTurkishTranslation.setTranslation("Ek Hizmet bulunamadı.");
             this.translationDao.save(additionalServiceNotFoundTurkishTranslation);
 
@@ -1012,14 +1012,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             Translation userNameErrorTurkishTranslation = new Translation();
             userNameErrorTurkishTranslation.setLanguage(turkish);
             var userNameErrorTurkish = this.wordDao.getWordsByKey("user.name.error");
-            userNameErrorTurkishTranslation.setWord(userListedTurkish);
+            userNameErrorTurkishTranslation.setWord(userNameErrorTurkish);
             userNameErrorTurkishTranslation.setTranslation("Kullanıcı ismi hatalı.");
             this.translationDao.save(userNameErrorTurkishTranslation);
 
             Translation userNotFoundTurkishTranslation = new Translation();
             userNotFoundTurkishTranslation.setLanguage(turkish);
             var userNotFoundTurkish = this.wordDao.getWordsByKey("user.not.found");
-            userNotFoundTurkishTranslation.setWord(userListedTurkish);
+            userNotFoundTurkishTranslation.setWord(userNotFoundTurkish);
             userNotFoundTurkishTranslation.setTranslation("Kullanıcı bulunamadı.");
             this.translationDao.save(userNotFoundTurkishTranslation);
 
@@ -1028,36 +1028,42 @@ public class TranslationDataLoader implements CommandLineRunner {
             var cityAddedTurkish = this.wordDao.getWordsByKey("city.added");
             cityAddedTurkishTranslation.setWord(cityAddedTurkish);
             cityAddedTurkishTranslation.setTranslation("Şehir eklendi.");
+            this.translationDao.save(cityAddedTurkishTranslation);
 
             Translation cityDeletedTurkishTranslation = new Translation();
             cityDeletedTurkishTranslation.setLanguage(turkish);
             var cityDeletedTurkish = this.wordDao.getWordsByKey("city.deleted");
             cityDeletedTurkishTranslation.setWord(cityDeletedTurkish);
             cityDeletedTurkishTranslation.setTranslation("Şehir silindi.");
+            this.translationDao.save(cityDeletedTurkishTranslation);
 
             Translation cityUpdatedTurkishTranslation = new Translation();
             cityUpdatedTurkishTranslation.setLanguage(turkish);
             var cityUpdatedTurkish = this.wordDao.getWordsByKey("city.updated");
             cityUpdatedTurkishTranslation.setWord(cityUpdatedTurkish);
             cityUpdatedTurkishTranslation.setTranslation("Şehir güncellendi.");
+            this.translationDao.save(cityUpdatedTurkishTranslation);
 
-            Translation cityListedTurkishTranslation = new Translation();
-            cityListedTurkishTranslation.setLanguage(turkish);
-            var cityListedTurkish = this.wordDao.getWordsByKey("cities.listed");
-            cityListedTurkishTranslation.setWord(cityListedTurkish);
-            cityListedTurkishTranslation.setTranslation("Şehirlar listelendi.");
+            Translation citiesListedTurkishTranslation = new Translation();
+            citiesListedTurkishTranslation.setLanguage(turkish);
+            var citiesListedTurkish = this.wordDao.getWordsByKey("cities.listed");
+            citiesListedTurkishTranslation.setWord(citiesListedTurkish);
+            citiesListedTurkishTranslation.setTranslation("Şehirler listelendi.");
+            this.translationDao.save(citiesListedTurkishTranslation);
 
             Translation cityNameErrorTurkishTranslation = new Translation();
             cityNameErrorTurkishTranslation.setLanguage(turkish);
             var cityNameErrorTurkish = this.wordDao.getWordsByKey("city.name.error");
-            cityNameErrorTurkishTranslation.setWord(cityListedTurkish);
+            cityNameErrorTurkishTranslation.setWord(cityNameErrorTurkish);
             cityNameErrorTurkishTranslation.setTranslation("Şehir ismi hatalı.");
+            this.translationDao.save(cityNameErrorTurkishTranslation);
 
             Translation cityNotFoundTurkishTranslation = new Translation();
             cityNotFoundTurkishTranslation.setLanguage(turkish);
             var cityNotFoundTurkish = this.wordDao.getWordsByKey("city.not.found");
-            cityNotFoundTurkishTranslation.setWord(cityListedTurkish);
+            cityNotFoundTurkishTranslation.setWord(cityNotFoundTurkish);
             cityNotFoundTurkishTranslation.setTranslation("Şehir bulunamadı.");
+            this.translationDao.save(cityNotFoundTurkishTranslation);
         }
     }
 }
