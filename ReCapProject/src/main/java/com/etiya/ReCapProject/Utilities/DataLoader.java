@@ -33,7 +33,6 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadWordData(){
         if (this.wordDao.count()==0){
-<<<<<<< Updated upstream
             Word customerAdded = new Word();
             customerAdded.setKey("customer.added");
             this.wordDao.save(customerAdded);
@@ -139,7 +138,7 @@ public class DataLoader implements CommandLineRunner {
             Word colorGet = new Word();
             colorGet.setKey("color.found");
             this.wordDao.save(colorGet);
-=======
+
             Word word = new Word();
             word.setKey("customer.added");
             Word word1 = new Word();
@@ -211,7 +210,7 @@ public class DataLoader implements CommandLineRunner {
             word34.setKey("color.listed");
             Word word35 = new Word();
             word35.setKey("color.get");
->>>>>>> Stashed changes
+
             Word colorAlreayExist = new Word();
             colorAlreayExist.setKey("color.already.exist");
             this.wordDao.save(colorAlreayExist);
@@ -455,37 +454,6 @@ public class DataLoader implements CommandLineRunner {
             carMaintenanceNotFound.setKey("car.maintenance.not.found");
             this.wordDao.save(carMaintenanceNotFound);
 
-<<<<<<< Updated upstream
-=======
-
-
-
-
-
-//3,18 ve 29 eksik
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            this.wordDao.save(word);
-           this.wordDao.save(word1);
->>>>>>> Stashed changes
         }
 
     }
