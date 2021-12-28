@@ -13,6 +13,7 @@ public class TranslationDataLoader implements CommandLineRunner {
     private TranslationDao translationDao;
     private LanguageDao languageDao;
     private WordDao wordDao;
+
     public TranslationDataLoader(TranslationDao translationDao, LanguageDao languageDao, WordDao wordDao) {
         this.translationDao = translationDao;
         this.languageDao = languageDao;
@@ -119,6 +120,53 @@ public class TranslationDataLoader implements CommandLineRunner {
         colorExistsEnglishTranslation.setTranslation("Color Exists");
 
         //--------------------------Car--------------------------
+
+
+        Translation carAddedEnglishTranslation = new Translation();
+        carAddedEnglishTranslation.setLanguage(english);
+        var carAddedEnglish = this.wordDao.getWordsByKey("car.added");
+        carAddedEnglishTranslation.setWord(carAddedEnglish);
+        carAddedEnglishTranslation.setTranslation("Car Added");
+
+        Translation carUpdatedEnglishTranslation = new Translation();
+        carUpdatedEnglishTranslation.setLanguage(english);
+        var carUpdatedEnglish = this.wordDao.getWordsByKey("car.updated");
+        carUpdatedEnglishTranslation.setWord(carUpdatedEnglish);
+        carUpdatedEnglishTranslation.setTranslation("Car Updated");
+
+        Translation carDeletedEnglishTranslation = new Translation();
+        carDeletedEnglishTranslation.setLanguage(english);
+        var carDeletedEnglish = this.wordDao.getWordsByKey("car.deleted");
+        carDeletedEnglishTranslation.setWord(carDeletedEnglish);
+        carDeletedEnglishTranslation.setTranslation("Car Deleted");
+
+        Translation carExistsEnglishTranslation = new Translation();
+        carExistsEnglishTranslation.setLanguage(english);
+        var carExistsEnglish = this.wordDao.getWordsByKey("car.exists");
+        carExistsEnglishTranslation.setWord(carExistsEnglish);
+        carExistsEnglishTranslation.setTranslation("Car Exists");
+
+        Translation carFoundEnglishTranslation = new Translation();
+        carFoundEnglishTranslation.setLanguage(english);
+        var carFoundEnglish = this.wordDao.getWordsByKey("car.found");
+        carFoundEnglishTranslation.setWord(carFoundEnglish);
+        carFoundEnglishTranslation.setTranslation("Car Found");
+
+        Translation carsListedEnglishTranslation = new Translation();
+        carsListedEnglishTranslation.setLanguage(english);
+        var carListedEnglish = this.wordDao.getWordsByKey("cars.listed");
+        carsListedEnglishTranslation.setWord(carListedEnglish);
+        carsListedEnglishTranslation.setTranslation("Cars Listed");
+
+        Translation carNotFoundEnglishTranslation = new Translation();
+        carNotFoundEnglishTranslation.setLanguage(english);
+        var carNotFoundEnglish = this.wordDao.getWordsByKey("car.not.found");
+        carNotFoundEnglishTranslation.setWord(carNotFoundEnglish);
+        carNotFoundEnglishTranslation.setTranslation("Car Not Found");
+
+
+
+
 
 
 
