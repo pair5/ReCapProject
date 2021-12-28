@@ -190,6 +190,173 @@ public class TranslationDataLoader implements CommandLineRunner {
         this.translationDao.save(carNotFoundEnglishTranslation);
 
 
+<<<<<<< Updated upstream
+=======
+        //-----------------CITY----------------------------
+
+        Translation cityAddedEnglishTranslation = new Translation();
+        cityAddedEnglishTranslation.setLanguage(english);
+        var cityAddedEnglish = this.wordDao.getWordsByKey("city.added");
+        cityAddedEnglishTranslation.setWord(cityAddedEnglish);
+        cityAddedEnglishTranslation.setTranslation("City Added");
+        this.translationDao.save(cityAddedEnglishTranslation);
+
+        Translation cityUpdatedEnglishTranslation = new Translation();
+        cityUpdatedEnglishTranslation.setLanguage(english);
+        var cityUpdateEnglish = this.wordDao.getWordsByKey("city.updated");
+        cityUpdatedEnglishTranslation.setWord(cityUpdateEnglish);
+        cityUpdatedEnglishTranslation.setTranslation("City Updated");
+        this.translationDao.save(cityUpdatedEnglishTranslation);
+
+        Translation cityDeletedEnglishTranslation = new Translation();
+        cityDeletedEnglishTranslation.setLanguage(english);
+        var  cityDeletedEnglish = this.wordDao.getWordsByKey("city.deleted");
+        cityDeletedEnglishTranslation.setWord(cityDeletedEnglish);
+        cityDeletedEnglishTranslation.setTranslation("City Deleted");
+        this.translationDao.save(cityDeletedEnglishTranslation);
+
+        Translation citiesListedEnglishTranslation = new Translation();
+        citiesListedEnglishTranslation.setLanguage(english);
+        var citiesListedEnglish = this.wordDao.getWordsByKey("cities.listed");
+        citiesListedEnglishTranslation.setWord(citiesListedEnglish);
+        citiesListedEnglishTranslation.setTranslation("Cities Listed");
+        this.translationDao.save(citiesListedEnglishTranslation);
+
+        Translation cityFoundEnglishTranslation = new Translation();
+        cityFoundEnglishTranslation.setLanguage(english);
+        var cityFoundEnglish = this.wordDao.getWordsByKey("city.found");
+        cityFoundEnglishTranslation.setWord(cityFoundEnglish);
+        cityFoundEnglishTranslation.setTranslation("City Found");
+        this.translationDao.save(cityFoundEnglishTranslation);
+
+        Translation cityNotFoundEnglishTranslation = new Translation();
+        cityNotFoundEnglishTranslation.setLanguage(english);
+        var cityNotFoundEnglish = this.wordDao.getWordsByKey("city.not.found");
+        cityNotFoundEnglishTranslation.setWord(cityNotFoundEnglish);
+        cityNotFoundEnglishTranslation.setTranslation("City Not Found");
+        this.translationDao.save(cityNotFoundEnglishTranslation);
+
+        Translation cityExistsEnglishTranslation = new Translation();
+        cityExistsEnglishTranslation.setLanguage(english);
+        var cityExistsEnglish = this.wordDao.getWordsByKey("city.exists");
+        cityExistsEnglishTranslation.setWord(cityExistsEnglish);
+        cityExistsEnglishTranslation.setTranslation("City Exists");
+        this.translationDao.save(cityExistsEnglishTranslation);
+
+        //--------------------Rental------------------------------
+
+        Translation rentalAddedEnglishTranslation = new Translation();
+        rentalAddedEnglishTranslation.setLanguage(english);
+        var rentalAddedEnglish = this.wordDao.getWordsByKey("rental.added");
+        rentalAddedEnglishTranslation.setWord(rentalAddedEnglish);
+        rentalAddedEnglishTranslation.setTranslation("Rental Added");
+        this.translationDao.save(rentalAddedEnglishTranslation);
+
+        Translation rentalUpdatedEnglishTranslation = new Translation();
+        rentalUpdatedEnglishTranslation.setLanguage(english);
+        var rentalUpdatedEnglish = this.wordDao.getWordsByKey("rental.updated");
+        rentalUpdatedEnglishTranslation.setWord(rentalUpdatedEnglish);
+        rentalUpdatedEnglishTranslation.setTranslation("Rental Added");
+        this.translationDao.save(rentalUpdatedEnglishTranslation);
+
+
+        Translation rentalDeletedEnglishTranslation = new Translation();
+        rentalDeletedEnglishTranslation.setLanguage(english);
+        var rentalDeletedEnglish = this.wordDao.getWordsByKey("rental.deleted");
+        rentalDeletedEnglishTranslation.setWord(rentalDeletedEnglish);
+        rentalDeletedEnglishTranslation.setTranslation("Rental Deleted");
+        this.translationDao.save(rentalDeletedEnglishTranslation);
+
+        Translation rentalsListedEnglishTranslation = new Translation();
+        rentalsListedEnglishTranslation.setLanguage(english);
+        var rentalsListedEnglish = this.wordDao.getWordsByKey("rentals.listed");
+        rentalsListedEnglishTranslation.setWord(rentalsListedEnglish);
+        rentalsListedEnglishTranslation.setTranslation("Rentals Listed");
+        this.translationDao.save(rentalsListedEnglishTranslation);
+
+        Translation rentalFoundEnglishTranslation = new Translation();
+        rentalFoundEnglishTranslation.setLanguage(english);
+        var rentalFoundEnglish = this.wordDao.getWordsByKey("rental.found");
+        rentalFoundEnglishTranslation.setWord(rentalsListedEnglish);
+        rentalFoundEnglishTranslation.setTranslation("Rental Found");
+        this.translationDao.save(rentalFoundEnglishTranslation);
+
+        Translation rentalExistsEnglishTranslation = new Translation();
+        rentalExistsEnglishTranslation.setLanguage(english);
+        var rentalExistsEnglish = this.wordDao.getWordsByKey("car.is.still.rented");
+        rentalExistsEnglishTranslation.setWord(rentalExistsEnglish);
+        rentalExistsEnglishTranslation.setTranslation("Car Is Still Rented And Not Returned");
+        this.translationDao.save(rentalExistsEnglishTranslation);
+
+
+        Translation rentalNotFoundEnglishTranslation = new Translation();
+        rentalNotFoundEnglishTranslation.setLanguage(english);
+        var rentalNotFoundEnglish = this.wordDao.getWordsByKey("rental.not.found");
+        rentalNotFoundEnglishTranslation.setWord(rentalNotFoundEnglish);
+        rentalNotFoundEnglishTranslation.setTranslation("Rent Information Not Found");
+        this.translationDao.save(rentalNotFoundEnglishTranslation);
+
+        Translation rentalCarIsOnManitenanceEnglishTranslation = new Translation();
+        rentalCarIsOnManitenanceEnglishTranslation.setLanguage(english);
+        var rentalCarIsOnMaintenanceEnglish = this.wordDao.getWordsByKey("rental.car.is.on.maintenance");
+        rentalCarIsOnManitenanceEnglishTranslation.setWord(rentalCarIsOnMaintenanceEnglish);
+        rentalCarIsOnManitenanceEnglishTranslation.setTranslation("Rental car is on maintenance");
+        this.translationDao.save(rentalCarIsOnManitenanceEnglishTranslation);
+
+        Translation rentalFindexScoreErrorEnglishTranslation = new Translation();
+        rentalFindexScoreErrorEnglishTranslation.setLanguage(english);
+        var rentalFindexScoreErrorEnglish = this.wordDao.getWordsByKey("rental.findex.score.error");
+        rentalFindexScoreErrorEnglishTranslation.setWord(rentalFindexScoreErrorEnglish);
+        rentalFindexScoreErrorEnglishTranslation.setTranslation("Your Findex Score Is Not Enough For Rent This Car");
+
+        Translation rentalCarIsNotReturnedYetEnglishTranslation = new Translation();
+        rentalCarIsNotReturnedYetEnglishTranslation.setLanguage(english);
+        var rentalCarIsNotReturnedYetEnglish = this.wordDao.getWordsByKey("rental.car.is.not.returned.yet");
+        rentalCarIsNotReturnedYetEnglishTranslation.setWord(rentalCarIsNotReturnedYetEnglish);
+        rentalCarIsNotReturnedYetEnglishTranslation.setTranslation("Rental Car Not Returned Yet");
+        this.translationDao.save(rentalCarIsNotReturnedYetEnglishTranslation);
+
+        Translation rentalDateErrorEnglishTranslation = new Translation();
+        rentalDateErrorEnglishTranslation.setLanguage(english);
+        var rentalDateErrorEnglish = this.wordDao.getWordsByKey("rental.date.error");
+        rentalDateErrorEnglishTranslation.setWord(rentalDateErrorEnglish);
+        rentalDateErrorEnglishTranslation.setTranslation("Rental Rent Date Must Be Before Rental Retun Date");
+        this.translationDao.save(rentalDateErrorEnglishTranslation);
+
+
+
+
+/*
+        public static final String RENTALDATESUCCESS = "Vehicle can be rented.";
+        public static final String INSUFFICIENTBALANCE = "The balance is insufficient.";
+        public static final String SUFFICIENTBALANCE = "The balance is sufficient.";
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 
 
 
