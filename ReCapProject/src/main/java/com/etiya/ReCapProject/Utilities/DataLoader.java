@@ -100,6 +100,10 @@ public class DataLoader implements CommandLineRunner {
             Word carNotFound = new Word();
             carNotFound.setKey("car.not.found");
             this.wordDao.save(carNotFound);
+            Word carExists = new Word();
+            carExists.setKey("car.exists");
+            this.wordDao.save(carExists);
+
 
             Word cityAdded = new Word();
             cityAdded.setKey("city.added");
@@ -141,6 +145,9 @@ public class DataLoader implements CommandLineRunner {
             Word colorExists = new Word();
             colorExists.setKey("color.already.exist");
             this.wordDao.save(colorExists);
+            Word colorAlreadyExist = new Word();
+            colorAlreadyExist.setKey("color.already.exist");
+            this.wordDao.save(colorAlreadyExist);
             Word colorNotFound=new Word();
             colorNotFound.setKey("color.not.found");
             this.wordDao.save(colorNotFound);
