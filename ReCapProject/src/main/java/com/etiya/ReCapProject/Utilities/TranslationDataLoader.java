@@ -38,42 +38,50 @@ public class TranslationDataLoader implements CommandLineRunner {
         var brandAddedEnglish = this.wordDao.getWordsByKey("brand.added");
         brandAddedEnglishTranslation.setWord(brandAddedEnglish);
         brandAddedEnglishTranslation.setTranslation("Brand Added");
+        this.translationDao.save(brandAddedEnglishTranslation);
 
         Translation brandUpdatedEnglishTranslation = new Translation();
         brandUpdatedEnglishTranslation.setLanguage(english);
         var brandUpdatedEnglish = this.wordDao.getWordsByKey("brand.updated");
         brandUpdatedEnglishTranslation.setWord(brandUpdatedEnglish);
         brandUpdatedEnglishTranslation.setTranslation("Brand updated");
+        this.translationDao.save(brandUpdatedEnglishTranslation);
 
         Translation brandDeletedEnglishTranslation = new Translation();
         brandDeletedEnglishTranslation.setLanguage(english);
         var brandDeletedEnglish = this.wordDao.getWordsByKey("brand.deleted");
         brandDeletedEnglishTranslation.setWord(brandDeletedEnglish);
         brandDeletedEnglishTranslation.setTranslation("Brand Deleted");
+        this.translationDao.save(brandDeletedEnglishTranslation);
 
         Translation brandsListedEnglishTranslation = new Translation();
         brandsListedEnglishTranslation.setLanguage(english);
         var brandsListedEnglish = this.wordDao.getWordsByKey("brands.listed");
         brandsListedEnglishTranslation.setWord(brandsListedEnglish);
         brandsListedEnglishTranslation.setTranslation("Brands Listed");
+        this.translationDao.save(brandsListedEnglishTranslation);
 
         Translation brandFoundEnglishTranslation = new Translation();
         brandFoundEnglishTranslation.setLanguage(english);
         var brandfoundEnglish = this.wordDao.getWordsByKey("brand.found");
         brandFoundEnglishTranslation.setWord(brandfoundEnglish);
         brandFoundEnglishTranslation.setTranslation("Brands Listed");
+        this.translationDao.save(brandFoundEnglishTranslation);
 
         Translation brandNotFoundEnglishTranslation = new Translation();
         brandNotFoundEnglishTranslation.setLanguage(english);
         var brandNotFoundEnglish = this.wordDao.getWordsByKey("brand.not.found");
         brandNotFoundEnglishTranslation.setWord(brandNotFoundEnglish);
         brandNotFoundEnglishTranslation.setTranslation("Brand Not Found");
+        this.translationDao.save(brandNotFoundEnglishTranslation);
+
 
         Translation brandExistsEnglishTranslation = new Translation();
         brandExistsEnglishTranslation.setLanguage(english);
         var brandExistsEnglish = this.wordDao.getWordsByKey("brand.exists");
         brandExistsEnglishTranslation.setWord(brandExistsEnglish);
         brandExistsEnglishTranslation.setTranslation("Brand Exists");
+        this.translationDao.save(brandExistsEnglishTranslation);
 
         //-------------Color-------------
 
@@ -82,42 +90,52 @@ public class TranslationDataLoader implements CommandLineRunner {
         var colorAddedEnglish = this.wordDao.getWordsByKey("color.added");
         colorAddedEnglishTranslation.setWord(colorAddedEnglish);
         colorAddedEnglishTranslation.setTranslation("Color Added");
+        this.translationDao.save(colorAddedEnglishTranslation);
 
         Translation colorUpdatedEnglishTranslation = new Translation();
         colorUpdatedEnglishTranslation.setLanguage(english);
         var colorUpdatedEnglish = this.wordDao.getWordsByKey("color.updated");
         colorUpdatedEnglishTranslation.setWord(colorUpdatedEnglish);
         colorUpdatedEnglishTranslation.setTranslation("Color Updated");
+        this.translationDao.save(colorUpdatedEnglishTranslation);
 
         Translation colorDeletedEnglishTranslation = new Translation();
         colorDeletedEnglishTranslation.setLanguage(english);
         var colorDeletedEnglish = this.wordDao.getWordsByKey("color.deleted");
         colorDeletedEnglishTranslation.setWord(colorDeletedEnglish);
         colorDeletedEnglishTranslation.setTranslation("Color Deleted");
+        this.translationDao.save(colorDeletedEnglishTranslation);
+
+
 
         Translation colorsListedEnglishTranslation = new Translation();
         colorsListedEnglishTranslation.setLanguage(english);
         var colorsListedEnglish = this.wordDao.getWordsByKey("colors.listed");
         colorsListedEnglishTranslation.setWord(colorsListedEnglish);
         colorsListedEnglishTranslation.setTranslation("Colors Listed");
+        this.translationDao.save(colorsListedEnglishTranslation);
+
 
         Translation colorFoundEnglishTranslation = new Translation();
         colorFoundEnglishTranslation.setLanguage(english);
         var colorFoundEnglish = this.wordDao.getWordsByKey("color.found");
         colorFoundEnglishTranslation.setWord(colorFoundEnglish);
         colorFoundEnglishTranslation.setTranslation("Color Found");
+        this.translationDao.save(colorFoundEnglishTranslation);
 
         Translation colorNotFoundEnglishTranslation = new Translation();
         colorNotFoundEnglishTranslation.setLanguage(english);
         var colorNotFoundEnglish = this.wordDao.getWordsByKey("color.not.found");
         colorNotFoundEnglishTranslation.setWord(colorNotFoundEnglish);
         colorNotFoundEnglishTranslation.setTranslation("Color Not Found");
+        this.translationDao.save(colorNotFoundEnglishTranslation);
 
         Translation colorExistsEnglishTranslation = new Translation();
         colorExistsEnglishTranslation.setLanguage(english);
         var colorExistsEnglish = this.wordDao.getWordsByKey("color.exists");
         colorExistsEnglishTranslation.setWord(colorExistsEnglish);
         colorExistsEnglishTranslation.setTranslation("Color Exists");
+        this.translationDao.save(colorExistsEnglishTranslation);
 
         //--------------------------Car--------------------------
 
@@ -127,42 +145,51 @@ public class TranslationDataLoader implements CommandLineRunner {
         var carAddedEnglish = this.wordDao.getWordsByKey("car.added");
         carAddedEnglishTranslation.setWord(carAddedEnglish);
         carAddedEnglishTranslation.setTranslation("Car Added");
+        this.translationDao.save(carAddedEnglishTranslation);
 
         Translation carUpdatedEnglishTranslation = new Translation();
         carUpdatedEnglishTranslation.setLanguage(english);
         var carUpdatedEnglish = this.wordDao.getWordsByKey("car.updated");
         carUpdatedEnglishTranslation.setWord(carUpdatedEnglish);
         carUpdatedEnglishTranslation.setTranslation("Car Updated");
+        this.translationDao.save(carUpdatedEnglishTranslation);
 
         Translation carDeletedEnglishTranslation = new Translation();
         carDeletedEnglishTranslation.setLanguage(english);
         var carDeletedEnglish = this.wordDao.getWordsByKey("car.deleted");
         carDeletedEnglishTranslation.setWord(carDeletedEnglish);
         carDeletedEnglishTranslation.setTranslation("Car Deleted");
+        this.translationDao.save(carDeletedEnglishTranslation);
 
         Translation carExistsEnglishTranslation = new Translation();
         carExistsEnglishTranslation.setLanguage(english);
         var carExistsEnglish = this.wordDao.getWordsByKey("car.exists");
         carExistsEnglishTranslation.setWord(carExistsEnglish);
         carExistsEnglishTranslation.setTranslation("Car Exists");
+        this.translationDao.save(carExistsEnglishTranslation);
 
         Translation carFoundEnglishTranslation = new Translation();
         carFoundEnglishTranslation.setLanguage(english);
         var carFoundEnglish = this.wordDao.getWordsByKey("car.found");
         carFoundEnglishTranslation.setWord(carFoundEnglish);
         carFoundEnglishTranslation.setTranslation("Car Found");
+        this.translationDao.save(carFoundEnglishTranslation);
 
         Translation carsListedEnglishTranslation = new Translation();
         carsListedEnglishTranslation.setLanguage(english);
         var carListedEnglish = this.wordDao.getWordsByKey("cars.listed");
         carsListedEnglishTranslation.setWord(carListedEnglish);
         carsListedEnglishTranslation.setTranslation("Cars Listed");
+        this.translationDao.save(carsListedEnglishTranslation);
 
         Translation carNotFoundEnglishTranslation = new Translation();
         carNotFoundEnglishTranslation.setLanguage(english);
         var carNotFoundEnglish = this.wordDao.getWordsByKey("car.not.found");
         carNotFoundEnglishTranslation.setWord(carNotFoundEnglish);
         carNotFoundEnglishTranslation.setTranslation("Car Not Found");
+        this.translationDao.save(carNotFoundEnglishTranslation);
+
+
 
 
 
@@ -185,54 +212,63 @@ public class TranslationDataLoader implements CommandLineRunner {
         var customerAddedEnglish = this.wordDao.getWordsByKey("customer.added");
         customerAddedEnglishTranslation.setWord(customerAddedEnglish);
         customerAddedEnglishTranslation.setTranslation("Customer Added");
+        this.translationDao.save(customerAddedEnglishTranslation);
 
         Translation customerUpdatedEnglishTranslation = new Translation();
         customerUpdatedEnglishTranslation.setLanguage(english);
         var customerUpdatedEnglish = this.wordDao.getWordsByKey("customer.updated");
         customerUpdatedEnglishTranslation.setWord(customerUpdatedEnglish);
         customerUpdatedEnglishTranslation.setTranslation("Customer Updated");
+        this.translationDao.save(customerUpdatedEnglishTranslation);
 
         Translation customerDeletedEnglishTranslation = new Translation();
         customerDeletedEnglishTranslation.setLanguage(english);
         var customerDeletedEnglish = this.wordDao.getWordsByKey("customer.deleted");
         customerDeletedEnglishTranslation.setWord(customerDeletedEnglish);
         customerDeletedEnglishTranslation.setTranslation("Customer Deleted");
+        this.translationDao.save(customerDeletedEnglishTranslation);
 
         Translation customersFoundEnglishTranslation = new Translation();
         customersFoundEnglishTranslation.setLanguage(english);
         var customersFoundEnglish = this.wordDao.getWordsByKey("customers.listed");
         customerDeletedEnglishTranslation.setWord(customersFoundEnglish);
         customerDeletedEnglishTranslation.setTranslation("Customers Listed");
+        this.translationDao.save(customersFoundEnglishTranslation);
 
         Translation customerFoundEnglishTranslation = new Translation();
         customersFoundEnglishTranslation.setLanguage(english);
         var customerFoundEnglish = this.wordDao.getWordsByKey("customer.found");
         customerDeletedEnglishTranslation.setWord(customersFoundEnglish);
         customerDeletedEnglishTranslation.setTranslation("Customers Found");
+        this.translationDao.save(customerFoundEnglishTranslation);
 
         Translation customerNotFoundEnglishTranslation = new Translation();
         customerNotFoundEnglishTranslation.setLanguage(english);
         var customerNotFoundEnglish = this.wordDao.getWordsByKey("customer.not.found");
         customerNotFoundEnglishTranslation.setWord(customerNotFoundEnglish);
         customerNotFoundEnglishTranslation.setTranslation("Customer Not Found");
+        this.translationDao.save(customerNotFoundEnglishTranslation);
 
         Translation customerAlreadyExistsEnglishTranslation = new Translation();
         customerAlreadyExistsEnglishTranslation.setLanguage(english);
         var customerAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.already.exists");
         customerAlreadyExistsEnglishTranslation.setWord(customerAlreadyExistsEnglish);
         customerAlreadyExistsEnglishTranslation.setTranslation("Customer already exists");
+        this.translationDao.save(customerAlreadyExistsEnglishTranslation);
 
         Translation customerNationalIdentityAlreadyExistsEnglishTranslation = new Translation();
         customerNationalIdentityAlreadyExistsEnglishTranslation.setLanguage(english);
         var  customerNationalIdentityAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.national.identity.already.exists");
         customerNationalIdentityAlreadyExistsEnglishTranslation.setWord(customerNationalIdentityAlreadyExistsEnglish);
         customerNationalIdentityAlreadyExistsEnglishTranslation.setTranslation("Customer already exists");
+        this.translationDao.save(customerNationalIdentityAlreadyExistsEnglishTranslation);
 
         Translation customerTaxNumberAlreadyExistsEnglishTranslation = new Translation();
         customerTaxNumberAlreadyExistsEnglishTranslation.setLanguage(english);
         var  customerTaxNumberAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.tax.number.already.exists");
         customerTaxNumberAlreadyExistsEnglishTranslation.setWord(customerTaxNumberAlreadyExistsEnglish);
         customerTaxNumberAlreadyExistsEnglishTranslation.setTranslation("Customer already exists");
+        this.translationDao.save(customerTaxNumberAlreadyExistsEnglishTranslation);
 
 
 

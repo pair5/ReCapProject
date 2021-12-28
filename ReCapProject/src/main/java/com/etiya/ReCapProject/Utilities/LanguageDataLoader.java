@@ -28,7 +28,10 @@ public class LanguageDataLoader implements CommandLineRunner {
     private void loadLanguageData(){
         Language language = new Language();
         language.setName("English");
+        this.languageDao.save(language);
+
         Language language1 = new Language();
         language1.setName("Turkish");
+        this.languageDao.save(language1);
     }
 }
