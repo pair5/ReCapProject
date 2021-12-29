@@ -24,7 +24,7 @@ public class LanguageSelector {
     }
 
    public static String languageSelector(String message){
-        var language= languageService.getByLanguageName("Turkish");
+        var language= languageService.getByLanguageName("English");
         if (language==null){
             language.getData().setName("English");
         }
