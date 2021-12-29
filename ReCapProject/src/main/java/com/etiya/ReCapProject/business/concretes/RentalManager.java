@@ -227,6 +227,15 @@ public class RentalManager implements RentalService {
         return new SuccessResult();
     }
 
+    private Result isCarReturned(int carId){
+        Rental result = this.rentalDao.getByCarId(carId);
+        if (result.getReturnDate() == null){
+            return new ErrorResult(Messages.RENTALDATEISNULL);
+        }
+        return new SuccessResult();
+
+    }
+
     private Result checkIsCityExists(int cityId){
         var existsResult = this.cityService.isCityIdExist(cityId);
         if (!existsResult.isSuccess()){

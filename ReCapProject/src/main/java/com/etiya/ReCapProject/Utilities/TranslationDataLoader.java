@@ -54,7 +54,28 @@ public class TranslationDataLoader implements CommandLineRunner {
             this.translationDao.save(validationErrorEnglishTranslation);
 
 
+            Translation loginSuccessEnglishTranslation = new Translation();
+            loginSuccessEnglishTranslation.setLanguage(english);
+            var loginSuccessEnglish = this.wordDao.getWordsByKey("login.success");
+            loginSuccessEnglishTranslation.setWord(loginSuccessEnglish);
+            loginSuccessEnglishTranslation.setTranslation("Login Success");
+            this.translationDao.save(loginSuccessEnglishTranslation);
 
+
+
+            Translation loginPasswordErrorEnglishTranslation = new Translation();
+            loginPasswordErrorEnglishTranslation.setLanguage(english);
+            var loginPasswordErrorEnglish = this.wordDao.getWordsByKey("login.password.error");
+            loginPasswordErrorEnglishTranslation.setWord(loginPasswordErrorEnglish);
+            loginPasswordErrorEnglishTranslation.setTranslation("Login password Error.");
+            this.translationDao.save(loginPasswordErrorEnglishTranslation);
+
+            Translation loginEmailErrorEnglishTranslation = new Translation();
+            loginEmailErrorEnglishTranslation.setLanguage(english);
+            var loginEmailErrorEnglish = this.wordDao.getWordsByKey("this.email.is.not.registered");
+            loginEmailErrorEnglishTranslation.setWord(loginEmailErrorEnglish);
+            loginEmailErrorEnglishTranslation.setTranslation("Login Email Error.");
+            this.translationDao.save(loginEmailErrorEnglishTranslation);
 
 
 
@@ -360,6 +381,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             var rentalFindexScoreErrorEnglish = this.wordDao.getWordsByKey("rental.findex.score.error");
             rentalFindexScoreErrorEnglishTranslation.setWord(rentalFindexScoreErrorEnglish);
             rentalFindexScoreErrorEnglishTranslation.setTranslation("Your Findex Score Is Not Enough To Rent This Car");
+            this.translationDao.save(rentalFindexScoreErrorEnglishTranslation);
 
             /*
             Translation rentalCarIsNotReturnedYetEnglishTranslation = new Translation();
@@ -616,12 +638,12 @@ public class TranslationDataLoader implements CommandLineRunner {
             }
 
 
-            Translation dataNotFoundTurkishTranslation = new Translation();
-            dataNotFoundTurkishTranslation.setLanguage(turkish);
-            var dataNotFoundTurkish = this.wordDao.getWordsByKey("data.not.found");
-            dataNotFoundTurkishTranslation.setWord(dataNotFoundTurkish);
-            dataNotFoundTurkishTranslation.setTranslation("Data Not Found");
-            this.translationDao.save(dataNotFoundTurkishTranslation);
+                    Translation dataNotFoundTurkishTranslation = new Translation();
+                    dataNotFoundTurkishTranslation.setLanguage(turkish);
+                    var dataNotFoundTurkish = this.wordDao.getWordsByKey("data.not.found");
+                    dataNotFoundTurkishTranslation.setWord(dataNotFoundTurkish);
+                    dataNotFoundTurkishTranslation.setTranslation("Data Not Found");
+                    this.translationDao.save(dataNotFoundTurkishTranslation);
 
             Translation customerAddedTurkishTranslation = new Translation();
             customerAddedTurkishTranslation.setLanguage(turkish);
@@ -1091,6 +1113,35 @@ public class TranslationDataLoader implements CommandLineRunner {
             validationErrorTurkishTranslation.setWord(validationErrorTurkish);
             validationErrorTurkishTranslation.setTranslation("Validation Error");
             this.translationDao.save(validationErrorTurkishTranslation);
+
+            Translation loginSuccessTurkishTranslation = new Translation();
+            loginSuccessTurkishTranslation.setLanguage(turkish);
+            var loginSuccessTurkish = this.wordDao.getWordsByKey("login.success");
+            loginSuccessTurkishTranslation.setWord(loginSuccessTurkish);
+            loginSuccessTurkishTranslation.setTranslation("Giriş başarılı");
+            this.translationDao.save(loginSuccessTurkishTranslation);
+
+            Translation loginEmailErrorTurkishTranslation = new Translation();
+            loginEmailErrorTurkishTranslation.setLanguage(turkish);
+            var loginEmailErrorTurkish = this.wordDao.getWordsByKey("this.email.is.not.registered");
+            loginEmailErrorTurkishTranslation.setWord(loginEmailErrorTurkish);
+            loginEmailErrorTurkishTranslation.setTranslation("Bu mail adresi sistemde kayıtlı değil");
+            this.translationDao.save(loginEmailErrorTurkishTranslation);
+
+            Translation loginPasswordErrorTurkishTranslation = new Translation();
+            loginPasswordErrorTurkishTranslation.setLanguage(turkish);
+            var loginPasswordErrorTurkish = this.wordDao.getWordsByKey("wrong.password");
+            loginPasswordErrorTurkishTranslation.setWord(loginPasswordErrorTurkish);
+            loginPasswordErrorTurkishTranslation.setTranslation("Şifre Hatalı");
+            this.translationDao.save(loginPasswordErrorTurkishTranslation);
+
+            Translation rentalFindexScoreErrorTurkishTranslation = new Translation();
+            rentalFindexScoreErrorTurkishTranslation.setLanguage(english);
+            var rentalFindexScoreErrorTurkish = this.wordDao.getWordsByKey("rental.findex.score.error");
+            rentalFindexScoreErrorTurkishTranslation.setWord(rentalFindexScoreErrorTurkish);
+            rentalFindexScoreErrorTurkishTranslation.setTranslation("Findex skorunuz aracı kiralamak için yeterli değil");
+            this.translationDao.save(rentalFindexScoreErrorTurkishTranslation);
+
         }
     }
 }

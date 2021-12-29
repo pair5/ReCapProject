@@ -249,10 +249,10 @@ public class DataLoader implements CommandLineRunner {
             this.wordDao.save(carImageNotFound);
 
             Word loginEmailError=new Word();
-            loginEmailError.setKey("login.email.error");
+            loginEmailError.setKey("this.email.is.not.registered");
             this.wordDao.save(loginEmailError);
             Word loginPasswordError=new Word();
-            loginPasswordError.setKey("login.password.error");
+            loginPasswordError.setKey("wrong.password");
             this.wordDao.save(loginPasswordError);
             Word loginSuccess=new Word();
             loginSuccess.setKey("login.success");

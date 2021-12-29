@@ -36,6 +36,7 @@ public class Rental {
     private Customer customer;
 
     @JsonIgnore
+    @Transient
     @OneToOne
     private Invoice invoice;
 
@@ -50,6 +51,7 @@ public class Rental {
 
     @Column(name = "returned_kilometer")
     private int returnedKilometer;
+
 
     @OneToMany(mappedBy = "rental")
     private List<AdditionalRentalItem>additionalRentalItems;

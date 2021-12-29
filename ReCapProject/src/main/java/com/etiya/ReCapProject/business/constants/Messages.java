@@ -83,7 +83,9 @@ public class Messages {
 
 	public static final String LOGINEMAILERROR = "this.email.is.not.registered";
 	public static final String LOGINPASSWORDERROR = "wrong.password";
-	public static final String LOGINSUCCESS = "login.successful";
+	public static final String LOGINSUCCESS = "login.success";
+	public static final String LOGINFAILED = "login.failed";
+
 
 	public static final String CREDITCARDADD = "credit.card.add";
 	public static final String CREDITCARDUPDATE = "credit.card.updated";
