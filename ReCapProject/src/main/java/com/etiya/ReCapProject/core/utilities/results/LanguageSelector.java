@@ -3,9 +3,6 @@ package com.etiya.ReCapProject.core.utilities.results;
 import com.etiya.ReCapProject.business.abstracts.LanguageService;
 import com.etiya.ReCapProject.business.abstracts.TranslationService;
 import com.etiya.ReCapProject.business.abstracts.WordService;
-import com.etiya.ReCapProject.business.concretes.WordManager;
-import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperManager;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -28,6 +25,9 @@ public class LanguageSelector {
 
    public static String languageSelector(String message){
         var language= languageService.getByLanguageName("Turkish");
+        if (language==null){
+            language.getData().setName("English");
+        }
        var word= wordService.getByKey(message);
        var translation= translationService.getTranslationByLanguage_IdAndWord_Id(language.getData().getId(),word.getData().getId());
        return translation.getTranslation();
