@@ -651,6 +651,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             customerFoundTurkishTranslation.setTranslation("Müşteri bulundu.");
             this.translationDao.save(customerFoundTurkishTranslation);
 
+            Translation customerListedTurkishTranslation = new Translation();
+            customerListedTurkishTranslation.setLanguage(turkish);
+            var customersListedTurkish = this.wordDao.getWordsByKey("customers.listed");
+            customerListedTurkishTranslation.setWord(customersListedTurkish);
+            customerListedTurkishTranslation.setTranslation("Müşteriler Listelendi.");
+            this.translationDao.save(customerListedTurkishTranslation);
+
             Translation customerNotFoundTurkishTranslation = new Translation();
             customerNotFoundTurkishTranslation.setLanguage(turkish);
             var customerNotFoundTurkish = this.wordDao.getWordsByKey("customer.not.found");

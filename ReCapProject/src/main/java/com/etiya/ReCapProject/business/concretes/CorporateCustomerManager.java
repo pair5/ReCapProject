@@ -104,7 +104,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	private Result checkIsCorporateCustomerEmailExists(String email){
 		var result = this.userService.isUserEmailExists(email);
-		if(!result.isSuccess()){
+		if(!result){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();		

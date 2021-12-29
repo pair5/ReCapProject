@@ -96,7 +96,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	private Result checkIsIndividualCustomerEmailExists(String email){
 		var result = this.userService.isUserEmailExists(email);
-		if(!result.isSuccess()){
+		if(!result){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();
