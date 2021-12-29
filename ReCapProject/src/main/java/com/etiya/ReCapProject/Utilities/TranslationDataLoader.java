@@ -26,7 +26,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        loadTranslationData();
+      loadTranslationData();
     }
 
     private void loadTranslationData(){
@@ -52,6 +52,9 @@ public class TranslationDataLoader implements CommandLineRunner {
             validationErrorEnglishTranslation.setWord(validationErrorEnglish);
             validationErrorEnglishTranslation.setTranslation("Validation Error");
             this.translationDao.save(validationErrorEnglishTranslation);
+
+
+
 
 
 
@@ -153,7 +156,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             colorExistsEnglishTranslation.setLanguage(english);
             var colorExistsEnglish = this.wordDao.getWordsByKey("color.exists");
             colorExistsEnglishTranslation.setWord(colorExistsEnglish);
-            colorExistsEnglishTranslation.setTranslation("Color Already Exists");
+            colorExistsEnglishTranslation.setTranslation("Color Exists");
             this.translationDao.save(colorExistsEnglishTranslation);
 
             //--------------------------Car--------------------------
@@ -207,6 +210,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             carNotFoundEnglishTranslation.setWord(carNotFoundEnglish);
             carNotFoundEnglishTranslation.setTranslation("Car Not Found");
             this.translationDao.save(carNotFoundEnglishTranslation);
+
+            Translation carFoundTurkishTranslation = new Translation();
+            carFoundTurkishTranslation.setLanguage(english);
+            var carFoundTurkish = this.wordDao.getWordsByKey("car.found");
+            carFoundTurkishTranslation.setWord(carFoundTurkish);
+            carFoundTurkishTranslation.setTranslation("Araba bulundu");
+            this.translationDao.save(carFoundTurkishTranslation);
 
             Translation getCarByBrandIdEnglishTranslation = new Translation();
             getCarByBrandIdEnglishTranslation.setLanguage(english);
@@ -741,7 +751,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation colorAlreadyExistsTurkishTranslation = new Translation();
             colorAlreadyExistsTurkishTranslation.setLanguage(turkish);
-            var colorAlreadyExistsTurkish = this.wordDao.getWordsByKey("color.already.exists");
+            var colorAlreadyExistsTurkish = this.wordDao.getWordsByKey("color.exists");
             colorAlreadyExistsTurkishTranslation.setWord(colorAlreadyExistsTurkish);
             colorAlreadyExistsTurkishTranslation.setTranslation("Renk zaten mevcut.");
             this.translationDao.save(colorAlreadyExistsTurkishTranslation);
@@ -1065,8 +1075,15 @@ public class TranslationDataLoader implements CommandLineRunner {
             getCarByCityIdTurkishTranslation.setLanguage(turkish);
             var getCarByCityIdTurkish = this.wordDao.getWordsByKey("get.car.by.city.id");
             getCarByCityIdTurkishTranslation.setWord(getCarByCityIdTurkish);
-            getCarByCityIdTurkishTranslation.setTranslation("Renk ID'sine göre araç getirildi.");
+            getCarByCityIdTurkishTranslation.setTranslation("Şehir ID'sine göre araç getirildi.");
             this.translationDao.save(getCarByCityIdTurkishTranslation);
+
+            Translation validationErrorTurkishTranslation = new Translation();
+            validationErrorTurkishTranslation.setLanguage(turkish);
+            var validationErrorTurkish = this.wordDao.getWordsByKey("validation.error");
+            validationErrorTurkishTranslation.setWord(validationErrorTurkish);
+            validationErrorTurkishTranslation.setTranslation("Validation Error");
+            this.translationDao.save(validationErrorTurkishTranslation);
         }
     }
 }

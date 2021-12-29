@@ -27,7 +27,8 @@ public class DataLoader implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-            loadWordData();
+         loadWordData();
+
 
     }
 
@@ -41,10 +42,8 @@ public class DataLoader implements CommandLineRunner {
             Word dataNotFound = new Word();
             dataNotFound.setKey("data.not.found");
             this.wordDao.save(dataNotFound);
-            
-            
-            
-            
+
+
             Word customerAdded = new Word();
             customerAdded.setKey("customer.added");
             this.wordDao.save(customerAdded);
@@ -167,7 +166,7 @@ public class DataLoader implements CommandLineRunner {
             colorGet.setKey("color.found");
             this.wordDao.save(colorGet);
             Word colorExists = new Word();
-            colorExists.setKey("color.already.exists");
+            colorExists.setKey("color.exists");
             this.wordDao.save(colorExists);
             Word colorNotFound=new Word();
             colorNotFound.setKey("color.not.found");

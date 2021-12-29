@@ -10,6 +10,7 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,17 +24,17 @@ public class CitiesController {
     }
 
     @PostMapping("/add")
-    public Result add(CreateCityRequest createCityRequest){
+    public Result add(@RequestBody @Valid CreateCityRequest createCityRequest){
     return this.cityService.add(createCityRequest);
     }
 
     @PutMapping("/update")
-    public Result update(UpdateCityRequest updateCityRequest){
+    public Result update(@RequestBody @Valid UpdateCityRequest updateCityRequest){
 return this.cityService.update(updateCityRequest);
     }
 
     @DeleteMapping("/delete")
-    public Result delete (DeleteCityRequest deleteCityRequest){
+    public Result delete (@RequestBody @Valid DeleteCityRequest deleteCityRequest){
     return this.cityService.delete(deleteCityRequest);
     }
 

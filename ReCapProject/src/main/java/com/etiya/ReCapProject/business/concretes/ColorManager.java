@@ -96,6 +96,7 @@ public class ColorManager implements ColorService {
 	private Result existsColorName(String colorName) {
 		var result = this.colorDao.existsByColorName(colorName);
 		if (result) {
+
 			return new ErrorResult(Messages.COLORNAMEERROR);
 		}
 		return new SuccessResult();

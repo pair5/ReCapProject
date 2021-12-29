@@ -123,14 +123,14 @@ public class CarManager implements CarService {
     @Override
     public DataResult<List<CarDetail>> getCarWithBrandAndColorDetails() {
 
-        return new SuccessDataResult<List<CarDetail>>(this.carDao.CarWithBrandAndColorDetails());
+        return new SuccessDataResult<List<CarDetail>>(this.carDao.CarWithBrandAndColorDetails(),Messages.CARLIST);
     }
 
     @Override
     public DataResult<List<CarBrandDetail>> getByBrandId(int brandId) {
         Result existResult = brandService.existsBrandId(brandId);
         if (!existResult.isSuccess()) {
-            return new ErrorDataResult(Messages.BRANDNOTFOUND);
+            return new ErrorDataResult(Messages.BRANDNOTFOUND,null);
         }
         List<Car> cars = this.carDao.getByBrand_Id(brandId);
         List<CarBrandDetail> result = cars.stream()
@@ -142,7 +142,7 @@ public class CarManager implements CarService {
     public DataResult<List<CarColorDetail>> getByColorId(int colorId) {
         Result existColor = colorService.isCheckColorExists(colorId);
         if (!existColor.isSuccess()) {
-            return new ErrorDataResult(Messages.COLORNOTFOUND);
+            return new ErrorDataResult(Messages.COLORNOTFOUND,null);
         }
         List<Car> cars = this.carDao.getByColor_Id(colorId);
         if (cars == null) {

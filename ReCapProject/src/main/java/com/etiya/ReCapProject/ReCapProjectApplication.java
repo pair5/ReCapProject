@@ -82,7 +82,6 @@ public class ReCapProjectApplication {
     @ExceptionHandler(NoSuchElementException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleNoSuchElementException(NoSuchElementException exception){
-		
 		ErrorResult error = new ErrorResult(Messages.DATANOTFOUND);
 		return error;
 	}
