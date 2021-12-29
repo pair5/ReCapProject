@@ -19,6 +19,7 @@ import com.etiya.ReCapProject.business.requests.colorRequests.UpdateColorRequest
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 
+import javax.validation.Valid;
 
 
 @RestController
@@ -37,17 +38,17 @@ public class ColorsController {
 		return this.colorService.getAll();
 	}
 	@DeleteMapping("delete")
-	public Result delete(@RequestBody DeleteColorRequest deleteColorRequest) {
+	public Result delete(@RequestBody @Valid DeleteColorRequest deleteColorRequest) {
 		return this.colorService.delete(deleteColorRequest);
 	}
 	
 	@PutMapping("update")
-	public Result update(@RequestBody UpdateColorRequest updateColorRequest){
+	public Result update(@RequestBody @Valid UpdateColorRequest updateColorRequest){
 		return this.colorService.update(updateColorRequest);
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody CreateColorRequest createColorRequest){
+	public Result add(@RequestBody @Valid CreateColorRequest createColorRequest){
 		return this.colorService.add(createColorRequest);
 	}
 	

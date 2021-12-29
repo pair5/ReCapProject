@@ -19,6 +19,8 @@ import com.etiya.ReCapProject.business.requests.brandRequests.UpdateBrandRequest
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/brands")
 public class BrandsController {
@@ -35,15 +37,15 @@ public class BrandsController {
 		return this.brandService.getAll();
 	}
 	@PostMapping("add")
-	public Result add(@RequestBody CreateBrandRequest createBrandRequest) {
+	public Result add(@RequestBody @Valid CreateBrandRequest createBrandRequest) {
 		return this.brandService.add(createBrandRequest);
 	}
 	@PutMapping("update")
-	public Result update(@RequestBody UpdateBrandRequest updateBrandRequest) {
+	public Result update(@RequestBody @Valid UpdateBrandRequest updateBrandRequest) {
 		return this.brandService.update(updateBrandRequest);
 	}
 	@DeleteMapping("delete")
-	public Result delete(@RequestBody DeleteBrandRequest deleteBrandRequest) {
+	public Result delete(@RequestBody @Valid DeleteBrandRequest deleteBrandRequest) {
 		return this.brandService.delete(deleteBrandRequest);
 	}
 	@GetMapping("getById")

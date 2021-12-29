@@ -64,7 +64,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result update(UpdateColorRequest updateColorRequest) {
-		Result result = BusinessRules.run(isCheckColorExists(updateColorRequest.getId()));
+		Result result = BusinessRules.run(isCheckColorExists(updateColorRequest.getId()),existsColorName(updateColorRequest.getColorName()));
 		if (result != null) {
 			return result;
 		}

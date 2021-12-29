@@ -26,7 +26,7 @@ public class Messages {
 	public static final String CITYBYID = "City is brought by CityId";
 	public static final String CITYALREADYEXISTS = "city.already.exists";
 
-	public static final String COLORADD = "color.added.";
+	public static final String COLORADD = "color.added";
 	public static final String COLORUPDATE = "color.updated";
 	public static final String COLORDELETE = "color.deleted";
 	public static final String COLORLIST = "color.listed";
