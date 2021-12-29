@@ -69,7 +69,7 @@ public class ReCapProjectApplication {
         for (FieldError fieldError : argumentNotValidException.getBindingResult().getFieldErrors()) {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>("validator errors",validationErrors);
+        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>(Messages.VALIDATIONERROR,validationErrors);
         return errorDataResult;
     }
 
@@ -87,6 +87,7 @@ public class ReCapProjectApplication {
 		return error;
 	}
 
+/*
 	@ExceptionHandler(SerializationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleSerializationException(SerializationException serializationException){
@@ -94,6 +95,6 @@ public class ReCapProjectApplication {
 		return error;
 	}
 
-
+*/
 	
 }

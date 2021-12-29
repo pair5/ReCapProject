@@ -21,9 +21,6 @@ public class Result {
 	}
 
 	public String getMessage() {
-		if (get(this.message) == null){
-			return this.message;
-		}
 		return get(this.message);
 	}
 	

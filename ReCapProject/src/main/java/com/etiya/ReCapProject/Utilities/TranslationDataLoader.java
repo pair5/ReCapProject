@@ -46,6 +46,15 @@ public class TranslationDataLoader implements CommandLineRunner {
 
 
 
+            Translation validationErrorEnglishTranslation = new Translation();
+            validationErrorEnglishTranslation.setLanguage(english);
+            var validationErrorEnglish = this.wordDao.getWordsByKey("validation.error");
+            validationErrorEnglishTranslation.setWord(validationErrorEnglish);
+            validationErrorEnglishTranslation.setTranslation("Validation Error");
+            this.translationDao.save(validationErrorEnglishTranslation);
+
+
+
             //-----Brand-------
             Translation brandAddedEnglishTranslation = new Translation();
             brandAddedEnglishTranslation.setLanguage(english);
