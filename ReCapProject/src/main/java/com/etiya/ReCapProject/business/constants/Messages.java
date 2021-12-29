@@ -14,8 +14,11 @@ public class Messages {
 	public static final String CARUPDATE = "car.updated";
 	public static final String CARDELETE = "car.deleted";
 	public static final String CARLIST = "cars.listed";
-	public static final String CARGET = "car.found";
+	public static final String CARFOUND = "car.found";
 	public static final String CARNOTFOUND="car.not.found";
+	public static final String GETCARBYBRANDID = "get.car.by.brand.id";
+	public static final String GETCARBYCOLORID = "get.car.by.color.id";
+	public static final String GETCARBYCITYID = "get.car.by.city.id";
 
 	public static final String CITYADD = "city.added";
 	public static final String CITYUPDATE = "city.updated";

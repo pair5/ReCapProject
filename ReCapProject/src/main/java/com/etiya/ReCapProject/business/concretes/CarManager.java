@@ -72,7 +72,7 @@ public class CarManager implements CarService {
 
         Car car = modelMapperService.forRequest().map(createCarRequest, Car.class);
         this.carDao.save(car);
-        return new SuccessResult("car.add");
+        return new SuccessResult(Messages.CARADD);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class CarManager implements CarService {
         }
         Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
         this.carDao.save(car);
-        return new SuccessResult("car.update");
+        return new SuccessResult(Messages.CARUPDATE);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class CarManager implements CarService {
         }
         Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
         this.carDao.delete(car);
-        return new SuccessResult("car.delete");
+        return new SuccessResult(Messages.CARDELETE);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class CarManager implements CarService {
 
         var carResult = this.carDao.existsById(carId);
         if (!carResult) {
-            return new ErrorDataResult(Messages.CARNOTFOUND);
+            return new ErrorDataResult<CarSearchListDto>(Messages.CARNOTFOUND,null);
         }
         var car = this.carDao.getById(carId);
         try {
@@ -117,7 +117,7 @@ public class CarManager implements CarService {
             return new ErrorDataResult<CarSearchListDto>(null);
         }
         CarSearchListDto response = modelMapperService.forDto().map(car, CarSearchListDto.class);
-        return new SuccessDataResult<CarSearchListDto>(response, "Id'ye göre araba getirildi.");
+        return new SuccessDataResult<CarSearchListDto>(response, Messages.CARFOUND);
     }
 
     @Override

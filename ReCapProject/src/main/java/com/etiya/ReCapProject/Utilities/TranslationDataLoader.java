@@ -189,6 +189,27 @@ public class TranslationDataLoader implements CommandLineRunner {
             carNotFoundEnglishTranslation.setTranslation("Car Not Found");
             this.translationDao.save(carNotFoundEnglishTranslation);
 
+            Translation getCarByBrandIdEnglishTranslation = new Translation();
+            getCarByBrandIdEnglishTranslation.setLanguage(english);
+            var getCarByBrandIdEnglish = this.wordDao.getWordsByKey("get.car.by.brand.id");
+            getCarByBrandIdEnglishTranslation.setWord(getCarByBrandIdEnglish);
+            getCarByBrandIdEnglishTranslation.setTranslation("Car has been brought by its brand ID.");
+            this.translationDao.save(getCarByBrandIdEnglishTranslation);
+
+            Translation getCarByColorIdEnglishTranslation = new Translation();
+            getCarByColorIdEnglishTranslation.setLanguage(english);
+            var getCarByColorIdEnglish = this.wordDao.getWordsByKey("get.car.by.color.id");
+            getCarByColorIdEnglishTranslation.setWord(getCarByColorIdEnglish);
+            getCarByColorIdEnglishTranslation.setTranslation("Car has been brought by its color ID.");
+            this.translationDao.save(getCarByColorIdEnglishTranslation);
+
+            Translation getCarByCityIdEnglishTranslation = new Translation();
+            getCarByCityIdEnglishTranslation.setLanguage(english);
+            var getCarByCityIdEnglish = this.wordDao.getWordsByKey("get.car.by.city.id");
+            getCarByCityIdEnglishTranslation.setWord(getCarByCityIdEnglish);
+            getCarByCityIdEnglishTranslation.setTranslation("Car has been brought by its city ID.");
+            this.translationDao.save(getCarByCityIdEnglishTranslation);
+
 
             //-----------------CITY----------------------------
 
@@ -995,6 +1016,27 @@ public class TranslationDataLoader implements CommandLineRunner {
             cityExistsTurkishTranslation.setWord(cityExistsTurkish);
             cityExistsTurkishTranslation.setTranslation("Şehir zaten kayıtlı.");
             this.translationDao.save(cityExistsTurkishTranslation);
+
+            Translation getCarByBrandIdTurkishTranslation = new Translation();
+            getCarByBrandIdTurkishTranslation.setLanguage(turkish);
+            var getCarByBrandIdTurkish = this.wordDao.getWordsByKey("get.car.by.brand.id");
+            getCarByBrandIdTurkishTranslation.setWord(getCarByBrandIdTurkish);
+            getCarByBrandIdTurkishTranslation.setTranslation("Marka ID'sine göre araç getirildi.");
+            this.translationDao.save(getCarByBrandIdTurkishTranslation);
+
+            Translation getCarByColorIdTurkishTranslation = new Translation();
+            getCarByColorIdTurkishTranslation.setLanguage(turkish);
+            var getCarByColorIdTurkish = this.wordDao.getWordsByKey("get.car.by.color.id");
+            getCarByColorIdTurkishTranslation.setWord(getCarByColorIdTurkish);
+            getCarByColorIdTurkishTranslation.setTranslation("Renk ID'sine göre araç getirildi.");
+            this.translationDao.save(getCarByColorIdTurkishTranslation);
+
+            Translation getCarByCityIdTurkishTranslation = new Translation();
+            getCarByCityIdTurkishTranslation.setLanguage(turkish);
+            var getCarByCityIdTurkish = this.wordDao.getWordsByKey("get.car.by.city.id");
+            getCarByCityIdTurkishTranslation.setWord(getCarByCityIdTurkish);
+            getCarByCityIdTurkishTranslation.setTranslation("Renk ID'sine göre araç getirildi.");
+            this.translationDao.save(getCarByCityIdTurkishTranslation);
         }
     }
 }
