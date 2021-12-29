@@ -172,7 +172,7 @@ public class RentalManager implements RentalService {
     public DataResult<Rental> getByCar_Id(int carId) {
         var rental = this.rentalDao.getByCarId(carId);
         if (rental == null) {
-            return new ErrorDataResult(Messages.CARNOTFOUND);
+            return new ErrorDataResult(Messages.CARNOTFOUND,null);
         }
         return new SuccessDataResult<Rental>(rental);
     }

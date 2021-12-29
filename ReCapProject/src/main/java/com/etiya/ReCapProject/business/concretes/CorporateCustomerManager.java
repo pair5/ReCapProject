@@ -93,7 +93,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 		var existsIndividualCustomer = this.corporateCustomerDao.existsById(corporateCustomerId);
 		if (!existsIndividualCustomer) {
-			return new ErrorDataResult(Messages.CUSTOMERNOTFOUND);
+			return new ErrorDataResult(Messages.CUSTOMERNOTFOUND,null);
 		}
 		CorporateCustomer corporateCustomer = this.corporateCustomerDao.getById(corporateCustomerId);
 		CorporateCustomerSearchListDto corporateCustomerSearchListDto = modelMapperService.forDto()

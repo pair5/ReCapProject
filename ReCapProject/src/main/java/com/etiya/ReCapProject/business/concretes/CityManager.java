@@ -74,7 +74,7 @@ public class CityManager implements CityService {
     public DataResult<CitySearchListDto> getById(int id) {
         var existResult = this.cityDao.existsById(id);
         if (!existResult){
-            return new ErrorDataResult(Messages.CITYNOTFOUND);
+            return new ErrorDataResult<CitySearchListDto>(Messages.CITYNOTFOUND, null);
         }
         var result = this.cityDao.getById(id);
         CitySearchListDto response = modelMapperService.forDto().map(result, CitySearchListDto.class);
