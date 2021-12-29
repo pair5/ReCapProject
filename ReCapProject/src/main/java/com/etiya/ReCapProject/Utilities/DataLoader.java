@@ -33,6 +33,18 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadWordData(){
         if (this.wordDao.count()==0){
+
+            Word nameValidationError = new Word();
+            nameValidationError.setKey("validation.error");
+            this.wordDao.save(nameValidationError);
+
+            Word dataNotFound = new Word();
+            dataNotFound.setKey("data.not.found");
+            this.wordDao.save(dataNotFound);
+            
+            
+            
+            
             Word customerAdded = new Word();
             customerAdded.setKey("customer.added");
             this.wordDao.save(customerAdded);

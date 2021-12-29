@@ -1,7 +1,11 @@
 package com.etiya.ReCapProject.business.constants;
 
 public class Messages {
-	
+	public static final String DATANOTFOUND = "data.not.found";
+
+	public static final String VALIDATIONERROR ="validation.error";
+
+
 	public static final String BRANDADD = "brand.added";
 	public static final String BRANDUPDATE = "brand.updated";
 	public static final String BRANDDELETE = "brand.deleted";

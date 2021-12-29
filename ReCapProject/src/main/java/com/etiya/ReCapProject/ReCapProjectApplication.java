@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePos;
 import org.hibernate.type.SerializationException;
@@ -68,7 +69,7 @@ public class ReCapProjectApplication {
         for (FieldError fieldError : argumentNotValidException.getBindingResult().getFieldErrors()) {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>("validator errors",validationErrors);
+        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>(Messages.VALIDATIONERROR,validationErrors);
         return errorDataResult;
     }
 
@@ -82,17 +83,18 @@ public class ReCapProjectApplication {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleNoSuchElementException(NoSuchElementException exception){
 		
-		ErrorResult error = new ErrorResult("Data not found!");
+		ErrorResult error = new ErrorResult(Messages.DATANOTFOUND);
 		return error;
 	}
 
+/*
 	@ExceptionHandler(SerializationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleSerializationException(SerializationException serializationException){
-		ErrorResult error = new ErrorResult("Format Error");
+		ErrorResult error = new ErrorResult(Messages.RENTALDATEERROR);
 		return error;
 	}
 
-
+*/
 	
 }

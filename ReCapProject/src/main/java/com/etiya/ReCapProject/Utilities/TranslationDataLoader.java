@@ -36,6 +36,25 @@ public class TranslationDataLoader implements CommandLineRunner {
             if (english == null){
                 english = languageDao.getLanguagesByName("English");
             }
+
+            Translation dataNotFoundTranslation = new Translation();
+            dataNotFoundTranslation.setLanguage(english);
+            var dataNotFoundEnglish = this.wordDao.getWordsByKey("data.not.found");
+            dataNotFoundTranslation.setWord(dataNotFoundEnglish);
+            dataNotFoundTranslation.setTranslation("Data Not Found");
+            this.translationDao.save(dataNotFoundTranslation);
+
+
+
+            Translation validationErrorEnglishTranslation = new Translation();
+            validationErrorEnglishTranslation.setLanguage(english);
+            var validationErrorEnglish = this.wordDao.getWordsByKey("validation.error");
+            validationErrorEnglishTranslation.setWord(validationErrorEnglish);
+            validationErrorEnglishTranslation.setTranslation("Validation Error");
+            this.translationDao.save(validationErrorEnglishTranslation);
+
+
+
             //-----Brand-------
             Translation brandAddedEnglishTranslation = new Translation();
             brandAddedEnglishTranslation.setLanguage(english);
@@ -209,6 +228,9 @@ public class TranslationDataLoader implements CommandLineRunner {
             getCarByCityIdEnglishTranslation.setWord(getCarByCityIdEnglish);
             getCarByCityIdEnglishTranslation.setTranslation("Car has been brought by its city ID.");
             this.translationDao.save(getCarByCityIdEnglishTranslation);
+
+
+
 
 
             //-----------------CITY----------------------------
@@ -582,6 +604,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             if (turkish == null){
                 turkish = languageDao.getLanguagesByName("English");
             }
+
+
+            Translation dataNotFoundTurkishTranslation = new Translation();
+            dataNotFoundTurkishTranslation.setLanguage(turkish);
+            var dataNotFoundTurkish = this.wordDao.getWordsByKey("data.not.found");
+            dataNotFoundTurkishTranslation.setWord(dataNotFoundTurkish);
+            dataNotFoundTurkishTranslation.setTranslation("Data Not Found");
+            this.translationDao.save(dataNotFoundTurkishTranslation);
 
             Translation customerAddedTurkishTranslation = new Translation();
             customerAddedTurkishTranslation.setLanguage(turkish);
