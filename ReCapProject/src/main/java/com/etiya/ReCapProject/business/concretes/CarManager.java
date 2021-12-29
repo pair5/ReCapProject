@@ -96,6 +96,7 @@ public class CarManager implements CarService {
         if (result != null) {
             return result;
         }
+
         Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
         this.carDao.delete(car);
         return new SuccessResult(Messages.CARDELETE);
@@ -140,7 +141,7 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<List<CarColorDetail>> getByColorId(int colorId) {
-        Result existColor = colorService.isCheckColorExists(colorId);
+        Result existColor = colorService.checkIfColorIdExists(colorId);
         if (!existColor.isSuccess()) {
             return new ErrorDataResult(Messages.COLORNOTFOUND,null);
         }
@@ -173,7 +174,7 @@ public class CarManager implements CarService {
     }
 
     private Result isColorIdExists(int colorId) {
-        var result = this.colorService.isCheckColorExists(colorId);
+        var result = this.colorService.checkIfColorIdExists(colorId);
         if (!result.isSuccess()) {
             return new ErrorResult(Messages.COLORNOTFOUND);
         }
@@ -182,7 +183,7 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<List<CarSearchListDto>> getAvailableCars() {
-        var result = this.carDao.getAllWithoutMaintenanceOfCar();
+        var result = this.carDao.getAllCarsWhichAreNotInMaintenance();
         return new SuccessDataResult<List<CarSearchListDto>>(result,Messages.CARLIST);
     }
 

@@ -114,6 +114,9 @@ public class DataLoader implements CommandLineRunner {
             Word carNotFound = new Word();
             carNotFound.setKey("car.not.found");
             this.wordDao.save(carNotFound);
+            Word carNotReturned = new Word();
+            carNotReturned.setKey("car.not.returned");
+            this.wordDao.save(carNotReturned);
             Word getCarByBrandId = new Word();
             getCarByBrandId.setKey("get.car.by.brand.id");
             this.wordDao.save(getCarByBrandId);

@@ -42,7 +42,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result add(CreateColorRequest createColorRequest) {
-		Result result = BusinessRules.run(existsColorName(createColorRequest.getColorName()));
+		Result result = BusinessRules.run(checkIfColorNameExists(createColorRequest.getColorName()));
 		if (result != null) {
 			return result;
 		}
@@ -53,7 +53,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result delete(DeleteColorRequest deleteColorRequest) {
-		Result result = BusinessRules.run(isCheckColorExists(deleteColorRequest.getId()));
+		Result result = BusinessRules.run(checkIfColorIdExists(deleteColorRequest.getId()));
 		if (result != null) {
 			return result;
 		}
@@ -64,7 +64,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result update(UpdateColorRequest updateColorRequest) {
-		Result result = BusinessRules.run(isCheckColorExists(updateColorRequest.getId()),existsColorName(updateColorRequest.getColorName()));
+		Result result = BusinessRules.run(checkIfColorIdExists(updateColorRequest.getId()), checkIfColorNameExists(updateColorRequest.getColorName()));
 		if (result != null) {
 			return result;
 		}
@@ -85,7 +85,7 @@ public class ColorManager implements ColorService {
 	}
 	
 	@Override
-	public Result isCheckColorExists(int colorId) {
+	public Result checkIfColorIdExists(int colorId) {
 		var result = this.colorDao.existsById(colorId);
 		if (!result) {
 			return new ErrorResult(Messages.COLORNOTFOUND);
@@ -93,7 +93,7 @@ public class ColorManager implements ColorService {
 		return new SuccessResult();
 	}
 
-	private Result existsColorName(String colorName) {
+	private Result checkIfColorNameExists(String colorName) {
 		var result = this.colorDao.existsByColorName(colorName);
 		if (result) {
 

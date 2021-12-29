@@ -57,16 +57,16 @@ public class Messages {
 	public static final String RENTALADD = "rental.added";
 	public static final String RENTALUPDATE = "rental.updated";
 	public static final String RENTALDELETE = "rental.deleted";
-	public static final String RENTALLIST = "rental.listed";
+	public static final String RENTALLIST = "rentals.listed";
 	public static final String RENTALDATEERROR = "rental.date.error";
 	public static final String RENTALDATESUCCESS = "rental.date.success";
 	public static final String RENTALFINDEXSCOREERROR = "rental.findex.score.error";
-	public static final String RENTALMAINTENANCEERROR = "rental.maintenance.error";
+	public static final String RENTALMAINTENANCEERROR = "rented.car.is.on.maintenance";
 	public static final String RENTALFOUND = "rental.found";
 	public static final String RENTALNOTFOUND = "rental.not.found";
 	public static final String INSUFFICIENTBALANCE = "rental.balance.insufficient";
 	public static final String SUFFICIENTBALANCE = "rental.balance.insufficient";
-	public static final String RENTALDATEISNULL = "car.not.returned";
+	public static final String RENTALDATEISNULL = "rental.car.is.not.returned.yet";
 
 
 

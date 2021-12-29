@@ -232,12 +232,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             carNotFoundEnglishTranslation.setTranslation("Car Not Found");
             this.translationDao.save(carNotFoundEnglishTranslation);
 
-            Translation carFoundTurkishTranslation = new Translation();
-            carFoundTurkishTranslation.setLanguage(english);
-            var carFoundTurkish = this.wordDao.getWordsByKey("car.found");
-            carFoundTurkishTranslation.setWord(carFoundTurkish);
-            carFoundTurkishTranslation.setTranslation("Araba bulundu");
-            this.translationDao.save(carFoundTurkishTranslation);
+            Translation carNotReturnedEnglishTranslation = new Translation();
+            carNotReturnedEnglishTranslation.setLanguage(english);
+            var carNotReturnedEnglish = this.wordDao.getWordsByKey("car.not.returned");
+            carNotReturnedEnglishTranslation.setWord(carNotReturnedEnglish);
+            carNotReturnedEnglishTranslation.setTranslation("Car has not returned yet.");
+            this.translationDao.save(carNotReturnedEnglishTranslation);
+
+
 
             Translation getCarByBrandIdEnglishTranslation = new Translation();
             getCarByBrandIdEnglishTranslation.setLanguage(english);
@@ -366,7 +368,6 @@ public class TranslationDataLoader implements CommandLineRunner {
             var rentalNotFoundEnglish = this.wordDao.getWordsByKey("rental.not.found");
             rentalNotFoundEnglishTranslation.setWord(rentalNotFoundEnglish);
             rentalNotFoundEnglishTranslation.setTranslation("Rent Information Not Found");
-
             this.translationDao.save(rentalNotFoundEnglishTranslation);
 
             Translation rentedCarIsOnManitenanceEnglishTranslation = new Translation();
@@ -382,15 +383,6 @@ public class TranslationDataLoader implements CommandLineRunner {
             rentalFindexScoreErrorEnglishTranslation.setWord(rentalFindexScoreErrorEnglish);
             rentalFindexScoreErrorEnglishTranslation.setTranslation("Your Findex Score Is Not Enough To Rent This Car");
             this.translationDao.save(rentalFindexScoreErrorEnglishTranslation);
-
-            /*
-            Translation rentalCarIsNotReturnedYetEnglishTranslation = new Translation();
-            rentalCarIsNotReturnedYetEnglishTranslation.setLanguage(english);
-            var rentalCarIsNotReturnedYetEnglish = this.wordDao.getWordsByKey("rental.car.is.not.returned.yet");
-            rentalCarIsNotReturnedYetEnglishTranslation.setWord(rentalCarIsNotReturnedYetEnglish);
-            rentalCarIsNotReturnedYetEnglishTranslation.setTranslation("Rented Car Has Not Returned Yet");
-            this.translationDao.save(rentalCarIsNotReturnedYetEnglishTranslation);
-*/
 
             Translation rentalDateErrorEnglishTranslation = new Translation();
             rentalDateErrorEnglishTranslation.setLanguage(english);
@@ -863,6 +855,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             carListedTurkishTranslation.setTranslation("Araçlar listelendi.");
             this.translationDao.save(carListedTurkishTranslation);
 
+            Translation carFoundTurkishTranslation = new Translation();
+            carFoundTurkishTranslation.setLanguage(turkish);
+            var carFoundTurkish = this.wordDao.getWordsByKey("car.found");
+            carFoundTurkishTranslation.setWord(carFoundTurkish);
+            carFoundTurkishTranslation.setTranslation("Araba bulundu");
+            this.translationDao.save(carFoundTurkishTranslation);
+
             Translation carNotFoundTurkishTranslation = new Translation();
             carNotFoundTurkishTranslation.setLanguage(turkish);
             var carNotFoundTurkish = this.wordDao.getWordsByKey("car.not.found");
@@ -1142,6 +1141,20 @@ public class TranslationDataLoader implements CommandLineRunner {
             rentalFindexScoreErrorTurkishTranslation.setTranslation("Findex skorunuz aracı kiralamak için yeterli değil");
             this.translationDao.save(rentalFindexScoreErrorTurkishTranslation);
 
+
+            Translation rentedCarIsOnMaintenanceTurkishTranslation = new Translation();
+            rentedCarIsOnMaintenanceTurkishTranslation.setLanguage(turkish);
+            var rentedCarIsOnMaintenanceTurkish = this.wordDao.getWordsByKey("rental.maintenance.error");
+            rentedCarIsOnMaintenanceTurkishTranslation.setWord(rentedCarIsOnMaintenanceTurkish);
+            rentedCarIsOnMaintenanceTurkishTranslation.setTranslation("Car Is On Maintenance");
+            this.translationDao.save(rentedCarIsOnMaintenanceTurkishTranslation);
+
+            Translation carNotReturnedTurkishTranslation = new Translation();
+            carNotReturnedTurkishTranslation.setLanguage(turkish);
+            var carNotReturnedTurkish = this.wordDao.getWordsByKey("rental.car.is.not.returned.yet");
+            carNotReturnedTurkishTranslation.setWord(carNotReturnedTurkish);
+            carNotReturnedTurkishTranslation.setTranslation("Araç henüz geri dönmedi.");
+            this.translationDao.save(carNotReturnedTurkishTranslation);
         }
     }
 }
