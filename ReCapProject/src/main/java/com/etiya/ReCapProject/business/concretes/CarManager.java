@@ -135,7 +135,7 @@ public class CarManager implements CarService {
         List<Car> cars = this.carDao.getByBrand_Id(brandId);
         List<CarBrandDetail> result = cars.stream()
                 .map(car -> modelMapperService.forDto().map(car, CarBrandDetail.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarBrandDetail>>(result);
+        return new SuccessDataResult<List<CarBrandDetail>>(result,Messages.GETCARBYBRANDID);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class CarManager implements CarService {
         }
         List<CarColorDetail> result = cars.stream()
                 .map(car -> modelMapperService.forDto().map(car, CarColorDetail.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarColorDetail>>(result);
+        return new SuccessDataResult<List<CarColorDetail>>(result,Messages.GETCARBYCOLORID);
 
     }
 
@@ -183,7 +183,7 @@ public class CarManager implements CarService {
     @Override
     public DataResult<List<CarSearchListDto>> getAvailableCars() {
         var result = this.carDao.getAllWithoutMaintenanceOfCar();
-        return new SuccessDataResult<List<CarSearchListDto>>(result);
+        return new SuccessDataResult<List<CarSearchListDto>>(result,Messages.CARLIST);
     }
 
     @Override
@@ -191,12 +191,12 @@ public class CarManager implements CarService {
 
         var statusResult = BusinessRules.run(isCityIdExist(cityId));
         if (statusResult != null) {
-            return new ErrorDataResult(statusResult);
+            return new ErrorDataResult<List<CarDetail>>(Messages.CITYNOTFOUND,null);
         }
         List<Car> cars = this.carDao.getByCity_Id(cityId);
         List<CarDetail> result = cars.stream()
                 .map(car -> modelMapperService.forDto().map(car, CarDetail.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarDetail>>(result);
+        return new SuccessDataResult<List<CarDetail>>(result,Messages.GETCARBYCITYID);
     }
 
     @Override
@@ -224,7 +224,6 @@ public class CarManager implements CarService {
        updateCarRequest.setCityId(cityId);
        Car car=modelMapperService.forRequest().map(updateCarRequest,Car.class);
        this.carDao.save(car);
-
 
         /*
         var cityResult = this.cityService.getById(cityId);
