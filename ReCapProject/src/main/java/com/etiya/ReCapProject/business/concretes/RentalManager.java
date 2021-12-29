@@ -163,7 +163,7 @@ public class RentalManager implements RentalService {
         int findexScore = car.getData().getFindexScore();
         int customerFindexScore = findexService.calculateCustomerFindexScore();
         if (customerFindexScore < findexScore) {
-            return new ErrorResult(Messages.RENTALFINDEXSCOREERROR + customerFindexScore);
+            return new ErrorResult(Messages.RENTALFINDEXSCOREERROR);
         }
         return new SuccessResult(" " + customerFindexScore);
     }

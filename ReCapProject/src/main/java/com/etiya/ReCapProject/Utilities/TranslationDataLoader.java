@@ -1136,7 +1136,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             this.translationDao.save(loginPasswordErrorTurkishTranslation);
 
             Translation rentalFindexScoreErrorTurkishTranslation = new Translation();
-            rentalFindexScoreErrorTurkishTranslation.setLanguage(english);
+            rentalFindexScoreErrorTurkishTranslation.setLanguage(turkish);
             var rentalFindexScoreErrorTurkish = this.wordDao.getWordsByKey("rental.findex.score.error");
             rentalFindexScoreErrorTurkishTranslation.setWord(rentalFindexScoreErrorTurkish);
             rentalFindexScoreErrorTurkishTranslation.setTranslation("Findex skorunuz aracı kiralamak için yeterli değil");
