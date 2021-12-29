@@ -86,7 +86,7 @@ public class ReCapProjectApplication {
 		return error;
 	}
 
-/*
+
 	@ExceptionHandler(SerializationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleSerializationException(SerializationException serializationException){
@@ -94,6 +94,6 @@ public class ReCapProjectApplication {
 		return error;
 	}
 
-*/
+
 	
 }

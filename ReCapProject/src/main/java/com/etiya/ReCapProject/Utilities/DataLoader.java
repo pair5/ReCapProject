@@ -63,7 +63,7 @@ public class DataLoader implements CommandLineRunner {
             customerNotFound.setKey("customer.not.found");
             this.wordDao.save(customerNotFound);
             Word customerAlreadyExists = new Word();
-            customerAlreadyExists.setKey("customer.already.exists");
+            customerAlreadyExists.setKey("customer.exists");
             this.wordDao.save(customerAlreadyExists);
             Word customersTaxNumberAlreadyExists = new Word();
             customersTaxNumberAlreadyExists.setKey("customers.tax.number.already.exists");
@@ -341,7 +341,7 @@ public class DataLoader implements CommandLineRunner {
             this.wordDao.save(invoiceNotFound);
 
             Word userEmailAlreadyExists=new Word();
-            userEmailAlreadyExists.setKey("user.email.already.exists");
+            userEmailAlreadyExists.setKey("user.email.exists");
             this.wordDao.save(userEmailAlreadyExists);
             Word userFound=new Word();
             userFound.setKey("user.found");

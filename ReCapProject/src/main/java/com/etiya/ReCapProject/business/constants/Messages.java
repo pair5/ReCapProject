@@ -48,7 +48,7 @@ public class Messages {
 	public static final String CUSTOMERLIST = "customers.listed";
 	public static final String CUSTOMERGET = "customer.found";
 	public static final String CUSTOMERNOTFOUND = "customer.not.found";
-	public static final String CUSTOMERISALREADYEXISTS = " customer.already.exist";
+	public static final String CUSTOMERISALREADYEXISTS = " customer.exist";
 	public static final String CUSTOMERTAXNUMBEREXISTS = "customer.tax.number.already.exist";
 
 

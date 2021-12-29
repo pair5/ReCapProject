@@ -590,9 +590,9 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation customerAlreadyExistsEnglishTranslation = new Translation();
             customerAlreadyExistsEnglishTranslation.setLanguage(english);
-            var customerAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.already.exists");
+            var customerAlreadyExistsEnglish = this.wordDao.getWordsByKey("customer.exists");
             customerAlreadyExistsEnglishTranslation.setWord(customerAlreadyExistsEnglish);
-            customerAlreadyExistsEnglishTranslation.setTranslation("Customer Already Exists");
+            customerAlreadyExistsEnglishTranslation.setTranslation("Customer Exists");
             this.translationDao.save(customerAlreadyExistsEnglishTranslation);
 
             Translation customerNationalIdentityAlreadyExistsEnglishTranslation = new Translation();
@@ -660,7 +660,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation customerAlreadyExistsTurkishTranslation = new Translation();
             customerAlreadyExistsTurkishTranslation.setLanguage(turkish);
-            var customerAlreadyExistsTurkish = this.wordDao.getWordsByKey("customer.already.exists");
+            var customerAlreadyExistsTurkish = this.wordDao.getWordsByKey("customer.exists");
             customerAlreadyExistsTurkishTranslation.setWord(customerAlreadyExistsTurkish);
             customerAlreadyExistsTurkishTranslation.setTranslation("Müşteri Zaten Kayıtlı");
             this.translationDao.save(customerAlreadyExistsTurkishTranslation);
@@ -995,7 +995,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation userNameErrorTurkishTranslation = new Translation();
             userNameErrorTurkishTranslation.setLanguage(turkish);
-            var userNameErrorTurkish = this.wordDao.getWordsByKey("user.email.already.exists");
+            var userNameErrorTurkish = this.wordDao.getWordsByKey("user.email.exists");
             userNameErrorTurkishTranslation.setWord(userNameErrorTurkish);
             userNameErrorTurkishTranslation.setTranslation("Kullanıcı maili sistemde kayıtlı");
             this.translationDao.save(userNameErrorTurkishTranslation);
