@@ -24,13 +24,13 @@ public class Messages {
 	public static final String CITYNOTFOUND = "city.not.found";
 	public static final String CITYFOUND = "city.found";
 	public static final String CITYBYID = "City is brought by CityId";
-	public static final String CITYALREADYEXISTS = "city.already.exists";
+	public static final String CITYEXISTS = "city.exists";
 
 	public static final String COLORADD = "color.added";
 	public static final String COLORUPDATE = "color.updated";
 	public static final String COLORDELETE = "color.deleted";
 	public static final String COLORLIST = "colors.listed";
-	public static final String COLORNAMEERROR = "color.already.exists";
+	public static final String COLORNAMEERROR = "color.exists";
 	public static final String COLORFOUND = "color.found";
 	public static final String COLORNOTFOUND = "color.not.found";
 	public static final String COLORERROR = "color.error";

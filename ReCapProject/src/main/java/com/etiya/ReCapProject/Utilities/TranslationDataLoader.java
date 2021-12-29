@@ -132,7 +132,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation colorExistsEnglishTranslation = new Translation();
             colorExistsEnglishTranslation.setLanguage(english);
-            var colorExistsEnglish = this.wordDao.getWordsByKey("color.already.exists");
+            var colorExistsEnglish = this.wordDao.getWordsByKey("color.exists");
             colorExistsEnglishTranslation.setWord(colorExistsEnglish);
             colorExistsEnglishTranslation.setTranslation("Color Already Exists");
             this.translationDao.save(colorExistsEnglishTranslation);
@@ -981,6 +981,20 @@ public class TranslationDataLoader implements CommandLineRunner {
             cityNotFoundTurkishTranslation.setWord(cityNotFoundTurkish);
             cityNotFoundTurkishTranslation.setTranslation("Şehir bulunamadı.");
             this.translationDao.save(cityNotFoundTurkishTranslation);
+
+            Translation cityFoundTurkishTranslation = new Translation();
+            cityFoundTurkishTranslation.setLanguage(turkish);
+            var cityFoundTurkish = this.wordDao.getWordsByKey("city.found");
+            cityFoundTurkishTranslation.setWord(cityFoundTurkish);
+            cityFoundTurkishTranslation.setTranslation("Şehir bulundu.");
+            this.translationDao.save(cityFoundTurkishTranslation);
+
+            Translation cityExistsTurkishTranslation = new Translation();
+            cityExistsTurkishTranslation.setLanguage(turkish);
+            var cityExistsTurkish = this.wordDao.getWordsByKey("city.exists");
+            cityExistsTurkishTranslation.setWord(cityExistsTurkish);
+            cityExistsTurkishTranslation.setTranslation("Şehir zaten kayıtlı.");
+            this.translationDao.save(cityExistsTurkishTranslation);
         }
     }
 }

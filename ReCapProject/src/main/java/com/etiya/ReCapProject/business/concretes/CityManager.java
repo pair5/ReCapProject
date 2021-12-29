@@ -94,7 +94,7 @@ public class CityManager implements CityService {
     private Result isCityNameExists(String cityName) {
         var result = this.cityDao.existsByCityName(cityName);
         if (result) {
-            return new ErrorResult(Messages.CITYALREADYEXISTS);
+            return new ErrorResult(Messages.CITYEXISTS);
         }
         return new SuccessResult();
     }
