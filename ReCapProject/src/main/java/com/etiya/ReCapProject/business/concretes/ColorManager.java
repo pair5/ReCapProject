@@ -81,7 +81,7 @@ public class ColorManager implements ColorService {
 		}
 		Color color = this.colorDao.findById(colorId).get();
 		ColorSearchListDto response = modelMapperService.forDto().map(color, ColorSearchListDto.class);
-		return new SuccessDataResult<ColorSearchListDto>(response, Messages.COLORGET);
+		return new SuccessDataResult<ColorSearchListDto>(response, Messages.COLORFOUND);
 	}
 	
 	@Override
@@ -96,7 +96,7 @@ public class ColorManager implements ColorService {
 	private Result existsColorName(String colorName) {
 		var result = this.colorDao.existsByColorName(colorName);
 		if (result) {
-			return new ErrorResult(Messages.COLORERROR);
+			return new ErrorResult(Messages.COLORNAMEERROR);
 		}
 		return new SuccessResult();
 	}
