@@ -73,8 +73,8 @@ public class Messages {
 	public static final String CARIMAGEADD = "car.image.added";
 	public static final String CARIMAGEUPDATE = "car.image.updated";
 	public static final String CARIMAGEDELETE = "car.image.deleted";
-	public static final String CARIMAGELIST = "car.images.listed.";
-	public static final String CARIMAGELIMITERROR = "a.car.can.not.have.more.than.five.pictures";
+	public static final String CARIMAGELIST = "car.images.listed";
+	public static final String CARIMAGELIMITERROR = "car.image.limit.error";
 	public static final String CARIMAGEDEFAULT = "showing.default.image";
 	public static final String CARIMAGEEMPTY = "no.image.selected";
 	public static final String CARIMAGETYPEERROR = "the.file.you.selected.is.not.an.image.file";

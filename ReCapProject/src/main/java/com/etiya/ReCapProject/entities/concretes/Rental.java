@@ -21,6 +21,7 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "rent_date")
     private LocalDate rentDate;
 

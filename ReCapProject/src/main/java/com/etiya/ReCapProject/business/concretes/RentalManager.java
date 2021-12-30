@@ -103,13 +103,13 @@ public class RentalManager implements RentalService {
             return result;
         }
         Rental rental = modelMapperService.forRequest().map(deleteRentalRequest, Rental.class);
-        this.rentalDao.delete(rental);
         return new SuccessResult(Messages.RENTALDELETE);
     }
 
     @Override
     public Result update(UpdateRentalRequest updateRentalRequest) {
-        var result = BusinessRules.run(checkIfRentalExists(updateRentalRequest.getId()),
+        var result = BusinessRules
+                .run(isRentalExistsById(updateRentalRequest.getId()),
                 checkIfUserIdExists(updateRentalRequest.getCustomerId()),
                 checkIfCarIdExists(updateRentalRequest.getCarId()),
                 checkIfLimitIsEnough(updateRentalRequest.getId(),updateRentalRequest.getCreatePaymentRequest()),
@@ -208,7 +208,7 @@ public class RentalManager implements RentalService {
     }
 
     private Result checkIfRentalExists(int id) {
-        var result = this.rentalDao.existsById(id);
+        boolean result = this.rentalDao.existsById(id);
         if (!result) {
             return new ErrorResult(Messages.RENTALNOTFOUND);
         }

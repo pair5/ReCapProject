@@ -428,6 +428,14 @@ public class TranslationDataLoader implements CommandLineRunner {
             carImageNameErrorEnglishTranslation.setTranslation("Car Image Type Error.");
             this.translationDao.save(carImageNameErrorEnglishTranslation);
 
+
+            Translation carImageLimitErrorEnglishTranslation = new Translation();
+            carImageLimitErrorEnglishTranslation.setLanguage(english);
+            var carImageLimitErrorEnglish = this.wordDao.getWordsByKey("car.image.limit.error");
+            carImageLimitErrorEnglishTranslation.setWord(carImageLimitErrorEnglish);
+            carImageLimitErrorEnglishTranslation.setTranslation("Car Image Limit Error.");
+            this.translationDao.save(carImageLimitErrorEnglishTranslation);
+
             Translation carImageNotFoundEnglishTranslation = new Translation();
             carImageNotFoundEnglishTranslation.setLanguage(english);
             var carImageNotFoundEnglish = this.wordDao.getWordsByKey("car.image.not.found");
@@ -1155,6 +1163,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             carNotReturnedTurkishTranslation.setWord(carNotReturnedTurkish);
             carNotReturnedTurkishTranslation.setTranslation("Araç henüz geri dönmedi.");
             this.translationDao.save(carNotReturnedTurkishTranslation);
+
+            Translation carImageLimitErrorTurkishTranslation = new Translation();
+            carImageLimitErrorTurkishTranslation.setLanguage(turkish);
+            var carImageLimitErrorTurkish = this.wordDao.getWordsByKey("car.image.limit.error");
+            carImageLimitErrorTurkishTranslation.setWord(carImageLimitErrorTurkish);
+            carImageLimitErrorTurkishTranslation.setTranslation("5'ten fazla araç görseli eklenemez.");
+            this.translationDao.save(carImageLimitErrorTurkishTranslation);
         }
     }
 }

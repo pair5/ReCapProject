@@ -54,22 +54,22 @@ public class CarImageManager implements CarImageService {
 		List<CarImageSearchListDto> result = carImages.stream()
 				.map(carImage -> modelMapperService.forDto().map(carImage, CarImageSearchListDto.class))
 				.collect(Collectors.toList());
-		return new SuccessDataResult<List<CarImageSearchListDto>>(result, "Data.listed");
+		return new SuccessDataResult<List<CarImageSearchListDto>>(result, Messages.CARIMAGELIST);
 	}
 
 
 
 	@Override
 	public Result add(CreateCarImageRequest createCarImageRequest) throws IOException {
-		Result result = BusinessRules.run(checkIsCarIdExist(createCarImageRequest.getCarId()),checkNumberOfCarImages( createCarImageRequest.getCarId()),
-				checkImageTypeIsOk(createCarImageRequest.getFile()));
+		Result result = BusinessRules.run(checkIfCarIdExists(createCarImageRequest.getCarId()),checkNumberOfCarImages( createCarImageRequest.getCarId()),
+				checkIfImageTypeIsValid(createCarImageRequest.getFile()));
 		if (result != null) {
 			return result;
 		}
 
 		CarImage carImage = modelMapperService.forRequest().map(createCarImageRequest, CarImage.class);
 		carImage.setDate(LocalDate.now());
-		carImage.setImagePath(generateImage(createCarImageRequest.getFile()).toString());
+		carImage.setImagePath(createCarImageRequest.getFile().getBytes());
 		this.carImageDao.save(carImage);
 		return new SuccessResult(Messages.CARIMAGEADD);
 	}
@@ -87,20 +87,20 @@ public class CarImageManager implements CarImageService {
 
 	@Override
 	public Result update(UpdateCarImageRequest updateCarImageRequest) throws IOException {
-		Result result = BusinessRules.run(checkIsCarIdExist(updateCarImageRequest.getCarId()),isCarImageExists(updateCarImageRequest.getId()),checkImageTypeIsOk(updateCarImageRequest.getFile()));
+		Result result = BusinessRules.run(checkIfCarIdExists(updateCarImageRequest.getCarId()),isCarImageExists(updateCarImageRequest.getId()), checkIfImageTypeIsValid(updateCarImageRequest.getFile()));
 		if (result != null) {
 			return result;
 		}
 		CarImage carImage = modelMapperService.forRequest().map(updateCarImageRequest, CarImage.class);
 		carImage.setDate(LocalDate.now());
-		carImage.setImagePath(generateImage(updateCarImageRequest.getFile()).toString());
+		carImage.setImagePath(generateImage(updateCarImageRequest.getFile()).toString().getBytes());
 		this.carImageDao.save(carImage);
 		return new SuccessResult(Messages.CARIMAGEUPDATE);
 	}
 
 	private File generateImage(MultipartFile file) throws IOException {
 		String imagePathGuid = java.util.UUID.randomUUID().toString();
-		File imageFile = new File("C:/Team/ReCapProject/ReCapProject/images/" + imagePathGuid + "."
+		File imageFile = new File("C:\\Users\\doruk.senay\\Desktop\\Photos\\" + imagePathGuid + "."
 				+ file.getContentType().substring(file.getContentType().indexOf("/") + 1));
 		imageFile.createNewFile();
 		FileOutputStream outputImage = new FileOutputStream(imageFile);
@@ -123,7 +123,7 @@ public class CarImageManager implements CarImageService {
 					.setImagePath("C:\\Users\\burak.koyuncu\\git\\repository3\\ReCapProject\\images\\default.png");
 			List<CarImageSearchListDto> carImages = new ArrayList<CarImageSearchListDto>();
 			carImages.add(carImageSearchListDto);
-			return new SuccessDataResult<List<CarImageSearchListDto>>(carImages);
+			return new SuccessDataResult<List<CarImageSearchListDto>>(carImages,Messages.CARIMAGELIST);
 		}
 		List<CarImage> carImages = this.carImageDao.getByCar_Id(id);
 		List<CarImageSearchListDto> result = carImages.stream()
@@ -149,7 +149,7 @@ public class CarImageManager implements CarImageService {
 		return new SuccessResult();
 	}
 
-	private Result checkImageTypeIsOk(MultipartFile multipartFile) {
+	private Result checkIfImageTypeIsValid(MultipartFile multipartFile) {
 		if (!(checkImageIsNull(multipartFile).isSuccess())) {
 			return new ErrorResult(this.checkImageIsNull(multipartFile).getMessage());
 		}
@@ -164,7 +164,7 @@ public class CarImageManager implements CarImageService {
 		return new SuccessResult();
 	}
 	
-	private Result checkIsCarIdExist(int id) {
+	private Result checkIfCarIdExists(int id) {
 		var result = this.carService.isCarExists(id);
 		if (!result.isSuccess()) {
 			return new ErrorResult(Messages.CARNOTFOUND);

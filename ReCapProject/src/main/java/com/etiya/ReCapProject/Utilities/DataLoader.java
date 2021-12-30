@@ -234,7 +234,7 @@ public class DataLoader implements CommandLineRunner {
             this.wordDao.save(carImageListed);
             Word carImageLimitError=new Word();
             carImageLimitError.setKey("car.image.limit.error");
-            this.wordDao.save(carImageDeleted);
+            this.wordDao.save(carImageLimitError);
             Word carImageDefault=new Word();
             carImageDefault.setKey("car.image.default");
             this.wordDao.save(carImageDefault);
