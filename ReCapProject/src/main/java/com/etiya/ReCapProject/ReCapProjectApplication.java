@@ -16,7 +16,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -92,6 +94,13 @@ public class ReCapProjectApplication {
 	public ErrorResult handleSerializationException(SerializationException serializationException){
 		ErrorResult error = new ErrorResult(Messages.RENTALDATEERROR);
 		return error;
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ErrorResult handHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
+		ErrorResult errorResult = new ErrorResult(Messages.CARLIST);
+		return errorResult;
+
 	}
 
 
