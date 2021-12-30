@@ -36,7 +36,7 @@ public class TranslationManager implements TranslationService {
        List<Translation> translations=this.translationDao.findAll();
        List<TranslationSearchListDto> translationSearchListDtos=translations.stream()
                .map(translation-> modelMapperService.forDto().map(translation, TranslationSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<TranslationSearchListDto>>(translationSearchListDtos,"Languages Listed");
+        return new SuccessDataResult<List<TranslationSearchListDto>>(translationSearchListDtos);
     }
 
     @Override

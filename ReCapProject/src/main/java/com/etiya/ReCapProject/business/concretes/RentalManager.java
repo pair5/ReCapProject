@@ -75,13 +75,10 @@ public class RentalManager implements RentalService {
                 checkIfUserIdExists(createRentalRequest.getCustomerId()),
                 checkIfCarIdExists(createRentalRequest.getCarId()),
                 compareFindexScores(createRentalRequest.getCarId()),
-                //checkIfCarIsInMaintenance(createRentalRequest.getCarId())
-                checkIfCarIsReturned(createRentalRequest.getCarId())
-                //checkIfReturnDateIsNull(createRentalRequest.getCarId())
-
+                checkIfCarIsInMaintenance(createRentalRequest.getCarId()),
+                checkIfCarIsReturned(createRentalRequest.getCarId()),
+                checkIfReturnDateIsNull(createRentalRequest.getCarId())
         );
-
-
         if (result != null) {
             return result;
         }
@@ -93,8 +90,6 @@ public class RentalManager implements RentalService {
         CreatePaymentRequest createPaymentRequest=new CreatePaymentRequest();
         this.rentalDao.save(rental);
         return new SuccessResult(Messages.RENTALADD);
-
-        //
     }
     @Override
     public Result delete(DeleteRentalRequest deleteRentalRequest) {
@@ -112,6 +107,7 @@ public class RentalManager implements RentalService {
                 .run(isRentalExistsById(updateRentalRequest.getId()),
                 checkIfUserIdExists(updateRentalRequest.getCustomerId()),
                 checkIfCarIdExists(updateRentalRequest.getCarId()),
+                        checkIfCarIsInMaintenance(updateRentalRequest.getCarId()),
                 checkIfLimitIsEnough(updateRentalRequest.getId(),updateRentalRequest.getCreatePaymentRequest()),
                 checkIfCityExists(updateRentalRequest.getReturnCityId()));
         if (result != null) {
@@ -193,6 +189,10 @@ public class RentalManager implements RentalService {
     }
 
     private Result checkIfCarIsInMaintenance(int carId) {
+        var existsResult = this.carMaintenanceService.getByCar(carId);
+        if (existsResult == null){
+            return new SuccessResult();
+        }
         var result = this.carMaintenanceService.getByCar(carId);
         if (result.getData().getReturnDate() == null) {
             return new ErrorResult(Messages.RENTALMAINTENANCEERROR);
@@ -285,4 +285,6 @@ public class RentalManager implements RentalService {
         }
         return new SuccessResult();
     }
+
+    //
 }

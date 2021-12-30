@@ -152,6 +152,13 @@ public class Messages {
 	public static final String ADDITIONALRENTALITEMLIST = "additional.rental.items.listed";
 	public static final String ADDITIONALRENTALITEMNOTFOUND = "additional.rental.item.not.found";
 
+	public static final String LANGUAGEADD = "language.added";
+	public static final String LANGUAGEDELETE = "language.deleted";
+	public static final String LANGUAGEUPDATE = "language.updated";
+	public static final String LANGUAGELIST = "languages.listed";
+	public static final String LANGUAGENOTFOUND = "language.not.found";
+	public static final String LANGUAGEFOUND = "language.found";
+	public static final String LANGUAGEALREADYEXISTS = "language.exists";
 
 
 }	

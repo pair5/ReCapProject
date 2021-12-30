@@ -54,12 +54,12 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		return new SuccessDataResult<List<CarMaintenanceSearchListDto>>(response,Messages.CARMAINTENANCELIST);
 	}
 
+	//checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()),
 	@Override
 	public Result add(CreateCarMaintenanceRequest createCarMaintenanceRequest) {
 		Result result = BusinessRules.run(isCarIdExists(createCarMaintenanceRequest.getCar_Id()),
-				checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()),
-				checkIfCarIsInMaintenance(createCarMaintenanceRequest.getCar_Id())
-				);
+				checkIfCarIsInMaintenance(createCarMaintenanceRequest.getCar_Id()),
+				checkRentalReturnDate(createCarMaintenanceRequest.getCar_Id()));
 		if (result != null) {
 			return result;
 		}
@@ -71,7 +71,10 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest) {
-		var result = BusinessRules.run(checkIfCarIsInMaintenance(updateCarMaintenanceRequest.getId()),isCarIdExists(updateCarMaintenanceRequest.getCarId()),checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()));
+		var result = BusinessRules.run(checkIfMaintenanceIdExists(updateCarMaintenanceRequest.getId()),
+				isCarIdExists(updateCarMaintenanceRequest.getCarId()),
+				checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()),
+				checkReturnDate(updateCarMaintenanceRequest.getCarId()));
 		if (result != null) {
 			return result;
 		}
@@ -79,12 +82,11 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 				CarMaintenance.class);
 		this.carMaintenanceDao.save(carMaintenance);
 		return new SuccessResult(Messages.CARMAINTENANCEUPDATE);
-
 	}
 
 	@Override
 	public Result delete(DeleteCarMaintenanceRequest deleteCarMaintenanceRequest) {
-		var result = BusinessRules.run(checkIfCarIsInMaintenance(deleteCarMaintenanceRequest.getId()));
+		var result = BusinessRules.run(checkIfMaintenanceIdExists(deleteCarMaintenanceRequest.getId()));
 		if (result != null) {
 			return result;
 		}
@@ -120,12 +122,57 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	}
 
 
-	private Result checkIfCarIsInMaintenance(int id) {
-		var result = this.carMaintenanceDao.existsByCarId(id);
-		if (result) {
+	private Result checkIfCarIsInMaintenance(int carId) {
+		var carIsInMaintenance = this.carMaintenanceDao.existsByCarId(carId);
+		if (!carIsInMaintenance){
+			return new SuccessResult();
+		}
+		var result = this.carMaintenanceDao.getByCar_Id(carId);
+		if (result.getReturnDate()==null) {
 			return new ErrorResult(Messages.CARMAINTENANCEALREADYEXISTS);
 		}
 		return new SuccessResult();
 	}
 
+
+
+	private Result checkReturnDate(int carId){
+		//araba kontrol
+		var tempMaintenance= this.carMaintenanceDao.getByCar_Id(carId);
+		this.carMaintenanceDao.delete(tempMaintenance);
+		var result = this.carMaintenanceDao.existsByCarId(carId);
+		if (result){
+			return new ErrorResult(Messages.CARNOTFOUND);
+		}
+		return new SuccessResult();
+	}
+
+	private Result checkIfMaintenanceIdExists(int id){
+		var result = this.carMaintenanceDao.existsById(id);
+		if (!result){
+			return new ErrorResult(Messages.CARMAINTENANCENOTFOUND);
+		}
+		return new SuccessResult();
+	}
+	//araba kiradan dönmüş mü ? 
+	private Result checkRentalReturnDate(int carId){
+		var carExists = rentalService.getByCar_Id(carId).getData();
+		if (carExists == null){
+			return new SuccessResult();
+		}
+		var result=this.rentalService.getByCar_Id(carId).getData();
+		if (result.getReturnDate()==null){
+			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
+		}
+		return new SuccessResult();
+	}
+
+	private Result checkIfReturnDateIsBeforeThenNow(int carMaintenanceId){
+		var result=this.carMaintenanceDao.getById(carMaintenanceId);
+
+	}
+
+
 }
+
+
