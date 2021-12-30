@@ -112,9 +112,10 @@ public class Messages {
 	public static final String CARMAINTENANCEADD = "car.maintenance.added";
 	public static final String CARMAINTENANCEUPDATE = "car.maintenance.updated";
 	public static final String CARMAINTENANCEDELETE = "car.maintenance.deleted";
-	public static final String CARMAINTENANCELIST = "Cars in maintenance listed";
+	public static final String CARMAINTENANCELIST = "car.maintenances.listed";
 	public static final String CARMAINTENANCERENTALERROR = "car.maintenance.rental.error";
 	public static final String CARMAINTENANCENOTFOUND="car.maintenance.not.found";
+	public static final String CARMAINTENANCEALREADYEXISTS = "car.maintenance.exists";
 		
 	public static final String INVOICEADD = "invoice.added";
 	public static final String INVOICEUPDATE = "invoice.updated";
@@ -123,6 +124,8 @@ public class Messages {
 	public static final String INVOICEBYCUSTOMERLIST = "customers.invoices.listed";
 	public static final String INVOICEFOUND = "invoice.found";
 	public static final String INVOICENOTFOUND = "invoice.not.found";
+	public static final String INVOICENUMBERAlREADYEXISTS = "invoice.exists";
+
 
 	public static final String USEREMAILALREADYEXISTS = "user.email.already.exist";
 	public static final String USERFOUND = "user.found";

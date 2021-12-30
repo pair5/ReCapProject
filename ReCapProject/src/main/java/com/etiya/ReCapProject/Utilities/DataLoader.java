@@ -348,6 +348,9 @@ public class DataLoader implements CommandLineRunner {
             Word invoiceNotFound=new Word();
             invoiceNotFound.setKey("invoice.not.found");
             this.wordDao.save(invoiceNotFound);
+            Word invoiceExists=new Word();
+            invoiceExists.setKey("invoice.exists");
+            this.wordDao.save(invoiceExists);
 
             Word userEmailAlreadyExists=new Word();
             userEmailAlreadyExists.setKey("user.email.exists");
@@ -434,6 +437,9 @@ public class DataLoader implements CommandLineRunner {
             Word carMaintenanceNotFound=new Word();
             carMaintenanceNotFound.setKey("car.maintenance.not.found");
             this.wordDao.save(carMaintenanceNotFound);
+            Word carMaintenanceAlreadyExists = new Word();
+            carMaintenanceAlreadyExists.setKey("car.maintenance.exists");
+            this.wordDao.save(carMaintenanceAlreadyExists);
 
         }
 

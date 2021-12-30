@@ -20,5 +20,7 @@ public interface RentalService {
 	Result checkIfReturnDateIsNull(int carId);
 	int getAdditionalItemsTotalPriceByRentalId(int rentalId);
 	Result isRentalExistsById(int id);
+	Result isRentalExistsByCarId(int carId);
+
 
 }	

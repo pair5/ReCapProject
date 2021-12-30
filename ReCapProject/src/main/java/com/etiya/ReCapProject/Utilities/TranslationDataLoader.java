@@ -38,6 +38,59 @@ public class TranslationDataLoader implements CommandLineRunner {
                 english = languageDao.getLanguagesByName("English");
             }
 
+            //Car Maintenance English
+
+            Translation carMaintenanceAddedEnglishTranslation = new Translation();
+            carMaintenanceAddedEnglishTranslation.setLanguage(english);
+            var carMaintenanceAddedEnglish = this.wordDao.getWordsByKey("car.maintenance.added");
+            carMaintenanceAddedEnglishTranslation.setWord(carMaintenanceAddedEnglish);
+            carMaintenanceAddedEnglishTranslation.setTranslation("Car Maintenance added.");
+            this.translationDao.save(carMaintenanceAddedEnglishTranslation);
+
+            Translation carMaintenanceDeletedEnglishTranslation = new Translation();
+            carMaintenanceDeletedEnglishTranslation.setLanguage(english);
+            var carMaintenanceDeletedEnglish = this.wordDao.getWordsByKey("car.maintenance.deleted");
+            carMaintenanceDeletedEnglishTranslation.setWord(carMaintenanceDeletedEnglish);
+            carMaintenanceDeletedEnglishTranslation.setTranslation("Car Maintenance deleted.");
+            this.translationDao.save(carMaintenanceDeletedEnglishTranslation);
+
+            Translation carMaintenanceUpdatedEnglishTranslation = new Translation();
+            carMaintenanceUpdatedEnglishTranslation.setLanguage(english);
+            var carMaintenanceUpdatedEnglish = this.wordDao.getWordsByKey("car.maintenance.updated");
+            carMaintenanceUpdatedEnglishTranslation.setWord(carMaintenanceUpdatedEnglish);
+            carMaintenanceUpdatedEnglishTranslation.setTranslation("Maintenance entry updated.");
+            this.translationDao.save(carMaintenanceUpdatedEnglishTranslation);
+
+            Translation carMaintenancesListedEnglishTranslation = new Translation();
+            carMaintenancesListedEnglishTranslation.setLanguage(english);
+            var carMaintenancesListedEnglish = this.wordDao.getWordsByKey("car.maintenances.listed");
+            carMaintenancesListedEnglishTranslation.setWord(carMaintenancesListedEnglish);
+            carMaintenancesListedEnglishTranslation.setTranslation("All maintenances are listed.");
+            this.translationDao.save(carMaintenancesListedEnglishTranslation);
+
+            Translation carMaintenanceRentalErrorEnglishTranslation = new Translation();
+            carMaintenanceRentalErrorEnglishTranslation.setLanguage(english);
+            var carMaintenanceRentalErrorEnglish = this.wordDao.getWordsByKey("car.maintenance.rental.error");
+            carMaintenanceRentalErrorEnglishTranslation.setWord(carMaintenanceRentalErrorEnglish);
+            carMaintenanceRentalErrorEnglishTranslation.setTranslation("Car is already rented.");
+            this.translationDao.save(carMaintenanceRentalErrorEnglishTranslation);
+
+            Translation carMaintenanceNotFoundEnglishTranslation = new Translation();
+            carMaintenanceNotFoundEnglishTranslation.setLanguage(english);
+            var carMaintenanceNotFoundEnglish = this.wordDao.getWordsByKey("car.maintenance.not.found");
+            carMaintenanceNotFoundEnglishTranslation.setWord(carMaintenanceNotFoundEnglish);
+            carMaintenanceNotFoundEnglishTranslation.setTranslation("Car Maintenance Not Found.");
+            this.translationDao.save(carMaintenanceNotFoundEnglishTranslation);
+
+            Translation carMaintenanceAlreadyExistsEnglishTranslation = new Translation();
+            carMaintenanceAlreadyExistsEnglishTranslation.setLanguage(english);
+            var carMaintenanceAlreadyExistsEnglish = this.wordDao.getWordsByKey("car.maintenance.exists");
+            carMaintenanceAlreadyExistsEnglishTranslation.setWord(carMaintenanceAlreadyExistsEnglish);
+            carMaintenanceAlreadyExistsEnglishTranslation.setTranslation("Car is already in maintenance.");
+            this.translationDao.save(carMaintenanceAlreadyExistsEnglishTranslation);
+            
+
+
             Translation dataNotFoundTranslation = new Translation();
             dataNotFoundTranslation.setLanguage(english);
             var dataNotFoundEnglish = this.wordDao.getWordsByKey("data.not.found");
@@ -589,14 +642,19 @@ public class TranslationDataLoader implements CommandLineRunner {
             invoiceListedEnglishTranslation.setTranslation("Invoice Listed");
             this.translationDao.save(invoiceListedEnglishTranslation);
 
-
-
             Translation invoiceNotFoundEnglishTranslation = new Translation();
             invoiceNotFoundEnglishTranslation.setLanguage(english);
             var invoiceNotFoundEnglish = this.wordDao.getWordsByKey("invoice.not.found");
             invoiceNotFoundEnglishTranslation.setWord(invoiceNotFoundEnglish);
             invoiceNotFoundEnglishTranslation.setTranslation("Invoice Not Found.");
             this.translationDao.save(invoiceNotFoundEnglishTranslation);
+
+            Translation invoiceNumberAlreadyExistsEnglishTranslation = new Translation();
+            invoiceNumberAlreadyExistsEnglishTranslation.setLanguage(english);
+            var invoiceNumberAlreadyExistsEnglish = this.wordDao.getWordsByKey("invoice.exists");
+            invoiceNumberAlreadyExistsEnglishTranslation.setWord(invoiceNumberAlreadyExistsEnglish);
+            invoiceNumberAlreadyExistsEnglishTranslation.setTranslation("Invoice already exists.");
+            this.translationDao.save(invoiceNumberAlreadyExistsEnglishTranslation);
 
             Translation additionalServiceAddedEnglishTranslation = new Translation();
             additionalServiceAddedEnglishTranslation.setLanguage(english);
@@ -1405,6 +1463,63 @@ public class TranslationDataLoader implements CommandLineRunner {
             formatNotValidTurkishTranslation.setWord(formatNotValidTurkish);
             formatNotValidTurkishTranslation.setTranslation("Tarih Hatalı");
             this.translationDao.save(formatNotValidTurkishTranslation);
+
+            Translation invoiceNumberAlreadyExistsTurkishTranslation = new Translation();
+            invoiceNumberAlreadyExistsTurkishTranslation.setLanguage(turkish);
+            var invoiceNumberAlreadyExistsTurkish = this.wordDao.getWordsByKey("invoice.exists");
+            invoiceNumberAlreadyExistsTurkishTranslation.setWord(invoiceNumberAlreadyExistsTurkish);
+            invoiceNumberAlreadyExistsTurkishTranslation.setTranslation("Fatura zaten sisteme kayıtlı.");
+            this.translationDao.save(invoiceNumberAlreadyExistsTurkishTranslation);
+
+            Translation carMaintenanceAddedTurkishTranslation = new Translation();
+            carMaintenanceAddedTurkishTranslation.setLanguage(turkish);
+            var carMaintenanceAddedTurkish = this.wordDao.getWordsByKey("car.maintenance.added");
+            carMaintenanceAddedTurkishTranslation.setWord(carMaintenanceAddedTurkish);
+            carMaintenanceAddedTurkishTranslation.setTranslation("Servis kaydı oluşturuldu.");
+            this.translationDao.save(carMaintenanceAddedTurkishTranslation);
+
+            Translation carMaintenanceDeletedTurkishTranslation = new Translation();
+            carMaintenanceDeletedTurkishTranslation.setLanguage(turkish);
+            var carMaintenanceDeletedTurkish = this.wordDao.getWordsByKey("car.maintenance.deleted");
+            carMaintenanceDeletedTurkishTranslation.setWord(carMaintenanceDeletedTurkish);
+            carMaintenanceDeletedTurkishTranslation.setTranslation("Servis kaydı silindi.");
+            this.translationDao.save(carMaintenanceDeletedTurkishTranslation);
+
+            Translation carMaintenanceUpdatedTurkishTranslation = new Translation();
+            carMaintenanceUpdatedTurkishTranslation.setLanguage(turkish);
+            var carMaintenanceUpdatedTurkish = this.wordDao.getWordsByKey("car.maintenance.updated");
+            carMaintenanceUpdatedTurkishTranslation.setWord(carMaintenanceUpdatedTurkish);
+            carMaintenanceUpdatedTurkishTranslation.setTranslation("Servis kaydı güncellendi.");
+            this.translationDao.save(carMaintenanceUpdatedTurkishTranslation);
+
+            Translation carMaintenancesListedTurkishTranslation = new Translation();
+            carMaintenancesListedTurkishTranslation.setLanguage(turkish);
+            var carMaintenancesListedTurkish = this.wordDao.getWordsByKey("car.maintenances.listed");
+            carMaintenancesListedTurkishTranslation.setWord(carMaintenancesListedTurkish);
+            carMaintenancesListedTurkishTranslation.setTranslation("Servis kayıtları listelendi");
+            this.translationDao.save(carMaintenancesListedTurkishTranslation);
+
+            Translation carMaintenanceRentalErrorTurkishTranslation = new Translation();
+            carMaintenanceRentalErrorTurkishTranslation.setLanguage(turkish);
+            var carMaintenanceRentalErrorTurkish = this.wordDao.getWordsByKey("car.maintenance.rental.error");
+            carMaintenanceRentalErrorTurkishTranslation.setWord(carMaintenanceRentalErrorTurkish);
+            carMaintenanceRentalErrorTurkishTranslation.setTranslation("İlgili araç kirada.");
+            this.translationDao.save(carMaintenanceRentalErrorTurkishTranslation);
+
+            Translation carMaintenanceNotFoundTurkishTranslation = new Translation();
+            carMaintenanceNotFoundTurkishTranslation.setLanguage(turkish);
+            var carMaintenanceNotFoundTurkish = this.wordDao.getWordsByKey("car.maintenance.not.found");
+            carMaintenanceNotFoundTurkishTranslation.setWord(carMaintenanceNotFoundTurkish);
+            carMaintenanceNotFoundTurkishTranslation.setTranslation("Servis kaydı bulunamadı.");
+            this.translationDao.save(carMaintenanceNotFoundTurkishTranslation);
+
+            Translation carMaintenanceAlreadyExistsTurkishTranslation = new Translation();
+            carMaintenanceAlreadyExistsTurkishTranslation.setLanguage(turkish);
+            var carMaintenanceAlreadyExistsTurkish = this.wordDao.getWordsByKey("car.maintenance.exists");
+            carMaintenanceAlreadyExistsTurkishTranslation.setWord(carMaintenanceAlreadyExistsTurkish);
+            carMaintenanceAlreadyExistsTurkishTranslation.setTranslation("Araç zaten bakımda");
+            this.translationDao.save(carMaintenanceAlreadyExistsTurkishTranslation);
+
 
         }
     }

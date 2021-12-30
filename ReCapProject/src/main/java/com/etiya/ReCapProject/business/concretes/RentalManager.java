@@ -157,6 +157,15 @@ public class RentalManager implements RentalService {
         return new SuccessResult();
     }
 
+    @Override
+    public Result isRentalExistsByCarId(int carId) {
+        var result = this.rentalDao.existsByCarId(carId);
+        if(result){
+            return new ErrorResult(Messages.RENTALFOUND);
+        }
+        return new SuccessResult();
+    }
+
     private Result compareFindexScores(int id) {
         var resultCar = carService.isCarExists(id);
         if (!resultCar.isSuccess()) {

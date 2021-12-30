@@ -51,12 +51,15 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		List<CarMaintenanceSearchListDto> response = result.stream().map(
 				carMaintenance -> modelMapperService.forDto().map(carMaintenance, CarMaintenanceSearchListDto.class))
 				.collect(Collectors.toList());
-		return new SuccessDataResult<List<CarMaintenanceSearchListDto>>(response);
+		return new SuccessDataResult<List<CarMaintenanceSearchListDto>>(response,Messages.CARMAINTENANCELIST);
 	}
 
 	@Override
 	public Result add(CreateCarMaintenanceRequest createCarMaintenanceRequest) {
-		Result result = BusinessRules.run(isCarIdExists(createCarMaintenanceRequest.getCar_Id()),checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()));
+		Result result = BusinessRules.run(isCarIdExists(createCarMaintenanceRequest.getCar_Id()),
+				checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()),
+				checkIfCarIsInMaintenance(createCarMaintenanceRequest.getCar_Id())
+				);
 		if (result != null) {
 			return result;
 		}
@@ -68,7 +71,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest) {
-		var result = BusinessRules.run(isMaintenanceIdExists(updateCarMaintenanceRequest.getId()),isCarIdExists(updateCarMaintenanceRequest.getCarId()),checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()));
+		var result = BusinessRules.run(checkIfCarIsInMaintenance(updateCarMaintenanceRequest.getId()),isCarIdExists(updateCarMaintenanceRequest.getCarId()),checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()));
 		if (result != null) {
 			return result;
 		}
@@ -81,7 +84,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 
 	@Override
 	public Result delete(DeleteCarMaintenanceRequest deleteCarMaintenanceRequest) {
-		var result = BusinessRules.run(isMaintenanceIdExists(deleteCarMaintenanceRequest.getId()));
+		var result = BusinessRules.run(checkIfCarIsInMaintenance(deleteCarMaintenanceRequest.getId()));
 		if (result != null) {
 			return result;
 		}
@@ -91,7 +94,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	}
 
 	private Result checkIfCarIsRented(int carId) {
-		var result = this.rentalService.checkIfReturnDateIsNull(carId);
+		var result = this.rentalService.isRentalExistsByCarId(carId);
 		if (!result.isSuccess()){
 			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
 		}
@@ -102,7 +105,7 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	public DataResult<CarMaintenance> getByCar(int carId) {
 		var carMaintenance = this.carMaintenanceDao.getByCar_Id(carId);
 		if (carMaintenance == null) {
-			return new ErrorDataResult("Böyle bir araba yok");
+			return new ErrorDataResult(Messages.CARNOTFOUND);
 		}
 		return new SuccessDataResult<CarMaintenance>(carMaintenance);
 	}
@@ -117,10 +120,10 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	}
 
 
-	private Result isMaintenanceIdExists(int id) {
-		var result = this.carMaintenanceDao.existsById(id);
-		if (!result) {
-			return new ErrorResult(Messages.CARMAINTENANCENOTFOUND);
+	private Result checkIfCarIsInMaintenance(int id) {
+		var result = this.carMaintenanceDao.existsByCarId(id);
+		if (result) {
+			return new ErrorResult(Messages.CARMAINTENANCEALREADYEXISTS);
 		}
 		return new SuccessResult();
 	}
