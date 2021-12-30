@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.etiya.ReCapProject.business.abstracts.UserService;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
@@ -27,12 +28,14 @@ import com.etiya.ReCapProject.entities.concretes.CreditCard;
 public class CreditCardManager implements CreditCardService {
 	private CreditCardDao creditCardDao;
 	private ModelMapperService modelMapperService;
+	private UserService userService;
 
 	@Autowired
-	public CreditCardManager(CreditCardDao creditCardDao, ModelMapperService modelMapperService) {
+	public CreditCardManager(CreditCardDao creditCardDao, ModelMapperService modelMapperService,UserService userService) {
 		super();
 		this.creditCardDao = creditCardDao;
 		this.modelMapperService = modelMapperService;
+		this.userService=userService;
 	}
 	@Override
 	public Result delete(DeleteCreditCardRequest deleteCreditCardRequest) {
@@ -52,7 +55,8 @@ public class CreditCardManager implements CreditCardService {
 	public Result add(CreateCreditCardRequest createCreditCardRequest) {
 		Result result=BusinessRules.run(checkCreditCardNumber(createCreditCardRequest.getCardNumber()),
 				checkIfCreditCardNumberExists(createCreditCardRequest.getCardNumber()),
-				checkCreditCardExpiryDate(createCreditCardRequest.getExpirationDate())
+				checkCreditCardExpiryDate(createCreditCardRequest.getExpirationDate()),
+				checkIfUserIdExists(createCreditCardRequest.getCustomerId())
 		);
 		if (result!=null) {
 			return result;
@@ -89,6 +93,14 @@ public class CreditCardManager implements CreditCardService {
 
 		if (!matcher.matches()) {
 			return new ErrorResult(Messages.CREDITCARDDATEERROR);
+		}
+		return new SuccessResult();
+	}
+
+	public Result checkIfUserIdExists (int customerId){
+		var result = this.userService.isUserExists(customerId);
+		if(!result.isSuccess()){
+			return new ErrorResult(Messages.USERNOTFOUND);
 		}
 		return new SuccessResult();
 	}

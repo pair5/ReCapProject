@@ -98,7 +98,7 @@ public class ReCapProjectApplication {
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ErrorResult handHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
-		ErrorResult errorResult = new ErrorResult(Messages.CARLIST);
+		ErrorResult errorResult = new ErrorResult(Messages.DATEFORMATNOTVALID);
 		return errorResult;
 
 	}

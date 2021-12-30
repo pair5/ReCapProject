@@ -33,6 +33,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
         if (translationDao.count()==0) {
             var english = languageDao.getLanguagesByName("English");
+
             if (english == null){
                 english = languageDao.getLanguagesByName("English");
             }
@@ -43,6 +44,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             dataNotFoundTranslation.setWord(dataNotFoundEnglish);
             dataNotFoundTranslation.setTranslation("Data Not Found");
             this.translationDao.save(dataNotFoundTranslation);
+
+            Translation formatNotValidEnglishTranslation = new Translation();
+            formatNotValidEnglishTranslation.setLanguage(english);
+            var formatNotValidEnglish= this.wordDao.getWordsByKey("date.format.not.valid");
+            formatNotValidEnglishTranslation.setWord(formatNotValidEnglish);
+            formatNotValidEnglishTranslation.setTranslation("Date Format Not Valid");
+            this.translationDao.save(formatNotValidEnglishTranslation);
 
 
 
@@ -525,12 +533,12 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardNumberErrorEnglishTranslation.setTranslation("Credit Card Number Error.");
             this.translationDao.save(creditCardNumberErrorEnglishTranslation);
 
-            Translation creditCardNumberErrorEnglishTranslation = new Translation();
-            creditCardNumberErrorEnglishTranslation.setLanguage(ads);
-            var creditCardNumberErrorEnglish = this.wordDao.getWordsByKey("credit.card.number.error");
-            creditCardNumberErrorEnglishTranslation.setWord(creditCardNumberErrorEnglish);
-            creditCardNumberErrorEnglishTranslation.setTranslation("Credit Card Number Error.");
-            this.translationDao.save(creditCardNumberErrorEnglishTranslation);
+            Translation creditCardExpirationDateErrorEnglishTranslation = new Translation();
+            creditCardExpirationDateErrorEnglishTranslation.setLanguage(english);
+            var creditCardExpirationDateErrorEnglish = this.wordDao.getWordsByKey("credit.card.date.error");
+            creditCardExpirationDateErrorEnglishTranslation.setWord(creditCardExpirationDateErrorEnglish);
+            creditCardExpirationDateErrorEnglishTranslation.setTranslation("Credit Card Expiration Date Error.");
+            this.translationDao.save(creditCardExpirationDateErrorEnglishTranslation);
 
             Translation creditCardNotFoundEnglishTranslation = new Translation();
             creditCardNotFoundEnglishTranslation.setLanguage(english);
@@ -1079,6 +1087,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardAlreadyExistsTurkishTranslation.setTranslation("Kredi kartı zaten sisteme kayıtlı.");
             this.translationDao.save(creditCardAlreadyExistsTurkishTranslation);
 
+            Translation creditCardExpirationDateErrorTurkishTranslation = new Translation();
+            creditCardExpirationDateErrorTurkishTranslation.setLanguage(english);
+            var creditCardExpirationDateErrorTurkish = this.wordDao.getWordsByKey("credit.card.date.error");
+            creditCardExpirationDateErrorTurkishTranslation.setWord(creditCardExpirationDateErrorTurkish);
+            creditCardExpirationDateErrorTurkishTranslation.setTranslation("Geçersiz son kullanma tarihi. ");
+            this.translationDao.save(creditCardExpirationDateErrorTurkishTranslation);
+
             Translation invoiceAddedTurkishTranslation = new Translation();
             invoiceAddedTurkishTranslation.setLanguage(turkish);
             var invoiceAddedTurkish = this.wordDao.getWordsByKey("invoice.added");
@@ -1383,6 +1398,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardNumberErrorTurkishTranslation.setWord(creditCardNumberErrorTurkish);
             creditCardNumberErrorTurkishTranslation.setTranslation("Kredi Kartı Numarası Hatalı.");
             this.translationDao.save(creditCardNumberErrorTurkishTranslation);
+
+            Translation formatNotValidTurkishTranslation = new Translation();
+            formatNotValidTurkishTranslation.setLanguage(turkish);
+            var formatNotValidTurkish = this.wordDao.getWordsByKey("date.format.not.valid");
+            formatNotValidTurkishTranslation.setWord(formatNotValidTurkish);
+            formatNotValidTurkishTranslation.setTranslation("Tarih Hatalı");
+            this.translationDao.save(formatNotValidTurkishTranslation);
 
         }
     }

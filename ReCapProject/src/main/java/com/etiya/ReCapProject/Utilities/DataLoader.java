@@ -300,6 +300,9 @@ public class DataLoader implements CommandLineRunner {
             Word creditCardAlreadyExists = new Word();
             creditCardAlreadyExists.setKey("credit.card.exists");
             this.wordDao.save(creditCardAlreadyExists);
+            Word formatNotValid = new Word();
+            formatNotValid.setKey("date.format.not.valid");
+            this.wordDao.save(formatNotValid);
 
 
             Word paymentAdded=new Word();

@@ -118,7 +118,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 		Pattern pattern = Pattern.compile(dateCheckRegex);
 		Matcher matcher = pattern.matcher(birthDate.toString());
 		if (!matcher.matches()){
-			return new ErrorResult(Messages.CREDITCARDDATEERROR);
+			return new ErrorResult(Messages.DATEFORMATNOTVALID);
 		}
 		return new SuccessResult();
 	}

@@ -99,6 +99,8 @@ public class Messages {
 	public static final String CREDITCARDGET = "credit.card.found";
 	public static final String CREDITCARDALREADYEXISTS = "credit.card.exists";
 
+	public static final String DATEFORMATNOTVALID = "date.format.not.valid";
+
 	public static final String PAYMENTADD = "payment.add";
 	public static final String PAYMENTUPDATE = "payment.updated";
 	public static final String PAYMENTDELETE = "payment.deleted";
@@ -122,9 +124,9 @@ public class Messages {
 	public static final String INVOICEFOUND = "invoice.found";
 	public static final String INVOICENOTFOUND = "invoice.not.found";
 
-	public static String USEREMAILALREADYEXISTS = "user.email.already.exist";
-	public static String USERFOUND = "user.found";
-	public static String USERNOTFOUND = "user.not.found";
+	public static final String USEREMAILALREADYEXISTS = "user.email.already.exist";
+	public static final String USERFOUND = "user.found";
+	public static final String USERNOTFOUND = "user.not.found";
 	public static final String USERLIST = "user.listed";
 
 	public static final String DAMAGEADD = "damage.added";
