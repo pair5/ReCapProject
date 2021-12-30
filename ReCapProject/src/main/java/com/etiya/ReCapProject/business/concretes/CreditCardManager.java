@@ -1,8 +1,12 @@
 package com.etiya.ReCapProject.business.concretes;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.CreditCardService;
@@ -32,7 +36,7 @@ public class CreditCardManager implements CreditCardService {
 	@Override
 	public Result delete(DeleteCreditCardRequest deleteCreditCardRequest) {
 		CreditCard creditCard = modelMapperService.forRequest().map(deleteCreditCardRequest, CreditCard.class);
-		this.creditCardDao.save(creditCard);
+		this.creditCardDao.delete(creditCard);
 		return new SuccessResult(Messages.CREDITCARDELETE);
 	}
 
@@ -45,7 +49,10 @@ public class CreditCardManager implements CreditCardService {
 
 	@Override
 	public Result add(CreateCreditCardRequest createCreditCardRequest) {
-		Result result=BusinessRules.run(checkCreditCardNumber(createCreditCardRequest.getCardNumber()));
+		Result result=BusinessRules.run(checkCreditCardNumber(createCreditCardRequest.getCardNumber()),
+				checkIfCreditCardNumberExists(createCreditCardRequest.getCardNumber()),
+				checkExpirationDateFormat(createCreditCardRequest.getExpirationDate())
+		);
 		if (result!=null) {
 			return result;
 		}
@@ -63,4 +70,50 @@ public class CreditCardManager implements CreditCardService {
 		}
 		return new SuccessResult();
 	}
+	private Result checkIfCreditCardNumberExists(String cardNumber){
+		var result=this.creditCardDao.existsByCardNumber(cardNumber);
+		if (result){
+			return new ErrorResult(Messages.CREDITCARDALREADYEXISTS);
+		}
+		return new SuccessResult();
+	}
+
+private Result checkExpirationDateFormat(String expirationDate){
+
+
+
+
+
+
+/*
+		var dateResult = LocalDate.now().toString();
+		var dataResultBoolean = dateResult.contains("-");
+		if (dataResultBoolean){
+			var dateResponse = dateResult.split("/");
+			var nowMonth = dateResponse[1];
+			var nowYear = dateResponse[0];
+			var transformedYear = nowYear.split("",2);
+			}
+			*/
+
+/*		SimpleDateFormat compareExpirationDate = new SimpleDateFormat("MM/yy");
+		System.out.println(sdf.parse(startDate).before(sdf.parse(endDate)));*/
+
+		var result=expirationDate.contains("/");
+
+		if (result){
+			var response=expirationDate.split("/");
+			String month = response[0];
+			String year = response[1];
+			int checkMonth = Integer.parseInt(month);
+			int checkYear = Integer.parseInt(year);
+
+			if (month.length() !=2 && year.length() != 2) {
+				return new ErrorResult(Messages.CREDITCARDDATEERROR);
+			}
+		}
+		return new SuccessResult(Messages.CREDITCARDADD);
+	}
 }
+
+

@@ -73,6 +73,7 @@ public class CarImageManager implements CarImageService {
 			return result;
 		}
 
+		generateImage(createCarImageRequest.getFile());
 		CarImage carImage = modelMapperService.forRequest().map(createCarImageRequest, CarImage.class);
 		carImage.setDate(LocalDate.now());
 		carImage.setImagePath(createCarImageRequest.getFile().getBytes());
@@ -105,7 +106,7 @@ public class CarImageManager implements CarImageService {
 	}
 
 	private File generateImage(MultipartFile file) throws IOException {
-		String path = environment.getProperty("imagePath");
+		String path = environment.getProperty("imagePath","defaultImagePath");
 		String imagePathGuid = java.util.UUID.randomUUID().toString();
 
 		//"C:\\Users\\doruk.senay\\Desktop\\Photos\\"

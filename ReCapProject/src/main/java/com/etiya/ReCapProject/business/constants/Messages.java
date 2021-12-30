@@ -87,7 +87,7 @@ public class Messages {
 	public static final String LOGINFAILED = "login.failed";
 
 
-	public static final String CREDITCARDADD = "credit.card.add";
+	public static final String CREDITCARDADD = "credit.card.added";
 	public static final String CREDITCARDUPDATE = "credit.card.updated";
 	public static final String CREDITCARDELETE = "credit.card.deleted";
 	public static final String CREDITCARDLIST = "credit cards listed";
@@ -97,6 +97,7 @@ public class Messages {
 	public static final String CREDITCARDSAVE = "credit.card.registered";
 	public static final String CREDITCARDNOTSAVE = "credit.card.not.save";
 	public static final String CREDITCARDGET = "credit.card.found";
+	public static final String CREDITCARDALREADYEXISTS = "credit.card.exists";
 
 	public static final String PAYMENTADD = "payment.add";
 	public static final String PAYMENTUPDATE = "payment.updated";
