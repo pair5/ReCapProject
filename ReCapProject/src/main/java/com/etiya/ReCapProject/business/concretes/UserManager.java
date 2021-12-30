@@ -32,16 +32,7 @@ public class UserManager implements UserService {
 			return result;
 		}
 		return new SuccessResult(Messages.LOGINSUCCESS);
-		/*
-		User user= this.userDao.getByEmail(loginUserRequest.getEmail());
-		if (user==null) {
-			return new ErrorResult("email sisteme kayıtlı değil");
-		}
-		if (user.getEmail().equals(loginUserRequest.getEmail())&&user.getPassword().equals(loginUserRequest.getPassword())) {
-			return new SuccessResult(Messages.LOGINSUCCESS);
-		}
-		return new ErrorResult("Kullanıcı bilgileri hatalı");
-		*/
+
 	}
 	private Result checkCredentials(String email,String password) {
 		var user =  this.userDao.getByEmail(email);

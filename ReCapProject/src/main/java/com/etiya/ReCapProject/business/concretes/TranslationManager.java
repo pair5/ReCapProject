@@ -43,21 +43,21 @@ public class TranslationManager implements TranslationService {
     public Result add(CreateTranslationRequest createTranslationRequest) {
         Translation translation = modelMapperService.forRequest().map(createTranslationRequest, Translation.class);
         translationDao.save(translation);
-        return new SuccessResult("Ha bu eklenmiştur da");
+        return new SuccessResult("Language added.");
     }
 
     @Override
     public Result delete(DeleteTranslationRequest deleteTranslationRequest) {
         Translation translation = modelMapperService.forRequest().map(deleteTranslationRequest, Translation.class);
         translationDao.delete(translation);
-        return new SuccessResult("Ha bu silinmiştur");
+        return new SuccessResult("Language deleted.");
     }
 
     @Override
     public Result update(UpdateTranslationRequest updateTranslationRequest) {
         Translation translation = modelMapperService.forRequest().map(updateTranslationRequest, Translation.class);
         translationDao.save(translation);
-        return new SuccessResult("Ha bu da güncellenmiştur");
+        return new SuccessResult("Language updated.");
     }
 
     @Override

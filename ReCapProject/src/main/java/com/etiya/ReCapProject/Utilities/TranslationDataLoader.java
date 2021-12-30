@@ -78,6 +78,44 @@ public class TranslationDataLoader implements CommandLineRunner {
             this.translationDao.save(loginEmailErrorEnglishTranslation);
 
 
+            Translation additionalRentalItemUpdatedEnglishTranslation = new Translation();
+            additionalRentalItemUpdatedEnglishTranslation.setLanguage(english);
+            var additionalRentalItemUpdatedEnglish = this.wordDao.getWordsByKey("additional.rental.item.updated");
+            additionalRentalItemUpdatedEnglishTranslation.setWord(additionalRentalItemUpdatedEnglish);
+            additionalRentalItemUpdatedEnglishTranslation.setTranslation("Additional Rental Item Updated.");
+            this.translationDao.save(additionalRentalItemUpdatedEnglishTranslation);
+
+            Translation additionalRentalItemAddedEnglishTranslation = new Translation();
+            additionalRentalItemAddedEnglishTranslation.setLanguage(english);
+            var additionalRentalItemAddedEnglish = this.wordDao.getWordsByKey("additional.rental.item.added");
+            additionalRentalItemAddedEnglishTranslation.setWord(additionalRentalItemAddedEnglish);
+            additionalRentalItemAddedEnglishTranslation.setTranslation("Additional Rental Item Added.");
+            this.translationDao.save(additionalRentalItemAddedEnglishTranslation);
+
+            Translation additionalRentalItemDeletedEnglishTranslation = new Translation();
+            additionalRentalItemDeletedEnglishTranslation.setLanguage(english);
+            var additionalRentalItemDeletedEnglish = this.wordDao.getWordsByKey("additional.rental.item.deleted");
+            additionalRentalItemDeletedEnglishTranslation.setWord(additionalRentalItemDeletedEnglish);
+            additionalRentalItemDeletedEnglishTranslation.setTranslation("Additional Rental Item Deleted.");
+            this.translationDao.save(additionalRentalItemDeletedEnglishTranslation);
+
+
+            Translation additionalRentalItemListedEnglishTranslation = new Translation();
+            additionalRentalItemListedEnglishTranslation.setLanguage(english);
+            var additionalRentalItemListedEnglish = this.wordDao.getWordsByKey("additional.rental.items.listed");
+            additionalRentalItemListedEnglishTranslation.setWord(additionalRentalItemListedEnglish);
+            additionalRentalItemListedEnglishTranslation.setTranslation("Additional Rental Item Listed.");
+            this.translationDao.save(additionalRentalItemListedEnglishTranslation);
+
+            Translation additionalRentalItemNotFoundEnglishTranslation = new Translation();
+            additionalRentalItemNotFoundEnglishTranslation.setLanguage(english);
+            var additionalRentalItemNotFoundEnglish = this.wordDao.getWordsByKey("additional.rental.item.not.found");
+            additionalRentalItemNotFoundEnglishTranslation.setWord(additionalRentalItemNotFoundEnglish);
+            additionalRentalItemNotFoundEnglishTranslation.setTranslation("Additional Rental Item Not Found.");
+            this.translationDao.save(additionalRentalItemNotFoundEnglishTranslation);
+
+
+
 
             //-----Brand-------
             Translation brandAddedEnglishTranslation = new Translation();
@@ -1170,6 +1208,46 @@ public class TranslationDataLoader implements CommandLineRunner {
             carImageLimitErrorTurkishTranslation.setWord(carImageLimitErrorTurkish);
             carImageLimitErrorTurkishTranslation.setTranslation("5'ten fazla araç görseli eklenemez.");
             this.translationDao.save(carImageLimitErrorTurkishTranslation);
+
+
+            //Additional Items Turkish
+
+            Translation additionalRentalItemUpdatedTurkishTranslation = new Translation();
+            additionalRentalItemUpdatedTurkishTranslation.setLanguage(turkish);
+            var additionalRentalItemUpdatedTurkish = this.wordDao.getWordsByKey("additional.rental.item.updated");
+            additionalRentalItemUpdatedTurkishTranslation.setWord(additionalRentalItemUpdatedTurkish);
+            additionalRentalItemUpdatedTurkishTranslation.setTranslation("Kiralanabilir ürün güncellendi.");
+            this.translationDao.save(additionalRentalItemUpdatedTurkishTranslation);
+
+            Translation additionalRentalItemAddedTurkishTranslation = new Translation();
+            additionalRentalItemAddedTurkishTranslation.setLanguage(turkish);
+            var additionalRentalItemAddedTurkish = this.wordDao.getWordsByKey("additional.rental.item.added");
+            additionalRentalItemAddedTurkishTranslation.setWord(additionalRentalItemAddedTurkish);
+            additionalRentalItemAddedTurkishTranslation.setTranslation("Kiralanabilir ürün eklendi.");
+            this.translationDao.save(additionalRentalItemAddedTurkishTranslation);
+
+            Translation additionalRentalItemDeletedTurkishTranslation = new Translation();
+            additionalRentalItemDeletedTurkishTranslation.setLanguage(turkish);
+            var additionalRentalItemDeletedTurkish = this.wordDao.getWordsByKey("additional.rental.item.deleted");
+            additionalRentalItemDeletedTurkishTranslation.setWord(additionalRentalItemDeletedTurkish);
+            additionalRentalItemDeletedTurkishTranslation.setTranslation("Kiralanabilir ürün silindi.");
+            this.translationDao.save(additionalRentalItemDeletedTurkishTranslation);
+
+            Translation additionalRentalItemsListedTurkishTranslation = new Translation();
+            additionalRentalItemsListedTurkishTranslation.setLanguage(turkish);
+            var additionalRentalItemsListedTurkish = this.wordDao.getWordsByKey("additional.rental.items.listed");
+            additionalRentalItemsListedTurkishTranslation.setWord(additionalRentalItemsListedTurkish);
+            additionalRentalItemsListedTurkishTranslation.setTranslation("Tüm kiralanabilir ürünler listelendi.");
+            this.translationDao.save(additionalRentalItemsListedTurkishTranslation);
+
+            Translation additionalRentalItemNotFoundTurkishTranslation = new Translation();
+            additionalRentalItemNotFoundTurkishTranslation.setLanguage(turkish);
+            var additionalRentalItemNotFoundTurkish = this.wordDao.getWordsByKey("additional.rental.item.not.found");
+            additionalRentalItemNotFoundTurkishTranslation.setWord(additionalRentalItemNotFoundTurkish);
+            additionalRentalItemNotFoundTurkishTranslation.setTranslation("Kiralanabilir ürün bulunamadı.");
+            this.translationDao.save(additionalRentalItemNotFoundTurkishTranslation);
+
+
         }
     }
 }

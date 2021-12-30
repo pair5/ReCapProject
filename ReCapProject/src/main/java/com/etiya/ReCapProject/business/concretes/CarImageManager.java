@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,17 +37,22 @@ public class CarImageManager implements CarImageService {
 	private CarImageDao carImageDao;
 	private ModelMapperService modelMapperService;
 	private CarService carService;
+	private Environment environment;
+
+	@Autowired
+	public CarImageManager(CarImageDao carImageDao, ModelMapperService modelMapperService, CarService carService, Environment environment) {
+		this.carImageDao = carImageDao;
+		this.modelMapperService = modelMapperService;
+		this.carService = carService;
+		this.environment = environment;
+	}
+
+
 
 //	@Value("${imagePath}")
 //	private String path;
 
-	@Autowired
-	public CarImageManager(CarImageDao carImageDao, ModelMapperService modelMapperService, CarService carService) {
-	super();
-	this.carImageDao = carImageDao;
-	this.modelMapperService = modelMapperService;
-	this.carService = carService;
-}
+
 
 	@Override
 	public DataResult<List<CarImageSearchListDto>> getAll() {
@@ -99,8 +105,11 @@ public class CarImageManager implements CarImageService {
 	}
 
 	private File generateImage(MultipartFile file) throws IOException {
+		String path = environment.getProperty("imagePath");
 		String imagePathGuid = java.util.UUID.randomUUID().toString();
-		File imageFile = new File("C:\\Users\\doruk.senay\\Desktop\\Photos\\" + imagePathGuid + "."
+
+		//"C:\\Users\\doruk.senay\\Desktop\\Photos\\"
+		File imageFile = new File(path+"/"+ imagePathGuid + "."
 				+ file.getContentType().substring(file.getContentType().indexOf("/") + 1));
 		imageFile.createNewFile();
 		FileOutputStream outputImage = new FileOutputStream(imageFile);
@@ -117,10 +126,11 @@ public class CarImageManager implements CarImageService {
 	}
 
 	public DataResult<List<CarImageSearchListDto>> getCarImagesByCarId(int id) {
+		String defaultPath = environment.getProperty("defaultImagePath");
 		if (this.carImageDao.getByCar_Id(id).isEmpty()) {
 			CarImageSearchListDto carImageSearchListDto = new CarImageSearchListDto();
 			carImageSearchListDto
-					.setImagePath("C:\\Users\\burak.koyuncu\\git\\repository3\\ReCapProject\\images\\default.png");
+					.setImagePath(defaultPath);
 			List<CarImageSearchListDto> carImages = new ArrayList<CarImageSearchListDto>();
 			carImages.add(carImageSearchListDto);
 			return new SuccessDataResult<List<CarImageSearchListDto>>(carImages,Messages.CARIMAGELIST);

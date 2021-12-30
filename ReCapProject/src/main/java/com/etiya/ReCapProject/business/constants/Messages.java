@@ -143,8 +143,9 @@ public class Messages {
 	public static final String ADDITIONALRENTALITEMADD = "additional.rental.item.added";
 	public static final String ADDITIONALRENTALITEMDELETE = "additional.rental.item.deleted";
 	public static final String ADDITIONALRENTALITEMUPDATE = "additional.rental.item.updated";
-	public static final String ADDITIONALRENTALITEMLIST = "additional.rental.item.listed";
+	public static final String ADDITIONALRENTALITEMLIST = "additional.rental.items.listed";
 	public static final String ADDITIONALRENTALITEMNOTFOUND = "additional.rental.item.not.found";
+
 
 
 }	
