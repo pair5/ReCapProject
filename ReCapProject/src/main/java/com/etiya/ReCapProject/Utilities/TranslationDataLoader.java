@@ -525,6 +525,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardNumberErrorEnglishTranslation.setTranslation("Credit Card Number Error.");
             this.translationDao.save(creditCardNumberErrorEnglishTranslation);
 
+            Translation creditCardNumberErrorEnglishTranslation = new Translation();
+            creditCardNumberErrorEnglishTranslation.setLanguage(ads);
+            var creditCardNumberErrorEnglish = this.wordDao.getWordsByKey("credit.card.number.error");
+            creditCardNumberErrorEnglishTranslation.setWord(creditCardNumberErrorEnglish);
+            creditCardNumberErrorEnglishTranslation.setTranslation("Credit Card Number Error.");
+            this.translationDao.save(creditCardNumberErrorEnglishTranslation);
+
             Translation creditCardNotFoundEnglishTranslation = new Translation();
             creditCardNotFoundEnglishTranslation.setLanguage(english);
             var creditCardNotFoundEnglish = this.wordDao.getWordsByKey("credit.card.not.found");

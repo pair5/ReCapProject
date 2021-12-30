@@ -2,6 +2,7 @@ package com.etiya.ReCapProject.business.concretes;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.tomcat.jni.Local;
@@ -51,7 +52,7 @@ public class CreditCardManager implements CreditCardService {
 	public Result add(CreateCreditCardRequest createCreditCardRequest) {
 		Result result=BusinessRules.run(checkCreditCardNumber(createCreditCardRequest.getCardNumber()),
 				checkIfCreditCardNumberExists(createCreditCardRequest.getCardNumber()),
-				checkExpirationDateFormat(createCreditCardRequest.getExpirationDate())
+				checkCreditCardExpiryDate(createCreditCardRequest.getExpirationDate())
 		);
 		if (result!=null) {
 			return result;
@@ -78,41 +79,18 @@ public class CreditCardManager implements CreditCardService {
 		return new SuccessResult();
 	}
 
-private Result checkExpirationDateFormat(String expirationDate){
+	public Result checkCreditCardExpiryDate(String expiryDate) {
 
+		String regex = "(0[1-9]|1[0-2])/?(([0-9]{2}|[0-9]{2})$)";
 
+		Pattern pattern = Pattern.compile(regex);
 
+		Matcher matcher = pattern.matcher(expiryDate);
 
-
-
-/*
-		var dateResult = LocalDate.now().toString();
-		var dataResultBoolean = dateResult.contains("-");
-		if (dataResultBoolean){
-			var dateResponse = dateResult.split("/");
-			var nowMonth = dateResponse[1];
-			var nowYear = dateResponse[0];
-			var transformedYear = nowYear.split("",2);
-			}
-			*/
-
-/*		SimpleDateFormat compareExpirationDate = new SimpleDateFormat("MM/yy");
-		System.out.println(sdf.parse(startDate).before(sdf.parse(endDate)));*/
-
-		var result=expirationDate.contains("/");
-
-		if (result){
-			var response=expirationDate.split("/");
-			String month = response[0];
-			String year = response[1];
-			int checkMonth = Integer.parseInt(month);
-			int checkYear = Integer.parseInt(year);
-
-			if (month.length() !=2 && year.length() != 2) {
-				return new ErrorResult(Messages.CREDITCARDDATEERROR);
-			}
+		if (!matcher.matches()) {
+			return new ErrorResult(Messages.CREDITCARDDATEERROR);
 		}
-		return new SuccessResult(Messages.CREDITCARDADD);
+		return new SuccessResult();
 	}
 }
 
