@@ -114,6 +114,17 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		return new SuccessDataResult<CarMaintenance>(carMaintenance);
 	}
 
+	@Override
+	public boolean isCarExistsOnCarMaintenance(int carId) {
+		var existsResult = this.carMaintenanceDao.existsByCarId(carId);
+		if (!existsResult)
+			{
+				return false;
+			}
+			return true;
+
+		}
+
 	private Result isCarIdExists(int carId){
 
 		var existsResult = this.carService.isCarExists(carId);
@@ -148,7 +159,8 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		var carExists = rentalService.getByCar_Id(carId).getData();
 		if (carExists == null){
 			return new SuccessResult();
-		}		var result=this.rentalService.getByCar_Id(carId).getData();
+		}
+		var result=this.rentalService.getByCar_Id(carId).getData();
 		if (result.getReturnDate()==null){
 			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
 		}

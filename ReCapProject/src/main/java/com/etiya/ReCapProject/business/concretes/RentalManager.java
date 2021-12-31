@@ -127,6 +127,10 @@ public class RentalManager implements RentalService {
 
 
     public Result checkIfReturnDateIsNull(int carId) {
+        var result = this.rentalDao.existsByCarId(carId);
+        if(!result){
+            return new SuccessResult();
+        }
         Rental rental = this.rentalDao.getByCarId(carId);
         if (rental.getReturnDate() == null) {
             return new ErrorResult(Messages.RENTALDATEISNULL);
@@ -189,8 +193,8 @@ public class RentalManager implements RentalService {
     }
 
     private Result checkIfCarIsInMaintenance(int carId) {
-        var existsResult = this.carMaintenanceService.getByCar(carId);
-        if (existsResult == null){
+        var existsResult = this.carMaintenanceService.isCarExistsOnCarMaintenance(carId);
+        if (!existsResult){
             return new SuccessResult();
         }
         var result = this.carMaintenanceService.getByCar(carId);

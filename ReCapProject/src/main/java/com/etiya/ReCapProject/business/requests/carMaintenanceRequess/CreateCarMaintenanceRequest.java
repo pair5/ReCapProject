@@ -16,6 +16,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateCarMaintenanceRequest {
+
+	@JsonIgnore
+	private int id;
 	
 	@NotNull
 	private int car_Id;

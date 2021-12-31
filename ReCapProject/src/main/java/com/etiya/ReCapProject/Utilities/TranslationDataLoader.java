@@ -2187,6 +2187,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             languageNotFoundTurkishTranslation.setTranslation("Dil Bulunamadı.");
             this.translationDao.save(languageNotFoundTurkishTranslation);
 
+            Translation rentedCarIsOnManitenanceTurkishTranslation = new Translation();
+            rentedCarIsOnManitenanceTurkishTranslation.setLanguage(turkish);
+            var rentedCarIsOnManitenanceTurkish = this.wordDao.getWordsByKey("rented.car.is.on.maintenance");
+            rentedCarIsOnManitenanceTurkishTranslation.setWord(rentedCarIsOnManitenanceTurkish);
+            rentedCarIsOnManitenanceTurkishTranslation.setTranslation("Kiralanmak istenen araç bakımdadır.");
+            this.translationDao.save(rentedCarIsOnManitenanceTurkishTranslation);
+
         }
     }
 }
