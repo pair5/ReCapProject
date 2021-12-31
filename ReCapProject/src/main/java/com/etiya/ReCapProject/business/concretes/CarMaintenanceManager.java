@@ -1,8 +1,10 @@
 package com.etiya.ReCapProject.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -54,11 +56,11 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		return new SuccessDataResult<List<CarMaintenanceSearchListDto>>(response,Messages.CARMAINTENANCELIST);
 	}
 
-	//checkIfCarIsRented(createCarMaintenanceRequest.getCar_Id()),
 	@Override
 	public Result add(CreateCarMaintenanceRequest createCarMaintenanceRequest) {
 		Result result = BusinessRules.run(isCarIdExists(createCarMaintenanceRequest.getCar_Id()),
 				checkIfCarIsInMaintenance(createCarMaintenanceRequest.getCar_Id()),
+				/*checkIfMaintenanceReturnDateBeforeToday(createCarMaintenanceRequest.getCar_Id()),*/
 				checkRentalReturnDate(createCarMaintenanceRequest.getCar_Id()));
 		if (result != null) {
 			return result;
@@ -73,13 +75,13 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 	public Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest) {
 		var result = BusinessRules.run(checkIfMaintenanceIdExists(updateCarMaintenanceRequest.getId()),
 				isCarIdExists(updateCarMaintenanceRequest.getCarId()),
-				checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()),
-				checkReturnDate(updateCarMaintenanceRequest.getCarId()));
+				checkIfCarIsRented(updateCarMaintenanceRequest.getCarId()));
 		if (result != null) {
 			return result;
 		}
 		CarMaintenance carMaintenance = modelMapperService.forRequest().map(updateCarMaintenanceRequest,
 				CarMaintenance.class);
+		carMaintenance.setReturnDate(LocalDate.now());
 		this.carMaintenanceDao.save(carMaintenance);
 		return new SuccessResult(Messages.CARMAINTENANCEUPDATE);
 	}
@@ -134,19 +136,6 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		return new SuccessResult();
 	}
 
-
-
-	private Result checkReturnDate(int carId){
-		//araba kontrol
-		var tempMaintenance= this.carMaintenanceDao.getByCar_Id(carId);
-		this.carMaintenanceDao.delete(tempMaintenance);
-		var result = this.carMaintenanceDao.existsByCarId(carId);
-		if (result){
-			return new ErrorResult(Messages.CARNOTFOUND);
-		}
-		return new SuccessResult();
-	}
-
 	private Result checkIfMaintenanceIdExists(int id){
 		var result = this.carMaintenanceDao.existsById(id);
 		if (!result){
@@ -159,19 +148,12 @@ public class CarMaintenanceManager implements CarMaintenanceService {
 		var carExists = rentalService.getByCar_Id(carId).getData();
 		if (carExists == null){
 			return new SuccessResult();
-		}
-		var result=this.rentalService.getByCar_Id(carId).getData();
+		}		var result=this.rentalService.getByCar_Id(carId).getData();
 		if (result.getReturnDate()==null){
 			return new ErrorResult(Messages.CARMAINTENANCERENTALERROR);
 		}
 		return new SuccessResult();
 	}
-
-	private Result checkIfReturnDateIsBeforeThenNow(int carMaintenanceId){
-		var result=this.carMaintenanceDao.getById(carMaintenanceId);
-
-	}
-
 
 }
 
