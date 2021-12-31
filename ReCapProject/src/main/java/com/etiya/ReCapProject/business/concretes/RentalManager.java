@@ -166,6 +166,20 @@ public class RentalManager implements RentalService {
         return new SuccessResult();
     }
 
+    @Override
+    public DataResult<RentalSearchListDto> getByRentalId(int id) {
+        var result = this.rentalDao.existsById(id);
+        if (!result){
+            return new ErrorDataResult<>(Messages.RENTALNOTFOUND, null);
+        }
+        var rentalResult = this.rentalDao.getById(id);
+
+        RentalSearchListDto rentalSearchListDto = modelMapperService.forDto().map(rentalResult,RentalSearchListDto.class);
+
+return new SuccessDataResult<RentalSearchListDto>(rentalSearchListDto, Messages.RENTALFOUND);
+
+    }
+
     private Result compareFindexScores(int id) {
         var resultCar = carService.isCarExists(id);
         if (!resultCar.isSuccess()) {
@@ -289,6 +303,8 @@ public class RentalManager implements RentalService {
         }
         return new SuccessResult();
     }
+
+
 
     //
 }

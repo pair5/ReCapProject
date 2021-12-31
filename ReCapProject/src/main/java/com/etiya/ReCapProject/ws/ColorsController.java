@@ -3,13 +3,7 @@ package com.etiya.ReCapProject.ws;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.etiya.ReCapProject.business.abstracts.ColorService;
 import com.etiya.ReCapProject.business.dtos.ColorSearchListDto;
@@ -52,9 +46,9 @@ public class ColorsController {
 		return this.colorService.add(createColorRequest);
 	}
 	
-	@GetMapping("/getColor")
-	public DataResult<ColorSearchListDto> getColor(int id){
-		return this.colorService.getByColorId(id);
+	@GetMapping("/getById")
+	public DataResult<ColorSearchListDto> getColor(@RequestParam("colorId") int colorId){
+		return this.colorService.getByColorId(colorId);
 	}
 	
 	

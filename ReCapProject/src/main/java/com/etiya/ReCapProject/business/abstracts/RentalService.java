@@ -21,6 +21,7 @@ public interface RentalService {
 	int getAdditionalItemsTotalPriceByRentalId(int rentalId);
 	Result isRentalExistsById(int id);
 	Result isRentalExistsByCarId(int carId);
+	DataResult<RentalSearchListDto> getByRentalId(int id);
 
 
 }	

@@ -5,6 +5,8 @@ public class Messages {
 
 	public static final String VALIDATIONERROR ="validation.error";
 
+	public static final String FORMATERROR = "format.error";
+
 
 	public static final String BRANDADD = "brand.added";
 	public static final String BRANDUPDATE = "brand.updated";
@@ -23,6 +25,7 @@ public class Messages {
 	public static final String GETCARBYBRANDID = "get.car.by.brand.id";
 	public static final String GETCARBYCOLORID = "get.car.by.color.id";
 	public static final String GETCARBYCITYID = "get.car.by.city.id";
+
 
 	public static final String CITYADD = "city.added";
 	public static final String CITYUPDATE = "city.updated";
@@ -77,7 +80,7 @@ public class Messages {
 	public static final String CARIMAGELIMITERROR = "car.image.limit.error";
 	public static final String CARIMAGEDEFAULT = "showing.default.image";
 	public static final String CARIMAGEEMPTY = "no.image.selected";
-	public static final String CARIMAGETYPEERROR = "the.file.you.selected.is.not.an.image.file";
+	public static final String CARIMAGETYPEERROR = "car.image.type.not.valid";
 	public static final String CARIMAGEGET = "car.image.found";
 	public static final String CARIMAGENOTFOUND="car.image.not.found";
 
@@ -127,7 +130,7 @@ public class Messages {
 	public static final String INVOICENUMBERAlREADYEXISTS = "invoice.exists";
 
 
-	public static final String USEREMAILALREADYEXISTS = "user.email.already.exist";
+	public static final String USEREMAILALREADYEXISTS = "user.email.exists";
 	public static final String USERFOUND = "user.found";
 	public static final String USERNOTFOUND = "user.not.found";
 	public static final String USERLIST = "user.listed";
@@ -160,5 +163,20 @@ public class Messages {
 	public static final String LANGUAGEFOUND = "language.found";
 	public static final String LANGUAGEALREADYEXISTS = "language.exists";
 
+	public static final String WORDADD = "word.added";
+	public static final String WORDDELETED = "word.deleted";
+	public static final String WORDUPDATED = "word.updated";
+	public static final String WORDSLISTED = "words.listed";
+	public static final String WORDNOTFOUND= "word.not.found";
+	public static final String WORDFOUND= "word.found";
+	public static final String WORDALREADYEXISTS= "word.exists";
+
+	public static final String TRANSLATIONADD = "translation.added";
+	public static final String TRANSLATIONDELETE = "translation.deleted";
+	public static final String TRANSLATIONUPDATE = "translation.updated";
+	public static final String TRANSLATIONSLISTED = "translations.listed";
+	public static final String TRANSLATIONNOTFOUND = "translation.not.found";
+	public static final String TRANSLATIONFOUND = "translation.found";
+	public static final String TRANSLATIONEXISTS = "translation.exists";
 
 }	

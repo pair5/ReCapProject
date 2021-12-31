@@ -30,8 +30,8 @@ public class LanguagesController {
         return this.languageService.getAll();
     }
 
-    @GetMapping("getBylanguage")
-    public DataResult<LanguageSearchListDto>  getLanguage(String languageName){
+    @GetMapping("getByLanguageName")
+    public DataResult<LanguageSearchListDto>  getByLanguageName(String languageName){
         var result=this.languageService.getByLanguageName(languageName);
         return result;
     }

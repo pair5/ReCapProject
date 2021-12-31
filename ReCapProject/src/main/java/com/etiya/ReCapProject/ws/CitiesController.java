@@ -43,9 +43,9 @@ return this.cityService.update(updateCityRequest);
     return this.cityService.getAll();
         }
 
-        @GetMapping("/getByCityId")
-        public DataResult<CitySearchListDto> getByCityId(int id){
-     return this.cityService.getById(id);
+        @GetMapping("/getById")
+        public DataResult<CitySearchListDto> getByCityId(@RequestParam("cityId") int cityId){
+     return this.cityService.getById(cityId);
         }
 
 

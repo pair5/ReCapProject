@@ -36,28 +36,28 @@ public class TranslationManager implements TranslationService {
        List<Translation> translations=this.translationDao.findAll();
        List<TranslationSearchListDto> translationSearchListDtos=translations.stream()
                .map(translation-> modelMapperService.forDto().map(translation, TranslationSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<TranslationSearchListDto>>(translationSearchListDtos);
+        return new SuccessDataResult<List<TranslationSearchListDto>>(translationSearchListDtos,Messages.TRANSLATIONSLISTED);
     }
 
     @Override
     public Result add(CreateTranslationRequest createTranslationRequest) {
         Translation translation = modelMapperService.forRequest().map(createTranslationRequest, Translation.class);
         translationDao.save(translation);
-        return new SuccessResult("Language added.");
+        return new SuccessResult(Messages.TRANSLATIONADD);
     }
 
     @Override
     public Result delete(DeleteTranslationRequest deleteTranslationRequest) {
         Translation translation = modelMapperService.forRequest().map(deleteTranslationRequest, Translation.class);
         translationDao.delete(translation);
-        return new SuccessResult("Language deleted.");
+        return new SuccessResult(Messages.TRANSLATIONDELETE);
     }
 
     @Override
     public Result update(UpdateTranslationRequest updateTranslationRequest) {
         Translation translation = modelMapperService.forRequest().map(updateTranslationRequest, Translation.class);
         translationDao.save(translation);
-        return new SuccessResult("Language updated.");
+        return new SuccessResult(Messages.TRANSLATIONUPDATE);
     }
 
     @Override

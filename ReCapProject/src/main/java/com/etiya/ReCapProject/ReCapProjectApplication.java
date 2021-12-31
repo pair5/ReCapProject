@@ -92,13 +92,13 @@ public class ReCapProjectApplication {
 	@ExceptionHandler(SerializationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleSerializationException(SerializationException serializationException){
-		ErrorResult error = new ErrorResult(Messages.RENTALDATEERROR);
+		ErrorResult error = new ErrorResult(Messages.FORMATERROR);
 		return error;
 	}
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ErrorResult handHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
-		ErrorResult errorResult = new ErrorResult(Messages.DATEFORMATNOTVALID);
+		ErrorResult errorResult = new ErrorResult(Messages.FORMATERROR);
 		return errorResult;
 
 	}

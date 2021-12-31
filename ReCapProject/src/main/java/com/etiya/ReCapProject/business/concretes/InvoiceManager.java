@@ -119,11 +119,11 @@ public class InvoiceManager implements InvoiceService {
         List<Invoice> invoices = this.invoiceDao.getByCustomer_Id(customerId);
         List<InvoiceSearchListDto> invoiceSearchListDtos = invoices.stream()
                 .map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos,Messages.CUSTOMERGET);
+        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos,Messages.INVOICEBYCUSTOMERLIST);
     }
 
     @Override
-    public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate, LocalDate endDate) {
+    public DataResult<List<InvoiceSearchListDto>> getBySelectedInterval(LocalDate beginDate, LocalDate endDate) {
         List<Invoice> invoices = this.invoiceDao.getByCreateDateBetween(beginDate, endDate);
         List<InvoiceSearchListDto> invoiceSearchListDtos = invoices.stream()
                 .map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
