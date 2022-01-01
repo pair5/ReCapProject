@@ -98,6 +98,7 @@ public class RentalManager implements RentalService {
             return result;
         }
         Rental rental = modelMapperService.forRequest().map(deleteRentalRequest, Rental.class);
+        this.rentalDao.delete(rental);
         return new SuccessResult(Messages.RENTALDELETE);
     }
 
