@@ -78,7 +78,7 @@ public class ReCapProjectApplication {
     @ExceptionHandler(EntityNotFoundException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
     private ErrorResult handleEntityNotFound(EntityNotFoundException ex){
-        return new ErrorResult("Data not found!");
+        return new ErrorResult(Messages.DATANOTFOUND);
     }
     
     @ExceptionHandler(NoSuchElementException.class)
