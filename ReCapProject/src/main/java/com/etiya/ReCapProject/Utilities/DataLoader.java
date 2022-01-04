@@ -11,14 +11,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TranslationDataLoader implements CommandLineRunner {
+public class DataLoader implements CommandLineRunner {
 
     private TranslationDao translationDao;
     private LanguageDao languageDao;
     private WordDao wordDao;
 
     @Autowired
-    public TranslationDataLoader(TranslationDao translationDao, LanguageDao languageDao, WordDao wordDao) {
+    public DataLoader(TranslationDao translationDao, LanguageDao languageDao, WordDao wordDao) {
         this.translationDao = translationDao;
         this.languageDao = languageDao;
         this.wordDao = wordDao;
