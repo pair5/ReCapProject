@@ -1475,7 +1475,7 @@ public class TranslationDataLoader implements CommandLineRunner {
                     dataNotFoundTurkishTranslation.setLanguage(turkish);
                     var dataNotFoundTurkish = this.wordDao.getWordsByKey("data.not.found");
                     dataNotFoundTurkishTranslation.setWord(dataNotFoundTurkish);
-                    dataNotFoundTurkishTranslation.setTranslation("Data Not Found");
+                    dataNotFoundTurkishTranslation.setTranslation("Veri bulunamadı.");
                     this.translationDao.save(dataNotFoundTurkishTranslation);
 
             Translation customerAddedTurkishTranslation = new Translation();

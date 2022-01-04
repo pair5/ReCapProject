@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -97,11 +98,13 @@ public class ReCapProjectApplication {
 	}
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public ErrorResult handHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
+	public ErrorResult handleHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
 		ErrorResult errorResult = new ErrorResult(Messages.FORMATERROR);
 		return errorResult;
 
 	}
+
+
 
 
 
